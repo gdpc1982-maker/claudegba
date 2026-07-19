@@ -1,0 +1,1027 @@
+/* =====================================================
+   Gurgaon Bengalee Association Website
+   Main Stylesheet
+   Version 2.0
+===================================================== */
+.about-content p{
+
+    text-align:justify;
+
+    margin-bottom:18px;
+
+    font-size:1.05rem;
+
+    line-height:1.75;
+
+}
+
+.navbar-nav{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    width:100%;
+    gap:6px;
+}
+
+.navbar-nav .nav-item{
+    flex:0 0 auto;
+}
+
+.timeline{
+
+border-left:4px solid var(--secondary);
+
+margin-top:50px;
+
+padding-left:40px;
+
+}
+
+.timeline-item{
+
+position:relative;
+
+margin-bottom:50px;
+
+}
+
+.timeline-item::before{
+
+content:"";
+
+position:absolute;
+
+left:-50px;
+
+top:10px;
+
+width:18px;
+
+height:18px;
+
+background:var(--primary);
+
+border-radius:50%;
+
+border:4px solid white;
+
+box-shadow:0 0 0 3px var(--secondary);
+
+}
+
+.year{
+
+font-size:26px;
+
+font-weight:700;
+
+color:var(--primary);
+
+margin-bottom:10px;
+
+}
+
+.home-slider{
+
+    padding:12px;
+    background:#f8f8f8;
+
+}
+
+.home-slider .carousel{
+
+    max-width:1100px;
+    margin:auto;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 12px 35px rgba(0,0,0,.15);
+
+}
+
+.home-slider img{
+
+    width:100%;
+    height:420px;
+    object-fit:contain;
+    object-position:center;
+    background:#fff;
+
+}
+
+@media(max-width:768px){
+
+.home-slider img{
+
+    height:240px;
+
+}
+
+}
+.artwork-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+    margin-bottom:30px;
+
+}
+/* Mobile Navigation (legacy — safe to remove once confirmed unused) */
+
+.artwork-card img{
+
+    width:100%;
+
+    aspect-ratio:1/1;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.image-credit{
+
+    padding:16px;
+
+    text-align:center;
+
+}
+
+.image-credit h4{
+
+    color:var(--primary);
+
+    margin-bottom:8px;
+
+}
+
+.image-credit p{
+
+    margin:0;
+
+    color:#666;
+
+}
+:root{
+
+    --primary:#8B1E5A;
+    --secondary:#D4AF37;
+    --accent:#5C1738;
+
+    --dark:#222222;
+    --light:#FAF8F3;
+    --white:#ffffff;
+    --gray:#666666;
+
+    --heading:'Poppins',sans-serif;
+    --body:'Inter',sans-serif;
+    --bengali:'Noto Sans Bengali',sans-serif;
+
+}
+
+/* ===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:var(--body);
+
+    color:var(--dark);
+
+    background:var(--light);
+
+    font-size:16px;
+
+    line-height:1.75;
+
+    font-weight:400;
+
+    overflow-x:hidden;
+
+}
+/* ===================================================== */
+
+a{
+
+    text-decoration:none;
+
+    transition:.35s;
+
+}
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+p{
+
+    font-size:1.05rem;
+
+    line-height:1.75;
+
+    margin-bottom:18px;
+
+    color:var(--dark);
+
+}
+/* ===================================================== */
+/* TOP BAR */
+/* ===================================================== */
+
+.site-top{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:9999;
+
+}
+
+.topbar{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    padding:12px 20px;
+
+    font-size:clamp(12px,1.7vw,19px);
+
+    letter-spacing:.3px;
+
+    font-weight:600;
+
+    line-height:1.3;
+
+}
+
+/* ===================================================== */
+/* HEADER */
+/* ===================================================== */
+
+.site-header{
+
+    background:#ffffff;
+
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+
+}
+
+/* Logo + GBA Banner */
+
+.branding{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:10px 20px;
+
+    background:#ffffff;
+
+    flex-wrap:wrap;
+
+}
+
+.logo{
+
+    width:clamp(42px,9vw,60px);
+    height:auto;
+
+    
+}
+
+.gba-banner{
+
+    width:auto;
+
+    max-width:95%;
+
+    max-height:clamp(50px,14vw,90px);
+
+}
+
+/* Navigation — always a single horizontal row, all tabs visible.
+   On narrow screens the row scrolls horizontally instead of
+   wrapping or collapsing behind a hamburger. */
+
+.navbar{
+
+    display:flex;
+
+    width:100%;
+
+    background:var(--primary);
+
+    padding:0;
+
+}
+
+.navbar .container-fluid::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.navbar .container-fluid{
+    width:100%;
+    overflow:visible;
+}
+
+.navbar-nav{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    gap:6px 10px;
+}
+
+.navbar-nav .nav-item{
+    flex:0 0 auto;
+}
+
+.navbar-nav .nav-link{
+    white-space:nowrap;
+}
+.navbar-nav .nav-item{
+
+    list-style:none;
+
+    margin:0;
+
+}
+
+.navbar-nav .nav-link{
+
+    display:block;
+
+    color:#ffffff;
+
+    font-weight:600;
+
+    padding:14px 16px;
+
+    text-transform:uppercase;
+
+    font-size:13px;
+
+    letter-spacing:.5px;
+
+    white-space:nowrap;
+
+    transition:background .2s,color .2s;
+
+}
+
+.navbar-nav .nav-link:hover{
+
+    background:var(--secondary);
+
+    color:#000;
+
+}
+
+.navbar-nav .nav-link.active{
+
+    background:var(--secondary);
+
+    color:#000;
+
+}
+
+/* Tablet: shrink branding + nav slightly to save height */
+
+@media (min-width:576px) and (max-width:991px){
+
+.branding{
+
+    gap:14px;
+
+    padding:8px 16px;
+
+}
+
+.gba-banner{
+
+    max-width:340px;
+
+}
+
+.topbar{
+
+    padding:10px 16px;
+
+}
+
+.navbar-nav .nav-link{
+
+    padding:9px 12px;
+
+    font-size:12px;
+
+}
+
+}
+
+/* Mobile */
+
+@media (max-width:575px){
+
+.topbar{
+
+    padding:8px 14px;
+
+    font-size:12px;
+
+    line-height:1.25;
+
+}
+
+.branding{
+
+    flex-direction:column;
+
+    gap:6px;
+
+    padding:6px 14px;
+
+}
+
+.gba-banner{
+    max-width:90%;
+    width:auto;
+}
+.navbar-nav .nav-link{
+
+    padding:8px 12px;
+
+    font-size:11.5px;
+
+}
+
+}
+
+/* Extra-short viewports (landscape phones) — compact regardless of width */
+
+@media (max-height:480px){
+
+.topbar{
+
+    padding:5px 14px;
+
+    font-size:11px;
+
+    line-height:1.2;
+
+}
+
+.branding{
+
+    padding:4px 14px;
+
+    gap:6px;
+
+}
+
+.logo{
+
+    width:52px;
+
+}
+
+.gba-banner{
+
+    max-height:75px;
+
+}
+
+.navbar-nav .nav-link{
+
+    padding:5px 10px;
+
+    font-size:10.5px;
+
+}
+
+}
+
+/* ===================================================== */
+/* PAGE HERO (used on About page, above content sections) */
+/* ===================================================== */
+
+.page-hero{
+
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+
+    color:#fff;
+
+    padding:55px 0;
+
+}
+.page-hero p{
+
+    color:rgba(255,255,255,.85);
+
+}
+
+.page-title{
+    font-size:42px;
+    font-weight:700;
+    color:#fff;
+    font-family:var(--heading);
+}
+/* ===================================================== */
+/* PAGE BANNER (simple page title banner used on inner pages) */
+/* ===================================================== */
+
+.page-banner{
+
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+
+    color:#fff;
+
+    text-align:center;
+
+    padding:20px 20px;
+
+}
+
+.page-banner h1{
+
+    font-family:var(--heading);
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+.page-banner p{
+
+    color:var(--secondary);
+
+    font-weight:500;
+
+}
+
+/* ===================================================== */
+/* COMMITTEE GRID */
+/* ===================================================== */
+
+.content{
+
+    max-width:1100px;
+
+    margin:0 auto;
+
+    padding:0 20px;
+
+}
+
+.committee-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+    margin:35px 0 55px;
+
+}
+
+.member{
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:24px 20px;
+
+    text-align:center;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+}
+
+.member h3{
+
+    color:var(--primary);
+
+    font-family:var(--heading);
+
+    margin-bottom:10px;
+
+}
+
+.member p{
+
+    color:var(--gray);
+
+}
+
+/* ===================================================== */
+/* HERO */
+/* ===================================================== */
+
+.welcome-section{
+
+
+    position:relative;
+
+    min-height:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+
+}
+
+.welcome-overlay{
+
+    width:100%;
+
+    background:transparent;
+
+    padding:50px 0;
+
+}
+
+/* ===================================================== */
+/* PHOTO BANNER (inner pages — actual <img>, not a CSS
+   background, so it scales correctly on mobile) */
+/* ===================================================== */
+
+.photo-banner{
+
+    width:100%;
+
+    max-height:480px;
+
+    overflow:hidden;
+
+    background:var(--accent);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.photo-banner img{
+
+    width:100%;
+
+    height:auto;
+
+    max-height:480px;
+
+    object-fit:contain;
+
+    object-position:center;
+
+    display:block;
+
+}
+
+@media (max-width:767px){
+
+.photo-banner{
+
+    max-height:260px;
+
+}
+
+.photo-banner img{
+
+    max-height:260px;
+
+}
+
+}
+
+.welcome-badge{
+
+    display:inline-block;
+
+    background:var(--primary);
+
+    color:#ffffff;
+
+    padding:12px 22px;
+
+    font-family:var(--body);
+
+    font-size:clamp(12px,1.7vw,19px);
+
+    font-weight:600;
+
+    letter-spacing:.3px;
+
+    line-height:1.3;
+
+    border-radius:50px;
+
+    margin-bottom:25px;
+
+    border:2px solid var(--secondary);
+
+}
+.welcome-section h1{
+
+    color:#ffffff;
+    font-family:var(--heading);
+    font-size:62px;
+    line-height:1.1;
+    font-weight:700;
+
+}
+.welcome-section h2{
+
+    color:var(--secondary);
+    margin-top:12px;
+    font-size:34px;
+    font-weight:600;
+
+}
+.welcome-section p{
+
+    color:#ffffff;
+    margin-top:30px;
+    max-width:650px;
+    font-size:18px;
+
+}
+.welcome-section .btn{
+
+    padding:14px 30px;
+    border-radius:50px;
+    font-weight:600;
+
+}
+.btn-warning{
+
+    background:var(--secondary);
+
+    border:none;
+
+}
+
+.btn-warning:hover{
+
+    background:#c49d28;
+
+}
+
+.welcome-motto{
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:500;
+
+    letter-spacing:.5px;
+
+}
+
+/* ===================================================== */
+/* SECTION */
+/* ===================================================== */
+
+section{
+
+    padding:70px 0;
+
+}
+
+.section-title{
+
+    font-family:var(--heading);
+
+    font-size:2rem;
+
+    color:var(--primary);
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+    position:relative;
+
+}
+
+.section-title::after{
+
+    content:"";
+
+    display:block;
+
+    width:90px;
+
+    height:4px;
+
+    background:var(--secondary);
+
+    margin-top:15px;
+
+    border-radius:10px;
+
+}
+
+/* ===================================================== */
+/* CARDS */
+/* ===================================================== */
+
+.card{
+
+    border:none;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 25px 60px rgba(0,0,0,.15);
+
+}
+
+/* ===================================================== */
+/* BUTTONS */
+/* ===================================================== */
+
+.btn-primary{
+
+    background:var(--primary);
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    background:var(--accent);
+
+}
+
+/* ===================================================== */
+/* FOOTER */
+/* ===================================================== */
+
+footer{
+
+    background:#2b2030;
+
+    color:#fff;
+
+    padding:50px 0 25px;
+
+}
+
+footer h4{
+
+    color:var(--secondary);
+
+    margin-bottom:20px;
+
+}
+
+footer a{
+
+    color:#ddd;
+
+}
+
+footer a:hover{
+
+    color:#fff;
+
+}
+
+.footer-bottom{
+
+    border-top:1px solid rgba(255,255,255,.15);
+
+    margin-top:40px;
+
+    padding-top:20px;
+
+    text-align:center;
+
+    font-size:14px;
+
+}
+
+/* ===================================================== */
+/* UTILITIES */
+/* ===================================================== */
+
+.shadow-soft{
+
+    box-shadow:0 20px 50px rgba(0,0,0,.08);
+
+}
+
+.rounded-xl{
+
+    border-radius:24px;
+
+}
+
+.text-primary-custom{
+
+    color:var(--primary);
+
+}
+
+.bg-primary-custom{
+
+    background:var(--primary);
+
+}
+
+.bg-light-custom{
+
+    background:var(--light);
+
+}
+
+/* ===================================================== */
+/* ANIMATIONS */
+/* ===================================================== */
+
+.welcome-section h1,
+.welcome-section h2,
+.welcome-section p,
+.welcome-section .btn,
+.welcome-motto{
+
+    animation:fadeUp 1s ease;
+
+}
+
+.author-photo{
+    width:180px;
+    height:180px;
+    object-fit:cover;
+    border-radius:50%;
+    border:6px solid #fff;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    margin:auto;
+}
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
