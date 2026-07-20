@@ -923,6 +923,24 @@ footer h4{
 
 }
 
+footer p{
+
+    color:rgba(255,255,255,.8);
+
+}
+
+.footer-quote{
+
+    color:rgba(255,255,255,.8);
+
+    font-style:italic;
+
+    max-width:600px;
+
+    margin:0 auto 18px;
+
+}
+
 footer a{
 
     color:#ddd;
