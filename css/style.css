@@ -307,7 +307,7 @@ p{
 
 .logo{
 
-    width:clamp(42px,9vw,60px);
+    width:clamp(55px,11vw,95px);
     height:auto;
 
     
@@ -317,9 +317,9 @@ p{
 
     width:auto;
 
-    max-width:95%;
+    max-width:100%;
 
-    max-height:clamp(50px,14vw,90px);
+    max-height:clamp(65px,17vw,135px);
 
 }
 
@@ -422,12 +422,6 @@ p{
     gap:14px;
 
     padding:8px 16px;
-
-}
-
-.gba-banner{
-
-    max-width:340px;
 
 }
 
@@ -964,6 +958,256 @@ footer a:hover{
     text-align:center;
 
     font-size:14px;
+
+}
+
+/* ===================================================== */
+/* STATS STRIP */
+/* ===================================================== */
+
+.stats-strip{
+
+    background:var(--accent);
+
+    padding:45px 0;
+
+}
+
+.stat-item{
+
+    text-align:center;
+
+    padding:15px 10px;
+
+}
+
+.stat-number{
+
+    font-family:var(--heading);
+
+    font-size:clamp(28px,4vw,42px);
+
+    font-weight:700;
+
+    color:var(--secondary);
+
+    line-height:1.1;
+
+}
+
+.stat-label{
+
+    color:rgba(255,255,255,.85);
+
+    font-size:14px;
+
+    letter-spacing:.4px;
+
+    text-transform:uppercase;
+
+    margin-top:8px;
+
+    font-weight:600;
+
+}
+
+/* ===================================================== */
+/* PUJA DATES / COUNTDOWN */
+/* ===================================================== */
+
+.countdown-badge{
+
+    display:inline-block;
+
+    background:var(--secondary);
+
+    color:#2b2030;
+
+    font-weight:700;
+
+    padding:10px 20px;
+
+    border-radius:50px;
+
+    margin-bottom:18px;
+
+    font-size:15px;
+
+}
+
+.date-pills{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:18px;
+
+}
+
+.date-pill{
+
+    background:#fff;
+
+    border:1px solid rgba(0,0,0,.08);
+
+    border-radius:12px;
+
+    padding:10px 16px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.06);
+
+}
+
+.date-pill .day-name{
+
+    display:block;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+    font-size:14px;
+
+}
+
+.date-pill .day-date{
+
+    display:block;
+
+    color:var(--gray);
+
+    font-size:13px;
+
+}
+
+/* ===================================================== */
+/* NEWS / UPDATES */
+/* ===================================================== */
+
+.news-card{
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:26px 24px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.06);
+
+    height:100%;
+
+    border-left:4px solid var(--secondary);
+
+}
+
+.news-date{
+
+    color:var(--secondary);
+
+    font-weight:700;
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+    margin-bottom:8px;
+
+}
+
+.news-card h4{
+
+    color:var(--primary);
+
+    font-family:var(--heading);
+
+    margin-bottom:10px;
+
+}
+
+.news-card p{
+
+    color:var(--gray);
+
+    margin-bottom:0;
+
+    font-size:.98rem;
+
+}
+
+/* ===================================================== */
+/* TESTIMONIALS */
+/* ===================================================== */
+
+.testimonial-section{
+
+    background:var(--light);
+
+}
+
+.testimonial-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:32px 28px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.06);
+
+    height:100%;
+
+    position:relative;
+
+}
+
+.testimonial-card::before{
+
+    content:"\201C";
+
+    font-family:Georgia,serif;
+
+    font-size:60px;
+
+    color:var(--secondary);
+
+    line-height:1;
+
+    display:block;
+
+    margin-bottom:10px;
+
+}
+
+.testimonial-quote{
+
+    font-style:italic;
+
+    color:var(--dark);
+
+    margin-bottom:18px;
+
+}
+
+.testimonial-author{
+
+    font-weight:700;
+
+    color:var(--primary);
+
+    font-size:.95rem;
+
+}
+
+.testimonial-role{
+
+    color:var(--gray);
+
+    font-size:.85rem;
 
 }
 
