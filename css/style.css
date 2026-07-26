@@ -322,7 +322,7 @@ p{
 
 .logo{
 
-    width:clamp(55px,11vw,95px);
+    width:clamp(75px,14vw,140px);
     height:auto;
 
     
@@ -334,7 +334,7 @@ p{
 
     max-width:100%;
 
-    max-height:clamp(65px,17vw,135px);
+    max-height:clamp(90px,20vw,170px);
 
 }
 
