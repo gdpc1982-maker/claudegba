@@ -312,13 +312,13 @@ p{
 
     display:flex;
 
-    justify-content:space-between;
+    justify-content:center;
 
     align-items:center;
 
     gap:18px;
 
-    padding:10px 30px;
+    padding:10px 20px;
 
     background:#ffffff;
 
@@ -330,26 +330,17 @@ p{
 
     width:clamp(75px,14vw,140px);
     height:auto;
-    flex-shrink:0;
 
     
 }
 
 .gba-banner{
 
-    flex:1 1 auto;
-
     width:auto;
 
     max-width:100%;
 
-    height:clamp(90px,20vw,170px);
-
     max-height:clamp(90px,20vw,170px);
-
-    object-fit:contain;
-
-    object-position:left center;
 
 }
 
@@ -496,10 +487,8 @@ p{
 }
 
 .gba-banner{
-    flex:0 0 auto;
     max-width:90%;
     width:auto;
-    object-position:center;
 }
 .navbar-nav .nav-link{
 
