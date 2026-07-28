@@ -53,6 +53,12 @@ body.page-about p{
     flex:0 0 auto;
 }
 
+.timeline-section{
+
+    padding-top:20px;
+
+}
+
 .timeline{
 
 border-left:4px solid var(--secondary);
@@ -306,13 +312,13 @@ p{
 
     display:flex;
 
-    justify-content:center;
+    justify-content:space-between;
 
     align-items:center;
 
     gap:18px;
 
-    padding:10px 20px;
+    padding:10px 30px;
 
     background:#ffffff;
 
@@ -324,17 +330,26 @@ p{
 
     width:clamp(75px,14vw,140px);
     height:auto;
+    flex-shrink:0;
 
     
 }
 
 .gba-banner{
 
+    flex:1 1 auto;
+
     width:auto;
 
     max-width:100%;
 
+    height:clamp(90px,20vw,170px);
+
     max-height:clamp(90px,20vw,170px);
+
+    object-fit:contain;
+
+    object-position:left center;
 
 }
 
@@ -481,8 +496,10 @@ p{
 }
 
 .gba-banner{
+    flex:0 0 auto;
     max-width:90%;
     width:auto;
+    object-position:center;
 }
 .navbar-nav .nav-link{
 
@@ -746,7 +763,7 @@ p{
 
     background:transparent;
 
-    padding:50px 0;
+    padding:28px 0;
 
 }
 
