@@ -466,6 +466,8 @@ p{
 
 @media (max-width:575px){
 
+.welcome-overlay{
+   padding: 10px 0 10px;}
 .topbar{
 
     padding:8px 14px;
@@ -752,7 +754,7 @@ p{
 
     background:transparent;
 
-    padding:8px 0;
+    padding:12px 0 12px;
 
 }
 
@@ -823,7 +825,7 @@ p{
 
     font-family:var(--body);
 
-    font-size:clamp(12px,1.7vw,19px);
+    font-size:clamp(16px,3vw,19px);
 
     font-weight:600;
 
