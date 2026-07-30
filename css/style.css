@@ -1072,7 +1072,8 @@ footer a:hover{
     background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.15);
     border-radius:16px;
-    height:100%;
+    height:calc(100% - 16px);
+    margin-bottom: 16px;
 }
 
 .stat-icon{
