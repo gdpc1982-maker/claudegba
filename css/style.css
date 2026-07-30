@@ -58,7 +58,9 @@ body.page-about p{
     padding-top:20px;
 
 }
-
+.intro-tight{
+	padding-bottom:20px;
+}
 .timeline{
 
 border-left:4px solid var(--secondary);
