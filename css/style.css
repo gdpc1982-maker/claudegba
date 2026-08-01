@@ -157,7 +157,7 @@ margin-bottom:10px;
     margin-bottom:30px;
 
 }
-/* Mobile Navigation (legacy — safe to remove once confirmed unused) */
+
 
 .artwork-card img{
 
@@ -165,7 +165,9 @@ margin-bottom:10px;
 
     aspect-ratio:1/1;
 
-    object-fit:cover;
+    object-fit:contain;
+	
+    background:#ffff;
 
     display:block;
 
