@@ -1411,6 +1411,126 @@ footer a:hover{
 }
 
 /* ===================================================== */
+/* EVENTS PAGE */
+/* ===================================================== */
+
+.events-category-title{
+
+    font-family:var(--heading);
+
+    font-size:1.6rem;
+
+    color:var(--primary);
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+}
+
+.events-category-sub{
+
+    color:var(--gray);
+
+    margin-bottom:35px;
+
+}
+
+.event-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    height:100%;
+
+    transition:.3s;
+
+}
+
+.event-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.14);
+
+}
+
+.event-card img{
+
+    width:100%;
+
+    aspect-ratio:4/3;
+
+    object-fit:cover;
+
+}
+
+.event-card-body{
+
+    padding:22px;
+
+}
+
+.event-card-body h4{
+
+    color:var(--primary);
+
+    font-family:var(--heading);
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+.event-meta{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:14px;
+
+    margin-bottom:12px;
+
+    font-size:.85rem;
+
+    color:var(--gray);
+
+}
+
+.event-meta span{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+}
+
+.event-meta i{
+
+    color:var(--secondary);
+
+}
+
+.event-card-body p{
+
+    margin-bottom:0;
+
+    color:var(--dark);
+
+    font-size:.95rem;
+
+}
+
+/* ===================================================== */
 /* UTILITIES */
 /* ===================================================== */
 
