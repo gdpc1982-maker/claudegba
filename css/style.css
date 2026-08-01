@@ -336,7 +336,7 @@ p{
 
 .logo{
 
-    width:clamp(75px,14vw,100px);
+    width:clamp(75px,9vw,100px);
     height:auto;
 
     
@@ -348,10 +348,9 @@ p{
 
     max-width:100%;
 
-    max-height:clamp(120px,20vw,200px);
+    max-height:clamp(120px,15vw,180px);
 
 }
-
 /* Navigation — always a single horizontal row, all tabs visible.
    On narrow screens the row scrolls horizontally instead of
    wrapping or collapsing behind a hamburger. */
