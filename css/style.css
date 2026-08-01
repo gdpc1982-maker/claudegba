@@ -56,17 +56,17 @@ body.page-about p{
 .timeline-section{
 
     padding-top:20px;
-	    padding-bottom:30px;
+
+    padding-bottom:30px;
 
 }
 
 .instagram-section{
-padding: 30px 0;
+
+    padding:30px 0;
 
 }
-.intro-tight{
-	padding-bottom:20px !important;
-}
+
 .timeline{
 
 border-left:4px solid var(--secondary);
@@ -351,6 +351,7 @@ p{
     max-height:clamp(120px,15vw,180px);
 
 }
+
 /* Navigation — always a single horizontal row, all tabs visible.
    On narrow screens the row scrolls horizontally instead of
    wrapping or collapsing behind a hamburger. */
@@ -1074,25 +1075,32 @@ footer a:hover{
 }
 
 .stat-item{
+
     text-align:center;
+
     padding:26px 15px;
+
     background:rgba(255,255,255,.06);
+
     border:1px solid rgba(255,255,255,.15);
+
     border-radius:16px;
+
     height:calc(100% - 16px);
-    margin-bottom: 16px;
+
+    margin-bottom:16px;
+
 }
 
 .stat-icon{
+
     font-size:28px;
+
     color:var(--secondary);
+
     margin-bottom:10px;
+
     display:block;
-}.stat-item{
-
-    text-align:center;
-
-    padding:15px 10px;
 
 }
 
@@ -1323,6 +1331,76 @@ footer a:hover{
     color:var(--gray);
 
     font-size:.85rem;
+
+}
+
+.quick-link-card{
+
+    padding-top:36px !important;
+
+    padding-bottom:36px !important;
+
+    transition:.3s;
+
+}
+
+.quick-link-icon{
+
+    font-size:36px;
+
+    color:var(--secondary);
+
+    display:block;
+
+    margin-bottom:16px;
+
+}
+
+.quick-link-card h4{
+
+    color:var(--primary);
+
+    font-family:var(--heading);
+
+    font-weight:700;
+
+    margin-bottom:14px;
+
+}
+
+.quick-link-cta{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:var(--primary);
+
+    font-weight:600;
+
+    font-size:.95rem;
+
+    letter-spacing:.2px;
+
+}
+
+.quick-link-cta i{
+
+    transition:transform .25s;
+
+}
+
+.quick-link-cta:hover{
+
+    color:var(--accent);
+
+}
+
+.quick-link-cta:hover i{
+
+    transform:translateX(4px);
 
 }
 
