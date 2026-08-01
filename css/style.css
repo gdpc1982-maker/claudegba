@@ -613,9 +613,11 @@ p{
 
 .page-banner p{
 
-    color:var(--secondary);
+    color:#fff;
 
     font-weight:500;
+
+    text-align:center;
 
 }
 
@@ -1716,6 +1718,27 @@ footer a:hover{
 
     font-size:.95rem;
 
+    color:var(--dark);
+
+    transition:.25s;
+
+}
+
+.venue-block:hover{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+.venue-block:hover strong,
+.venue-block:hover i{
+
+    color:#fff;
+
 }
 
 .venue-block i{
@@ -1723,6 +1746,38 @@ footer a:hover{
     color:var(--primary);
 
     font-size:1.1rem;
+
+}
+
+.venue-block strong{
+
+    color:var(--dark);
+
+}
+
+.venue-link-arrow{
+
+    font-size:.85rem !important;
+
+    margin-left:2px;
+
+    opacity:.6;
+
+}
+
+.venue-map-wrap{
+
+    max-width:700px;
+
+    margin-left:auto;
+
+    margin-right:auto;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.1);
 
 }
 
