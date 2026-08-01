@@ -348,7 +348,7 @@ p{
 
     max-width:100%;
 
-    max-height:clamp(120px,20vw,220px);
+    max-height:clamp(120px,20vw,200px);
 
 }
 
