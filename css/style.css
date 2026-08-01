@@ -336,7 +336,7 @@ p{
 
 .logo{
 
-    width:clamp(75px,14vw,140px);
+    width:clamp(75px,14vw,100px);
     height:auto;
 
     
