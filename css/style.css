@@ -586,6 +586,74 @@ p{
     font-family:var(--heading);
 }
 /* ===================================================== */
+/* PHOTO STRIP (horizontal scrolling gallery, page top) */
+/* ===================================================== */
+
+.photo-strip{
+
+    width:100%;
+
+    background:var(--accent);
+
+    padding:10px 0;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    scrollbar-width:thin;
+
+}
+
+.photo-strip-track{
+
+    display:flex;
+
+    gap:8px;
+
+    padding:0 12px;
+
+    width:max-content;
+
+}
+
+.photo-strip-track img{
+
+    height:220px;
+
+    width:auto;
+
+    max-width:280px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+    scroll-snap-align:start;
+
+    flex-shrink:0;
+
+}
+
+.photo-strip{
+
+    scroll-snap-type:x proximity;
+
+}
+
+@media (max-width:767px){
+
+.photo-strip-track img{
+
+    height:130px;
+
+    max-width:170px;
+
+}
+
+}
+
+/* ===================================================== */
 /* PAGE BANNER (simple page title banner used on inner pages) */
 /* ===================================================== */
 
