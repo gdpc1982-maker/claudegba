@@ -593,80 +593,10 @@ p{
 
 }
 
-.photo-strip-arrow{
-
-    position:absolute;
-
-    top:50%;
-
-    transform:translateY(-50%);
-
-    z-index:10;
-
-    width:42px;
-
-    height:42px;
-
-    border-radius:50%;
-
-    border:none;
-
-    background:rgba(255,255,255,.9);
-
-    color:var(--primary);
-
-    font-size:1.2rem;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    box-shadow:0 4px 12px rgba(0,0,0,.25);
-
-    cursor:pointer;
-
-    transition:.2s;
-
-}
-
-.photo-strip-arrow:hover{
-
-    background:var(--secondary);
-
-    color:#2b2030;
-
-}
-
-.photo-strip-prev{
-
-    left:12px;
-
-}
-
-.photo-strip-next{
-
-    right:12px;
-
-}
-
-@media (max-width:575px){
-
-.photo-strip-arrow{
-
-    width:34px;
-
-    height:34px;
-
-    font-size:1rem;
-
-}
-
-}
-
 /* ===================================================== */
-/* HOME PHOTO STRIP (1.5x the Durga Puja strip size) */
+/* HOME PHOTO STRIP (1.5x the Durga Puja strip size)
+   Auto-looping marquee — image list is duplicated in the
+   HTML so translateX(-50%) produces a seamless loop.       */
 /* ===================================================== */
 
 .home-photo-strip-wrap{
@@ -675,21 +605,17 @@ p{
 
     background:var(--accent);
 
+    overflow:hidden;
+
 }
 
 .home-photo-strip{
 
     width:100%;
 
-    overflow-x:auto;
-
-    overflow-y:hidden;
+    overflow:hidden;
 
     padding:15px 0;
-
-    scroll-snap-type:x proximity;
-
-    scrollbar-width:thin;
 
 }
 
@@ -699,9 +625,15 @@ p{
 
     gap:10px;
 
-    padding:0 14px;
-
     width:max-content;
+
+    animation:homeStripScroll 55s linear infinite;
+
+}
+
+.home-photo-strip-wrap:hover .home-photo-strip-track{
+
+    animation-play-state:paused;
 
 }
 
@@ -717,9 +649,15 @@ p{
 
     border-radius:12px;
 
-    scroll-snap-align:start;
-
     flex-shrink:0;
+
+}
+
+@keyframes homeStripScroll{
+
+    from{ transform:translateX(0); }
+
+    to{ transform:translateX(-50%); }
 
 }
 
@@ -733,10 +671,17 @@ p{
 
 }
 
+.home-photo-strip-track{
+
+    animation-duration:38s;
+
+}
+
 }
 
 /* ===================================================== */
-/* PHOTO STRIP (horizontal scrolling gallery, page top) */
+/* PHOTO STRIP (auto-looping gallery, Durga Puja page top)
+   Same duplicated-list technique as the home strip.        */
 /* ===================================================== */
 
 .photo-strip{
@@ -747,11 +692,7 @@ p{
 
     padding:10px 0;
 
-    overflow-x:auto;
-
-    overflow-y:hidden;
-
-    scrollbar-width:thin;
+    overflow:hidden;
 
 }
 
@@ -761,9 +702,15 @@ p{
 
     gap:8px;
 
-    padding:0 12px;
-
     width:max-content;
+
+    animation:pujaStripScroll 70s linear infinite;
+
+}
+
+.photo-strip-wrap:hover .photo-strip-track{
+
+    animation-play-state:paused;
 
 }
 
@@ -779,15 +726,15 @@ p{
 
     border-radius:10px;
 
-    scroll-snap-align:start;
-
     flex-shrink:0;
 
 }
 
-.photo-strip{
+@keyframes pujaStripScroll{
 
-    scroll-snap-type:x proximity;
+    from{ transform:translateX(0); }
+
+    to{ transform:translateX(-50%); }
 
 }
 
@@ -798,6 +745,23 @@ p{
     height:130px;
 
     max-width:170px;
+
+}
+
+.photo-strip-track{
+
+    animation-duration:46s;
+
+}
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+.photo-strip-track,
+.home-photo-strip-track{
+
+    animation:none;
 
 }
 
