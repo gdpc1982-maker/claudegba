@@ -1698,6 +1698,26 @@ footer a:hover{
 
 }
 
+.testimonial-quote-bengali{
+
+    font-family:var(--bengali);
+
+    font-size:1.05rem;
+
+    line-height:1.9;
+
+}
+
+.testimonial-card .quick-link-cta{
+
+    display:inline-flex;
+
+    margin-top:14px;
+
+    font-size:.85rem;
+
+}
+
 .quick-link-card{
 
     padding-top:36px !important;
@@ -2174,6 +2194,32 @@ footer a:hover{
     color:var(--gray);
 
     font-size:.95rem;
+
+}
+
+/* ===================================================== */
+/* MEMBER REFLECTION (About page — "In His Own Words") */
+/* ===================================================== */
+
+.member-reflection-card{
+
+    border-radius:22px;
+
+    border-left:6px solid var(--secondary) !important;
+
+}
+
+.bengali-reflection p{
+
+    font-family:var(--bengali);
+
+    font-size:1.15rem;
+
+    line-height:2;
+
+    color:var(--dark);
+
+    text-align:left;
 
 }
 
