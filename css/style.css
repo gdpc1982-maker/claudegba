@@ -125,38 +125,6 @@ margin-bottom:10px;
 /* HORIZONTAL JOURNEY TIMELINE (homepage) */
 /* ===================================================== */
 
-.festive-emoji-row{
-
-    text-align:center;
-
-    margin:10px 0 4px;
-
-}
-
-.dance-emoji{
-
-    display:inline-block;
-
-    font-size:1.7rem;
-
-    margin:0 8px;
-
-    animation:danceBlink 1.6s ease-in-out infinite;
-
-}
-
-@keyframes danceBlink{
-
-    0%,100%{ transform:translateY(0) rotate(0deg); opacity:1; }
-
-    25%{ transform:translateY(-8px) rotate(-10deg); opacity:1; }
-
-    50%{ transform:translateY(0) rotate(8deg); opacity:.35; }
-
-    75%{ transform:translateY(-6px) rotate(-6deg); opacity:1; }
-
-}
-
 .h-timeline-wrap{
 
     overflow-x:auto;
@@ -243,9 +211,15 @@ margin-bottom:10px;
 
     height:54px;
 
-    line-height:50px;
+    display:flex;
 
-    font-size:26px;
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:24px;
+
+    color:#fff;
 
     background:var(--primary);
 
@@ -315,27 +289,7 @@ margin-bottom:10px;
 
     height:46px;
 
-    line-height:42px;
-
-    font-size:22px;
-
-}
-
-.dance-emoji{
-
-    font-size:1.4rem;
-
-    margin:0 5px;
-
-}
-
-}
-
-@media (prefers-reduced-motion:reduce){
-
-.dance-emoji{
-
-    animation:none;
+    font-size:20px;
 
 }
 
