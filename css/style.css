@@ -585,6 +585,86 @@ p{
     color:#fff;
     font-family:var(--heading);
 }
+.photo-strip-wrap{
+
+    position:relative;
+
+    background:var(--accent);
+
+}
+
+.photo-strip-arrow{
+
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    z-index:10;
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    border:none;
+
+    background:rgba(255,255,255,.9);
+
+    color:var(--primary);
+
+    font-size:1.2rem;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.25);
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.photo-strip-arrow:hover{
+
+    background:var(--secondary);
+
+    color:#2b2030;
+
+}
+
+.photo-strip-prev{
+
+    left:12px;
+
+}
+
+.photo-strip-next{
+
+    right:12px;
+
+}
+
+@media (max-width:575px){
+
+.photo-strip-arrow{
+
+    width:34px;
+
+    height:34px;
+
+    font-size:1rem;
+
+}
+
+}
+
 /* ===================================================== */
 /* PHOTO STRIP (horizontal scrolling gallery, page top) */
 /* ===================================================== */
