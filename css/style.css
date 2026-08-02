@@ -121,6 +121,226 @@ margin-bottom:10px;
 
 }
 
+/* ===================================================== */
+/* HORIZONTAL JOURNEY TIMELINE (homepage) */
+/* ===================================================== */
+
+.festive-emoji-row{
+
+    text-align:center;
+
+    margin:10px 0 4px;
+
+}
+
+.dance-emoji{
+
+    display:inline-block;
+
+    font-size:1.7rem;
+
+    margin:0 8px;
+
+    animation:danceBlink 1.6s ease-in-out infinite;
+
+}
+
+@keyframes danceBlink{
+
+    0%,100%{ transform:translateY(0) rotate(0deg); opacity:1; }
+
+    25%{ transform:translateY(-8px) rotate(-10deg); opacity:1; }
+
+    50%{ transform:translateY(0) rotate(8deg); opacity:.35; }
+
+    75%{ transform:translateY(-6px) rotate(-6deg); opacity:1; }
+
+}
+
+.h-timeline-wrap{
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    padding:30px 0 20px;
+
+    scroll-snap-type:x proximity;
+
+    scrollbar-width:thin;
+
+}
+
+.h-timeline{
+
+    display:flex;
+
+    gap:22px;
+
+    padding:0 20px;
+
+    width:max-content;
+
+    position:relative;
+
+}
+
+.h-timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:47px;
+
+    left:20px;
+
+    right:20px;
+
+    height:3px;
+
+    background:var(--secondary);
+
+    z-index:0;
+
+}
+
+.h-timeline-item{
+
+    flex:0 0 230px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:20px 18px 22px;
+
+    text-align:center;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+    position:relative;
+
+    z-index:1;
+
+    scroll-snap-align:start;
+
+    transition:.3s;
+
+}
+
+.h-timeline-item:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+
+}
+
+.h-timeline-icon{
+
+    width:54px;
+
+    height:54px;
+
+    line-height:50px;
+
+    font-size:26px;
+
+    background:var(--primary);
+
+    border-radius:50%;
+
+    border:4px solid var(--secondary);
+
+    margin:0 auto 12px;
+
+    box-shadow:0 6px 16px rgba(0,0,0,.15);
+
+}
+
+.h-timeline-year{
+
+    font-family:var(--heading);
+
+    font-weight:700;
+
+    font-size:1.25rem;
+
+    color:var(--primary);
+
+    margin-bottom:4px;
+
+}
+
+.h-timeline-item h4{
+
+    font-family:var(--heading);
+
+    font-size:1rem;
+
+    color:var(--dark);
+
+    margin-bottom:8px;
+
+}
+
+.h-timeline-item p{
+
+    font-size:.85rem;
+
+    color:var(--gray);
+
+    text-align:center;
+
+    margin-bottom:0;
+
+    line-height:1.5;
+
+}
+
+@media (max-width:575px){
+
+.h-timeline-item{
+
+    flex:0 0 190px;
+
+    padding:16px 14px 18px;
+
+}
+
+.h-timeline-icon{
+
+    width:46px;
+
+    height:46px;
+
+    line-height:42px;
+
+    font-size:22px;
+
+}
+
+.dance-emoji{
+
+    font-size:1.4rem;
+
+    margin:0 5px;
+
+}
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+.dance-emoji{
+
+    animation:none;
+
+}
+
+}
+
 .home-slider{
 
     padding:12px;
