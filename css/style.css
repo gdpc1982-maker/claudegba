@@ -2039,3 +2039,75 @@ footer a:hover{
     }
 
 }
+
+/* ===================================================== */
+/* MOBILE SPACING TIGHTENING
+   Section-level padding (70px) and Bootstrap's py-5/mb-5
+   (48px) utilities stack up between blocks on small screens,
+   leaving oversized gaps. Scale these down on mobile only —
+   desktop/tablet spacing is untouched.                      */
+/* ===================================================== */
+
+@media (max-width:767px){
+
+section{
+
+    padding:38px 0;
+
+}
+
+.py-5{
+
+    padding-top:1.9rem !important;
+
+    padding-bottom:1.9rem !important;
+
+}
+
+.mb-5{
+
+    margin-bottom:1.6rem !important;
+
+}
+
+.mt-5{
+
+    margin-top:1.6rem !important;
+
+}
+
+.testimonial-card{
+
+    padding:24px 20px;
+
+}
+
+.quick-link-card{
+
+    padding-top:22px !important;
+
+    padding-bottom:22px !important;
+
+}
+
+.news-card{
+
+    padding:20px 18px;
+
+}
+
+.timeline-section{
+
+    padding-top:12px;
+
+    padding-bottom:18px;
+
+}
+
+.instagram-section{
+
+    padding:20px 0;
+
+}
+
+}
