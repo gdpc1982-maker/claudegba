@@ -1964,6 +1964,44 @@ footer a:hover{
 }
 
 /* ===================================================== */
+/* EMBEDDED GOOGLE FORM (Contact page) */
+/* ===================================================== */
+
+.gform-wrap{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.1);
+
+    border:1px solid rgba(0,0,0,.06);
+
+}
+
+.gform-wrap iframe{
+
+    display:block;
+
+    width:100%;
+
+    border:none;
+
+}
+
+@media (max-width:575px){
+
+.gform-wrap iframe{
+
+    height:1150px;
+
+}
+
+}
+
+/* ===================================================== */
 /* UTILITIES */
 /* ===================================================== */
 
