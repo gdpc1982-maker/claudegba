@@ -2138,6 +2138,46 @@ footer a:hover{
 }
 
 /* ===================================================== */
+/* FAQ (homepage SEO section) */
+/* ===================================================== */
+
+.faq-item{
+
+    background:#fff;
+
+    border-radius:14px;
+
+    padding:22px 26px;
+
+    margin-bottom:16px;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.06);
+
+}
+
+.faq-item h4{
+
+    color:var(--primary);
+
+    font-family:var(--heading);
+
+    font-size:1.05rem;
+
+    margin-bottom:8px;
+
+}
+
+.faq-item p{
+
+    margin-bottom:0;
+
+    color:var(--gray);
+
+    font-size:.95rem;
+
+}
+
+/* ===================================================== */
 /* EMBEDDED GOOGLE FORM (Contact page) */
 /* ===================================================== */
 
