@@ -666,6 +666,76 @@ p{
 }
 
 /* ===================================================== */
+/* HOME PHOTO STRIP (1.5x the Durga Puja strip size) */
+/* ===================================================== */
+
+.home-photo-strip-wrap{
+
+    position:relative;
+
+    background:var(--accent);
+
+}
+
+.home-photo-strip{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+
+    padding:15px 0;
+
+    scroll-snap-type:x proximity;
+
+    scrollbar-width:thin;
+
+}
+
+.home-photo-strip-track{
+
+    display:flex;
+
+    gap:10px;
+
+    padding:0 14px;
+
+    width:max-content;
+
+}
+
+.home-photo-strip-track img{
+
+    height:330px;
+
+    width:auto;
+
+    max-width:420px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    scroll-snap-align:start;
+
+    flex-shrink:0;
+
+}
+
+@media (max-width:767px){
+
+.home-photo-strip-track img{
+
+    height:195px;
+
+    max-width:255px;
+
+}
+
+}
+
+/* ===================================================== */
 /* PHOTO STRIP (horizontal scrolling gallery, page top) */
 /* ===================================================== */
 
