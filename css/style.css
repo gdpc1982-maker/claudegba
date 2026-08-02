@@ -1995,9 +1995,75 @@ footer a:hover{
 
 .gform-wrap iframe{
 
-    height:1150px;
+    height:1550px;
 
 }
+
+}
+
+.enquiry-type-list{
+
+    list-style:none;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:12px;
+
+    padding:0;
+
+    margin:22px 0 0;
+
+}
+
+.enquiry-type-list li{
+
+    background:#fff;
+
+    border:1px solid rgba(0,0,0,.08);
+
+    border-radius:50px;
+
+    padding:8px 20px;
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+    color:var(--primary);
+
+    box-shadow:0 4px 12px rgba(0,0,0,.05);
+
+}
+
+.contact-detail-card{
+
+    background:#fff;
+
+    border-radius:14px;
+
+    padding:24px 20px;
+
+    height:100%;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.06);
+
+}
+
+.contact-detail-card strong{
+
+    color:var(--primary);
+
+}
+
+.contact-detail-card p{
+
+    color:var(--gray);
+
+    word-break:break-word;
 
 }
 
