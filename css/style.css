@@ -1522,6 +1522,142 @@ footer a:hover{
 
 }
 
+/* ===================================================== */
+/* FULL DAYS/HOURS/MINUTES/SECONDS COUNTDOWN (Durga Puja page) */
+/* ===================================================== */
+
+.dhms-countdown{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:14px;
+
+    margin:22px 0 10px;
+
+}
+
+.dhms-unit{
+
+    background:linear-gradient(160deg,var(--primary),var(--accent));
+
+    color:#fff;
+
+    border-radius:16px;
+
+    padding:16px 20px;
+
+    min-width:88px;
+
+    text-align:center;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.18);
+
+}
+
+.dhms-value{
+
+    display:block;
+
+    font-family:var(--heading);
+
+    font-weight:700;
+
+    font-size:clamp(28px,5vw,40px);
+
+    line-height:1.1;
+
+    color:var(--secondary);
+
+}
+
+.dhms-label{
+
+    display:block;
+
+    font-size:12px;
+
+    letter-spacing:.5px;
+
+    text-transform:uppercase;
+
+    margin-top:4px;
+
+    color:rgba(255,255,255,.85);
+
+}
+
+.dhms-caption{
+
+    font-family:var(--heading);
+
+    font-weight:600;
+
+    color:var(--primary);
+
+    font-size:1.05rem;
+
+    margin-bottom:0;
+
+}
+
+@media (max-width:575px){
+
+.dhms-unit{
+
+    min-width:68px;
+
+    padding:12px 14px;
+
+}
+
+.dhms-countdown{
+
+    gap:8px;
+
+}
+
+}
+
+/* ===================================================== */
+/* OPEN 24x7 BADGE (Durga Puja page) */
+/* ===================================================== */
+
+.open-24-7-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:#fff;
+
+    border:1px solid rgba(0,0,0,.08);
+
+    border-radius:50px;
+
+    padding:10px 22px;
+
+    font-size:.95rem;
+
+    color:var(--dark);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+}
+
+.open-24-7-badge i{
+
+    color:var(--primary);
+
+    font-size:1rem;
+
+}
+
 .date-pills{
 
     display:grid;
@@ -2383,11 +2519,31 @@ footer a:hover{
 
 }
 
+.contact-detail-card strong .bi-instagram{
+
+    color:#c1348a;
+
+}
+
 .contact-detail-card p{
 
     color:var(--gray);
 
     word-break:break-word;
+
+}
+
+.contact-detail-card p a{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+}
+
+.contact-detail-card p a:hover{
+
+    color:var(--accent);
 
 }
 
@@ -2535,6 +2691,260 @@ section{
 .instagram-section{
 
     padding:20px 0;
+
+}
+
+}
+
+/* ===================================================== */
+/* FAQ PAGE (standalone faq.html) */
+/* ===================================================== */
+
+.faq-category-heading{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    margin-bottom:28px;
+
+}
+
+.faq-category-heading i{
+
+    flex-shrink:0;
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:var(--secondary);
+
+    font-size:1.4rem;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+}
+
+.faq-category-heading .section-title{
+
+    margin-bottom:0;
+
+}
+
+.faq-category-heading .section-title::after{
+
+    display:none;
+
+}
+
+.accordion .accordion-item{
+
+    border:1px solid rgba(0,0,0,.08) !important;
+
+    border-radius:14px !important;
+
+    overflow:hidden;
+
+    margin-bottom:14px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.04);
+
+}
+
+.accordion .accordion-button{
+
+    font-family:var(--heading);
+
+    font-weight:600;
+
+    font-size:1rem;
+
+    color:var(--primary);
+
+    background:#fff;
+
+    padding:18px 20px;
+
+}
+
+.accordion .accordion-button:not(.collapsed){
+
+    background:var(--light);
+
+    color:var(--primary);
+
+    box-shadow:none;
+
+}
+
+.accordion .accordion-button:focus{
+
+    box-shadow:0 0 0 3px rgba(139,30,90,.15);
+
+    border-color:transparent;
+
+}
+
+.accordion .accordion-body{
+
+    color:var(--gray);
+
+    line-height:1.75;
+
+    padding:4px 20px 22px;
+
+    font-size:.95rem;
+
+}
+
+.accordion .accordion-body a{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+}
+
+/* ===================================================== */
+/* DONATE CARD (Contact page) */
+/* ===================================================== */
+
+.donate-card{
+
+    background:linear-gradient(160deg,#fff,var(--light));
+
+    border-radius:20px;
+
+    padding:32px 28px;
+
+    height:100%;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+    border-top:5px solid var(--secondary);
+
+}
+
+.donate-card h3{
+
+    color:var(--primary);
+
+    font-family:var(--heading);
+
+    font-weight:700;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:10px;
+
+}
+
+.donate-card h3 i{
+
+    color:var(--secondary);
+
+}
+
+.donate-card p{
+
+    color:var(--gray);
+
+}
+
+.donate-details{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+}
+
+.donate-details li{
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:12px 0;
+
+    border-bottom:1px solid rgba(0,0,0,.06);
+
+    color:var(--dark);
+
+    font-weight:600;
+
+    word-break:break-word;
+
+}
+
+.donate-details li:last-child{
+
+    border-bottom:none;
+
+}
+
+.donate-details li span{
+
+    display:block;
+
+    font-size:.78rem;
+
+    font-weight:700;
+
+    letter-spacing:.4px;
+
+    text-transform:uppercase;
+
+    color:var(--primary);
+
+    margin-bottom:3px;
+
+}
+
+@media (max-width:575px){
+
+.faq-category-heading{
+
+    gap:12px;
+
+    margin-bottom:20px;
+
+}
+
+.faq-category-heading i{
+
+    width:42px;
+
+    height:42px;
+
+    font-size:1.1rem;
+
+}
+
+.accordion .accordion-button{
+
+    font-size:.92rem;
+
+    padding:15px 16px;
 
 }
 
