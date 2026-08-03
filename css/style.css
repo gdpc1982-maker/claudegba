@@ -2920,6 +2920,34 @@ section{
 
 }
 
+/* ===================================================== */
+/* CONTACT PAGE — 2/3 form + 1/3 sidebar layout */
+/* ===================================================== */
+
+.contact-sidebar .donate-card{
+
+    padding:26px 22px;
+
+}
+
+.contact-sidebar .quick-link-card{
+
+    padding-top:28px !important;
+
+    padding-bottom:28px !important;
+
+}
+
+@media (max-width:991px){
+
+.contact-sidebar{
+
+    margin-top:24px;
+
+}
+
+}
+
 @media (max-width:575px){
 
 .faq-category-heading{
