@@ -1272,6 +1272,70 @@ p{
 
 }
 
+.hero-instagram-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:rgba(255,255,255,.08);
+
+    border:2px solid var(--secondary);
+
+    border-radius:20px;
+
+    padding:36px 28px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    max-width:260px;
+
+    transition:.3s;
+
+}
+
+.hero-instagram-card:hover{
+
+    background:rgba(255,255,255,.16);
+
+    transform:translateY(-6px);
+
+}
+
+.hero-instagram-card i{
+
+    font-size:2.4rem;
+
+    color:var(--secondary);
+
+}
+
+.hero-instagram-label{
+
+    font-family:var(--heading);
+
+    font-weight:700;
+
+    color:#fff;
+
+    font-size:1.05rem;
+
+}
+
+.hero-instagram-handle{
+
+    color:rgba(255,255,255,.8);
+
+    font-size:.9rem;
+
+}
+
 /* ===================================================== */
 /* SECTION */
 /* ===================================================== */
