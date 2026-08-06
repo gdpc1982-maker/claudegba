@@ -1278,7 +1278,7 @@ p{
 
 section{
 
-    padding:70px 0;
+    padding:42px 0;
 
 }
 
@@ -2557,9 +2557,10 @@ footer a:hover{
 
 /* ===================================================== */
 /* SPACING OVERRIDE — Bootstrap's py-5 (3rem/48px top+bottom)
-   stacks with neighbouring sections and left oversized gaps
-   sitewide. Trimmed here for desktop/tablet; the existing
-   mobile media query further below tightens it more on phones. */
+   and mb-5/mt-5 (3rem margin) stack with neighbouring sections
+   and left oversized gaps sitewide. Trimmed here for desktop/
+   tablet; the existing mobile media query further below
+   tightens it more on phones. */
 /* ===================================================== */
 
 .py-5{
@@ -2567,6 +2568,18 @@ footer a:hover{
     padding-top:2.25rem !important;
 
     padding-bottom:2.25rem !important;
+
+}
+
+.mb-5{
+
+    margin-bottom:2rem !important;
+
+}
+
+.mt-5{
+
+    margin-top:2rem !important;
 
 }
 
