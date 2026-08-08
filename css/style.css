@@ -3024,11 +3024,26 @@ section{
 
     text-align:center;
 
-    margin-top:20px;
+    margin-bottom:20px;
 
-    padding-top:20px;
+    padding-bottom:20px;
 
-    border-top:1px solid rgba(0,0,0,.08);
+    border-bottom:1px solid rgba(0,0,0,.08);
+
+}
+
+.donate-qr-wrap a{
+
+    display:inline-block;
+
+    transition:transform .2s ease;
+
+}
+
+.donate-qr-wrap a:hover,
+.donate-qr-wrap a:active{
+
+    transform:scale(1.03);
 
 }
 
