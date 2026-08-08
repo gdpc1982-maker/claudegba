@@ -3124,6 +3124,25 @@ section{
 
 }
 
+/* On tablet/desktop, float the card with breathing room from the
+   bottom edge instead of sitting flush against it, and round every
+   corner since it's no longer acting as a mobile bottom-sheet.       */
+@media (min-width:576px){
+
+.audition-modal-dialog{
+
+    bottom:28px;
+
+}
+
+.audition-modal-content{
+
+    border-radius:20px;
+
+}
+
+}
+
 .audition-modal-content .modal-body{
 
     padding:20px 18px calc(18px + env(safe-area-inset-bottom));
