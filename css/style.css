@@ -149,13 +149,9 @@ margin-bottom:10px;
 
     width:max-content;
 
-    min-width:100%;
-
-    justify-content:center;
+    margin:0 auto;
 
     position:relative;
-
-    box-sizing:border-box;
 
 }
 
@@ -167,13 +163,9 @@ margin-bottom:10px;
 
     top:47px;
 
-    left:50%;
+    left:20px;
 
-    transform:translateX(-50%);
-
-    width:calc(100% - 40px);
-
-    max-width:1238px;
+    right:20px;
 
     height:3px;
 
