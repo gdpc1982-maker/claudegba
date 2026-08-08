@@ -3088,58 +3088,15 @@ section{
 
     width:calc(100% - 24px);
 
-    position:fixed;
-
-    bottom:0;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    margin:0;
-
-}
-
-.modal.fade .audition-modal-dialog{
-
-    transition:transform .3s ease-out;
-
-    transform:translate(-50%,60px);
-
-}
-
-.modal.show .audition-modal-dialog{
-
-    transform:translate(-50%,0);
-
 }
 
 .audition-modal-content{
 
     border:none;
 
-    border-radius:20px 20px 0 0;
-
-    overflow:hidden;
-
-}
-
-/* On tablet/desktop, float the card with breathing room from the
-   bottom edge instead of sitting flush against it, and round every
-   corner since it's no longer acting as a mobile bottom-sheet.       */
-@media (min-width:576px){
-
-.audition-modal-dialog{
-
-    bottom:28px;
-
-}
-
-.audition-modal-content{
-
     border-radius:20px;
 
-}
+    overflow:hidden;
 
 }
 
