@@ -3092,33 +3092,15 @@ section{
 
 }
 
-.audition-modal-content .modal-header{
-
-    background:var(--primary);
-
-    color:#fff;
-
-    border-bottom:none;
-
-    padding:14px 20px;
-
-}
-
-.audition-modal-content .modal-title{
-
-    font-size:1.05rem;
-
-}
-
-.audition-modal-content .modal-header .btn-close{
-
-    filter:invert(1) brightness(2);
-
-}
-
 .audition-modal-content .modal-body{
 
-    padding:20px 24px 24px;
+    padding:26px 24px 24px;
+
+    max-height:80vh;
+
+    max-height:80dvh;
+
+    overflow-y:auto;
 
 }
 
@@ -3157,13 +3139,5 @@ section{
     font-size:.92rem;
 
     text-align:center;
-
-}
-
-/* modal-dialog-scrollable's own max-height already handles overflow,
-   but cap it explicitly so it never touches the viewport edges */
-.modal-dialog-scrollable .audition-modal-content{
-
-    max-height:calc(100vh - 3.5rem);
 
 }
