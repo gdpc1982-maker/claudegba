@@ -3100,6 +3100,14 @@ section{
 
     border-bottom:none;
 
+    padding:14px 20px;
+
+}
+
+.audition-modal-content .modal-title{
+
+    font-size:1.05rem;
+
 }
 
 .audition-modal-content .modal-header .btn-close{
@@ -3108,11 +3116,17 @@ section{
 
 }
 
+.audition-modal-content .modal-body{
+
+    padding:20px 24px 24px;
+
+}
+
 .audition-contact-photo{
 
-    width:130px;
+    width:96px;
 
-    height:130px;
+    height:96px;
 
     object-fit:cover;
 
@@ -3122,7 +3136,7 @@ section{
 
     box-shadow:0 10px 25px rgba(0,0,0,.15);
 
-    margin:10px auto 0;
+    margin:0 auto;
 
 }
 
@@ -3133,5 +3147,23 @@ section{
     font-family:var(--heading);
 
     font-weight:700;
+
+    font-size:1.1rem;
+
+}
+
+.audition-modal-content .modal-body p{
+
+    font-size:.92rem;
+
+    text-align:center;
+
+}
+
+/* modal-dialog-scrollable's own max-height already handles overflow,
+   but cap it explicitly so it never touches the viewport edges */
+.modal-dialog-scrollable .audition-modal-content{
+
+    max-height:calc(100vh - 3.5rem);
 
 }
