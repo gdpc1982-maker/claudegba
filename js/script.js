@@ -57,22 +57,49 @@ document.addEventListener("DOMContentLoaded", function () {
   setInterval(updateCountdown, 1000);
 });
 
-// Cultural Programme Audition popup — centre it within the visible
-// space BELOW the sticky nav bar, not the full page height, so its
-// top doesn't end up hidden behind the sticky header.
+// Cultural Programme Audition popup — align its bottom edge with the
+// bottom edge of the "Cultural Programme Auditions" card that opened
+// it, so it appears anchored to the tile rather than floating oddly.
 document.addEventListener("DOMContentLoaded", function () {
   var auditionModal = document.getElementById("auditionModal");
-  var siteTop = document.querySelector(".site-top");
+  var triggerCard = document.getElementById("culturalAuditionCard");
+  var dialog = auditionModal ? auditionModal.querySelector(".audition-modal-dialog") : null;
 
-  if (!auditionModal || !siteTop) return;
+  if (!auditionModal || !triggerCard || !dialog) return;
 
-  function setNavOffset() {
-    var navHeight = siteTop.offsetHeight;
-    auditionModal.style.setProperty("--audition-nav-h", navHeight + "px");
+  function positionDialog() {
+    var cardRect = triggerCard.getBoundingClientRect();
+    var dialogHeight = dialog.offsetHeight;
+    var margin = 12;
+
+    var top = cardRect.bottom - dialogHeight;
+
+    // Keep it fully on screen even if the card is scrolled near an edge
+    var maxTop = window.innerHeight - dialogHeight - margin;
+    var minTop = margin;
+    if (top > maxTop) top = maxTop;
+    if (top < minTop) top = minTop;
+
+    dialog.style.position = "fixed";
+    dialog.style.top = top + "px";
+    dialog.style.left = "50%";
+    dialog.style.transform = "translateX(-50%)";
+    dialog.style.margin = "0";
   }
 
-  auditionModal.addEventListener("show.bs.modal", setNavOffset);
+  // At the moment "show.bs.modal" fires, Bootstrap hasn't yet set
+  // display:block on the modal, so the dialog's height can't be
+  // measured accurately yet. Hide it, wait one frame (by which point
+  // Bootstrap has applied display:block), measure and position it,
+  // then reveal — avoids both a wrong-position flash and a visible jump.
+  auditionModal.addEventListener("show.bs.modal", function () {
+    dialog.style.visibility = "hidden";
+    requestAnimationFrame(function () {
+      positionDialog();
+      dialog.style.visibility = "";
+    });
+  });
   window.addEventListener("resize", function () {
-    if (auditionModal.classList.contains("show")) setNavOffset();
+    if (auditionModal.classList.contains("show")) positionDialog();
   });
 });
