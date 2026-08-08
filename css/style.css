@@ -147,6 +147,33 @@ margin-bottom:10px;
 
     scrollbar-width:thin;
 
+    /* Match Bootstrap's .container breakpoints exactly, so the strip
+       lines up with the heading and every other block of content on
+       the page instead of centring within the full browser width. */
+    width:100%;
+
+    margin:0 auto;
+
+}
+
+@media (min-width:576px){
+.h-timeline-wrap{ max-width:540px; }
+}
+
+@media (min-width:768px){
+.h-timeline-wrap{ max-width:720px; }
+}
+
+@media (min-width:992px){
+.h-timeline-wrap{ max-width:960px; }
+}
+
+@media (min-width:1200px){
+.h-timeline-wrap{ max-width:1140px; }
+}
+
+@media (min-width:1400px){
+.h-timeline-wrap{ max-width:1320px; }
 }
 
 .h-timeline{
