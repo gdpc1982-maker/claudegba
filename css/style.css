@@ -127,6 +127,16 @@ margin-bottom:10px;
 
 .h-timeline-wrap{
 
+    display:flex;
+
+    /* Fallback for browsers without `safe` alignment support. */
+    justify-content:flex-start;
+
+    /* `safe center` centres the row when it fits, but falls back to
+       start-alignment when it overflows — without this, centring a
+       wider-than-screen row clips its left edge unreachably. */
+    justify-content:safe center;
+
     overflow-x:auto;
 
     overflow-y:hidden;
@@ -149,7 +159,7 @@ margin-bottom:10px;
 
     width:max-content;
 
-    margin:0 auto;
+    flex:0 0 auto;
 
     position:relative;
 
