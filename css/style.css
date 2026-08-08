@@ -3079,14 +3079,11 @@ section{
 }
 
 /* ===================================================== */
-/* AUDITION CONTACT MODAL (homepage) */
+/* AUDITION CONTACT MODAL (homepage)
+   Positioned by JS (js/script.js) to align its bottom edge with
+   the bottom edge of the triggering "Cultural Programme Auditions"
+   card — see positionDialog() in script.js.                       */
 /* ===================================================== */
-
-#auditionModal.modal{
-
-    padding-top:var(--audition-nav-h,0px) !important;
-
-}
 
 .audition-modal-dialog{
 
