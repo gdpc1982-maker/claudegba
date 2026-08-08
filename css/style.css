@@ -3082,11 +3082,43 @@ section{
 /* AUDITION CONTACT MODAL (homepage) */
 /* ===================================================== */
 
+.audition-modal-dialog{
+
+    max-width:325px;
+
+    width:calc(100% - 24px);
+
+    position:fixed;
+
+    bottom:0;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    margin:0;
+
+}
+
+.modal.fade .audition-modal-dialog{
+
+    transition:transform .3s ease-out;
+
+    transform:translate(-50%,60px);
+
+}
+
+.modal.show .audition-modal-dialog{
+
+    transform:translate(-50%,0);
+
+}
+
 .audition-modal-content{
 
     border:none;
 
-    border-radius:20px;
+    border-radius:20px 20px 0 0;
 
     overflow:hidden;
 
@@ -3094,7 +3126,7 @@ section{
 
 .audition-modal-content .modal-body{
 
-    padding:26px 24px 24px;
+    padding:20px 18px calc(18px + env(safe-area-inset-bottom));
 
     max-height:80vh;
 
@@ -3106,17 +3138,17 @@ section{
 
 .audition-contact-photo{
 
-    width:96px;
+    width:64px;
 
-    height:96px;
+    height:64px;
 
     object-fit:cover;
 
     border-radius:50%;
 
-    border:4px solid var(--secondary);
+    border:3px solid var(--secondary);
 
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
 
     margin:0 auto;
 
@@ -3130,13 +3162,13 @@ section{
 
     font-weight:700;
 
-    font-size:1.1rem;
+    font-size:.98rem;
 
 }
 
 .audition-modal-content .modal-body p{
 
-    font-size:.92rem;
+    font-size:.85rem;
 
     text-align:center;
 
