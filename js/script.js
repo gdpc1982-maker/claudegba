@@ -87,18 +87,29 @@ document.addEventListener("DOMContentLoaded", function () {
     dialog.style.margin = "0";
   }
 
-  // At the moment "show.bs.modal" fires, Bootstrap hasn't yet set
-  // display:block on the modal, so the dialog's height can't be
-  // measured accurately yet. Hide it, wait one frame (by which point
-  // Bootstrap has applied display:block), measure and position it,
-  // then reveal — avoids both a wrong-position flash and a visible jump.
+  // Bootstrap sets display:block asynchronously as part of its own
+  // backdrop-fade sequence — by "show.bs.modal" time (or even one
+  // animation frame later) the dialog may still not be laid out yet,
+  // so measuring its height too early returns 0 and breaks the maths.
+  // "shown.bs.modal" fires only once Bootstrap's own transition has
+  // fully completed, guaranteeing an accurate measurement. Keep the
+  // dialog hidden until then so there's no wrong-position flash, and
+  // fade it in ourselves for a smooth reveal.
   auditionModal.addEventListener("show.bs.modal", function () {
     dialog.style.visibility = "hidden";
-    requestAnimationFrame(function () {
-      positionDialog();
-      dialog.style.visibility = "";
-    });
+    dialog.style.opacity = "0";
   });
+
+  auditionModal.addEventListener("shown.bs.modal", function () {
+    positionDialog();
+    dialog.style.transition = "opacity .2s ease";
+    dialog.style.visibility = "";
+    // Force a reflow so the opacity transition actually plays
+    // eslint-disable-next-line no-unused-expressions
+    dialog.offsetHeight;
+    dialog.style.opacity = "1";
+  });
+
   window.addEventListener("resize", function () {
     if (auditionModal.classList.contains("show")) positionDialog();
   });
