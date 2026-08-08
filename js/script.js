@@ -56,3 +56,23 @@ document.addEventListener("DOMContentLoaded", function () {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 });
+
+// Cultural Programme Audition popup — centre it within the visible
+// space BELOW the sticky nav bar, not the full page height, so its
+// top doesn't end up hidden behind the sticky header.
+document.addEventListener("DOMContentLoaded", function () {
+  var auditionModal = document.getElementById("auditionModal");
+  var siteTop = document.querySelector(".site-top");
+
+  if (!auditionModal || !siteTop) return;
+
+  function setNavOffset() {
+    var navHeight = siteTop.offsetHeight;
+    auditionModal.style.setProperty("--audition-nav-h", navHeight + "px");
+  }
+
+  auditionModal.addEventListener("show.bs.modal", setNavOffset);
+  window.addEventListener("resize", function () {
+    if (auditionModal.classList.contains("show")) setNavOffset();
+  });
+});
