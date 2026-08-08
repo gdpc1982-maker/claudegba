@@ -3020,6 +3020,44 @@ section{
 
 }
 
+.donate-qr-wrap{
+
+    text-align:center;
+
+    margin-top:20px;
+
+    padding-top:20px;
+
+    border-top:1px solid rgba(0,0,0,.08);
+
+}
+
+.donate-qr-label{
+
+    font-size:.85rem;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+    margin-bottom:12px;
+
+}
+
+.donate-qr-img{
+
+    max-width:170px;
+
+    width:100%;
+
+    border-radius:12px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+    border:1px solid rgba(0,0,0,.06);
+
+}
+
 /* ===================================================== */
 /* CONTACT PAGE — 2/3 form + 1/3 sidebar layout */
 /* ===================================================== */
