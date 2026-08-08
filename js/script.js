@@ -136,3 +136,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+// "Contribute to This Event" popup (events.html) — position it just
+// below the sticky nav bar instead of using default centering, since
+// centering within the full page can land the popup's top edge behind
+// the nav (which sits above it in stacking order). Unlike the audition
+// popup above, this only needs the nav bar's height — which is always
+// rendered and measurable immediately, with no display-timing issue.
+document.addEventListener("DOMContentLoaded", function () {
+  var contributeModal = document.getElementById("eventContributeModal");
+  var siteTop = document.querySelector(".site-top");
+  var dialog = contributeModal ? contributeModal.querySelector(".audition-modal-dialog") : null;
+
+  if (!contributeModal || !siteTop || !dialog) return;
+
+  function positionBelowNav() {
+    var navHeight = siteTop.offsetHeight;
+    var margin = 16;
+
+    dialog.style.position = "fixed";
+    dialog.style.top = (navHeight + margin) + "px";
+    dialog.style.left = "50%";
+    dialog.style.transform = "translateX(-50%)";
+    dialog.style.margin = "0";
+  }
+
+  contributeModal.addEventListener("show.bs.modal", positionBelowNav);
+  window.addEventListener("resize", function () {
+    if (contributeModal.classList.contains("show")) positionBelowNav();
+  });
+});
