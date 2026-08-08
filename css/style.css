@@ -1086,6 +1086,22 @@ p{
 
 }
 
+.member-photo-placeholder{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:var(--light);
+
+    color:var(--primary);
+
+    font-size:44px;
+
+}
+
 .member-role-badge{
 
     display:inline-block;
