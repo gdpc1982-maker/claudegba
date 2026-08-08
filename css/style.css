@@ -3082,6 +3082,12 @@ section{
 /* AUDITION CONTACT MODAL (homepage) */
 /* ===================================================== */
 
+#auditionModal.modal{
+
+    padding-top:var(--audition-nav-h,0px) !important;
+
+}
+
 .audition-modal-dialog{
 
     max-width:325px;
