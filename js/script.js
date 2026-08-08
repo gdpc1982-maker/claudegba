@@ -67,15 +67,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!auditionModal || !triggerCard || !dialog) return;
 
+  function getViewportHeight() {
+    // window.innerHeight is unreliable on mobile right around the
+    // moment the address bar collapses/expands (which often happens
+    // exactly when a modal opens and locks page scroll). visualViewport
+    // reflects the actual visible area on mobile browsers that support it.
+    if (window.visualViewport) {
+      return window.visualViewport.height;
+    }
+    return window.innerHeight;
+  }
+
   function positionDialog() {
     var cardRect = triggerCard.getBoundingClientRect();
     var dialogHeight = dialog.offsetHeight;
     var margin = 12;
+    var viewportHeight = getViewportHeight();
 
     var top = cardRect.bottom - dialogHeight;
 
     // Keep it fully on screen even if the card is scrolled near an edge
-    var maxTop = window.innerHeight - dialogHeight - margin;
+    var maxTop = viewportHeight - dialogHeight - margin;
     var minTop = margin;
     if (top > maxTop) top = maxTop;
     if (top < minTop) top = minTop;
@@ -101,6 +113,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   auditionModal.addEventListener("shown.bs.modal", function () {
+    // On some mobile browsers the address bar's own collapse animation
+    // runs slightly after Bootstrap's transitionend fires, so re-measure
+    // a beat later too in case the viewport height shifted underneath us.
     positionDialog();
     dialog.style.transition = "opacity .2s ease";
     dialog.style.visibility = "";
@@ -108,9 +123,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // eslint-disable-next-line no-unused-expressions
     dialog.offsetHeight;
     dialog.style.opacity = "1";
+    setTimeout(positionDialog, 120);
   });
 
   window.addEventListener("resize", function () {
     if (auditionModal.classList.contains("show")) positionDialog();
   });
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", function () {
+      if (auditionModal.classList.contains("show")) positionDialog();
+    });
+  }
 });
