@@ -3344,3 +3344,79 @@ section{
     text-align:center;
 
 }
+
+/* ===================================================== */
+/* AUTHOR TRIBUTE CARD (About page, top of Ahindra's article) */
+/* ===================================================== */
+
+.author-tribute-card{
+
+    border-radius:22px;
+
+    border-left:6px solid var(--secondary) !important;
+
+}
+
+/* ===================================================== */
+/* INLINE ARTWORK (About page — resized to photo-strip
+   scale and spread through the article instead of large
+   standalone hero images)                                */
+/* ===================================================== */
+
+.about-inline-art{
+
+    max-width:280px;
+
+    margin:24px auto;
+
+    text-align:center;
+
+}
+
+.about-inline-art img{
+
+    height:220px;
+
+    width:auto;
+
+    max-width:280px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+    margin:0 auto;
+
+}
+
+.about-inline-art-credit{
+
+    margin-top:10px;
+
+}
+
+.about-inline-art-credit h5{
+
+    font-family:var(--bengali);
+
+    color:var(--primary);
+
+    font-size:1rem;
+
+    margin-bottom:2px;
+
+}
+
+.about-inline-art-credit p{
+
+    color:var(--gray);
+
+    font-size:.82rem;
+
+    margin-bottom:0;
+
+    text-align:center;
+
+}
