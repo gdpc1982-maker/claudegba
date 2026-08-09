@@ -166,3 +166,23 @@ document.addEventListener("DOMContentLoaded", function () {
     if (contributeModal.classList.contains("show")) positionBelowNav();
   });
 });
+
+// "Translate" buttons on Bengali quotes/reflections — opens the exact
+// text in Google Translate (source: Bengali) in a new tab, rather than
+// embedding a page-wide translator widget that would translate the
+// entire site and depends on a third-party script staying available.
+document.addEventListener("DOMContentLoaded", function () {
+  var buttons = document.querySelectorAll(".js-translate");
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var sourceId = btn.getAttribute("data-source");
+      var sourceEl = document.getElementById(sourceId);
+      if (!sourceEl) return;
+
+      var text = sourceEl.textContent.trim().replace(/\s+/g, " ");
+      var url = "https://translate.google.com/?sl=bn&tl=en&text=" + encodeURIComponent(text) + "&op=translate";
+      window.open(url, "_blank", "noopener");
+    });
+  });
+});
