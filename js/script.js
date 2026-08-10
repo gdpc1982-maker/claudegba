@@ -186,3 +186,81 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+// Highlights / Connect pullout tabs + their popups — the sticky nav's
+// real height varies by screen size (wraps differently, banner image
+// scales, etc), so a fixed CSS percentage for "below the nav" isn't
+// reliable — on some screens it lands the tab (or popup) partly behind
+// the nav, since the nav renders on top of anything positioned there.
+// Instead, measure the nav's actual live height and centre things
+// within the genuinely visible space underneath it.
+document.addEventListener("DOMContentLoaded", function () {
+  var siteTop = document.querySelector(".site-top");
+  var highlightsTab = document.getElementById("highlightsTab");
+  var connectTab = document.getElementById("connectTab");
+
+  if (!siteTop) return;
+
+  function getViewportHeight() {
+    return window.visualViewport ? window.visualViewport.height : window.innerHeight;
+  }
+
+  function positionTabs() {
+    var navHeight = siteTop.offsetHeight;
+    var viewportHeight = getViewportHeight();
+    var centerY = navHeight + (viewportHeight - navHeight) / 2;
+
+    if (highlightsTab) highlightsTab.style.top = (centerY - 32) + "px";
+    if (connectTab) connectTab.style.top = (centerY + 32) + "px";
+  }
+
+  positionTabs();
+  window.addEventListener("resize", positionTabs);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", positionTabs);
+  }
+
+  // Popups: centre each one within the space below the nav, not the
+  // full page. Hidden until measured+positioned (avoids a flash at
+  // the wrong spot), matching the working pattern used elsewhere.
+  document.querySelectorAll(".highlights-connect-dialog").forEach(function (dialog) {
+    var modalEl = dialog.closest(".modal");
+    if (!modalEl) return;
+
+    function positionCentered() {
+      var navHeight = siteTop.offsetHeight;
+      var viewportHeight = getViewportHeight();
+      var availableHeight = viewportHeight - navHeight;
+      var dialogHeight = dialog.offsetHeight;
+      var margin = 16;
+
+      var top = navHeight + Math.max(margin, (availableHeight - dialogHeight) / 2);
+      var maxTop = viewportHeight - dialogHeight - margin;
+      if (top > maxTop) top = maxTop;
+
+      dialog.style.position = "fixed";
+      dialog.style.top = top + "px";
+      dialog.style.left = "50%";
+      dialog.style.transform = "translateX(-50%)";
+      dialog.style.margin = "0";
+    }
+
+    modalEl.addEventListener("show.bs.modal", function () {
+      dialog.style.visibility = "hidden";
+      dialog.style.opacity = "0";
+    });
+
+    modalEl.addEventListener("shown.bs.modal", function () {
+      positionCentered();
+      dialog.style.transition = "opacity .2s ease";
+      dialog.style.visibility = "";
+      // eslint-disable-next-line no-unused-expressions
+      dialog.offsetHeight;
+      dialog.style.opacity = "1";
+    });
+
+    window.addEventListener("resize", function () {
+      if (modalEl.classList.contains("show")) positionCentered();
+    });
+  });
+});
