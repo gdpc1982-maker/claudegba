@@ -3491,21 +3491,21 @@ section{
 
 }
 
-@media (max-width:575px){
+/* Bootstrap's modal/backdrop default z-index (~1055/1050) sits well
+   below this site's sticky nav (z-index:9999), so any modal whose
+   position lands near the top of the screen gets visually cut off
+   by the nav rendering on top of it. Raising both above the nav
+   fixes this for every modal on the site, not just new ones.        */
 
-.side-pullout-tab{
+.modal{
 
-    font-size:.72rem;
-
-    padding:9px 12px 9px 11px;
-
-}
-
-.side-pullout-tab-connect{
-
-    top:calc(38% + 46px);
+    z-index:10500 !important;
 
 }
+
+.modal-backdrop{
+
+    z-index:10400 !important;
 
 }
 
