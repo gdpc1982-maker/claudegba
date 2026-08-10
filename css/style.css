@@ -3420,3 +3420,228 @@ section{
     text-align:center;
 
 }
+
+/* ===================================================== */
+/* SITEWIDE PULLOUT TABS (Highlights + Connect) */
+/* ===================================================== */
+
+.side-pullout-tab{
+
+    position:fixed;
+
+    right:0;
+
+    top:38%;
+
+    z-index:1030;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    border:none;
+
+    padding:11px 16px 11px 14px;
+
+    border-radius:50px 0 0 50px;
+
+    font-weight:600;
+
+    font-size:.8rem;
+
+    letter-spacing:.2px;
+
+    white-space:nowrap;
+
+    box-shadow:-3px 3px 14px rgba(0,0,0,.18);
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.side-pullout-tab:hover{
+
+    background:var(--accent);
+
+    padding-right:22px;
+
+}
+
+.side-pullout-tab-connect{
+
+    top:calc(38% + 54px);
+
+    background:var(--secondary);
+
+    color:#2b2030;
+
+}
+
+.side-pullout-tab-connect:hover{
+
+    background:#c49d28;
+
+}
+
+@media (max-width:575px){
+
+.side-pullout-tab{
+
+    font-size:.72rem;
+
+    padding:9px 12px 9px 11px;
+
+}
+
+.side-pullout-tab-connect{
+
+    top:calc(38% + 46px);
+
+}
+
+}
+
+/* Offcanvas panels */
+
+.offcanvas-header{
+
+    background:var(--primary);
+
+    color:#fff;
+
+    border-bottom:none;
+
+}
+
+.offcanvas-header .btn-close{
+
+    filter:invert(1) brightness(2);
+}
+
+.offcanvas-title{
+
+    font-family:var(--heading);
+
+    font-weight:700;
+
+    font-size:1.1rem;
+
+}
+
+.highlights-list{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:20px 0 0;
+
+}
+
+.highlights-list li{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    padding:14px 0;
+
+    border-bottom:1px solid rgba(0,0,0,.07);
+
+    font-size:.92rem;
+
+    line-height:1.6;
+
+    color:var(--dark);
+
+}
+
+.highlights-list li:last-child{
+
+    border-bottom:none;
+
+}
+
+.highlights-list li i{
+
+    color:var(--secondary);
+
+    font-size:1.2rem;
+
+    flex-shrink:0;
+
+    margin-top:2px;
+
+}
+
+.social-connect-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    width:100%;
+
+    padding:14px 18px;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    font-size:.95rem;
+
+    margin-bottom:16px;
+
+    color:#fff;
+
+    transition:.2s;
+
+}
+
+.social-connect-btn i{
+
+    font-size:1.2rem;
+
+}
+
+.social-connect-instagram{
+
+    background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+
+}
+
+.social-connect-instagram:hover{
+
+    opacity:.9;
+
+    color:#fff;
+
+}
+
+.social-connect-facebook{
+
+    background:#1877f2;
+
+}
+
+.social-connect-facebook:hover{
+
+    background:#166fe0;
+
+    color:#fff;
+
+}
