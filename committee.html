@@ -306,64 +306,50 @@ The dedicated team behind the planning and organisation of GBA's Durga Puja cele
 
 <!-- SITEWIDE PULLOUT TABS -->
 
-<button type="button" class="side-pullout-tab" id="highlightsTab" data-bs-toggle="offcanvas" data-bs-target="#highlightsOffcanvas" aria-controls="highlightsOffcanvas">
+<button type="button" class="side-pullout-tab" id="highlightsTab" data-bs-toggle="modal" data-bs-target="#highlightsModal">
 <i class="bi bi-stars"></i> Highlights
 </button>
 
-<button type="button" class="side-pullout-tab side-pullout-tab-connect" id="connectTab" data-bs-toggle="offcanvas" data-bs-target="#connectOffcanvas" aria-controls="connectOffcanvas">
+<button type="button" class="side-pullout-tab side-pullout-tab-connect" id="connectTab" data-bs-toggle="modal" data-bs-target="#connectModal">
 <i class="bi bi-share-fill"></i> Connect
 </button>
 
-<!-- HIGHLIGHTS OFFCANVAS -->
+<!-- HIGHLIGHTS MODAL -->
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="highlightsOffcanvas" aria-labelledby="highlightsOffcanvasLabel">
+<div class="modal fade" id="highlightsModal" tabindex="-1" aria-labelledby="highlightsModalLabel" aria-hidden="true">
+<div class="modal-dialog audition-modal-dialog highlights-connect-dialog">
+<div class="modal-content audition-modal-content">
 
-<div class="offcanvas-header">
-<h5 class="offcanvas-title" id="highlightsOffcanvasLabel"><i class="bi bi-stars"></i> FY 2025&ndash;26 Highlights</h5>
-<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-</div>
+<div class="modal-body text-center">
 
-<div class="offcanvas-body">
+<h4 class="mt-1 mb-3" id="highlightsModalLabel"><i class="bi bi-stars"></i> FY 2025&ndash;26 Highlights</h4>
 
-<p class="text-muted" style="font-size:.9rem;">A quick look at what GBA achieved this past year.</p>
+<p class="mb-3">See everything GBA accomplished this past year, from Durga Puja to the new Club House, in our full Annual Activity Report.</p>
 
-<ul class="highlights-list">
-<li><i class="bi bi-patch-check-fill"></i> Registered under the Government of India's <strong>NPO Darpan</strong> framework, strengthening GBA's legal and institutional standing.</li>
-<li><i class="bi bi-trophy-fill"></i> Won <strong>2nd Prize</strong> for Best Pratima at the JPC Bijoya Sammilani.</li>
-<li><i class="bi bi-house-heart-fill"></i> Inaugurated a brand-new <strong>GBA Club House</strong>, a permanent home for community activities.</li>
-<li><i class="bi bi-heart-pulse-fill"></i> Organised a <strong>Medical Camp</strong> with Manipal Hospital and a <strong>CPR Training Workshop</strong> with Max Hospital.</li>
-<li><i class="bi bi-gift-fill"></i> Donated toys, sarees and food packages to underprivileged families through community welfare drives.</li>
-<li><i class="bi bi-droplet-fill"></i> Contributed to <strong>Calcutta flood relief</strong> via the Delhi Bengal Association.</li>
-<li><i class="bi bi-people-fill"></i> Grew to <strong>155 active members</strong>, with a new renewal cycle underway.</li>
-<li><i class="bi bi-controller"></i> Set up a <strong>Sports &amp; Recreation area</strong> (Table Tennis, Chess, Carrom) at the Club House.</li>
-<li><i class="bi bi-music-note-beamed"></i> Launched plans for a <strong>Dance School</strong> and <strong>Library</strong> at the Club House.</li>
-</ul>
-
-<p class="text-muted mt-3" style="font-size:.85rem;">Plus 25 activities in all &mdash; from Durga Puja and Kali Puja to sports tournaments and statutory compliance milestones.</p>
-
-<a href="documents/GBA_Annual_Activity_Report_FY2025-26.pdf" target="_blank" class="btn btn-outline-primary w-100 mt-3">
-<i class="bi bi-file-earmark-pdf"></i> Download Full Report
+<a href="documents/GBA_Annual_Activity_Report_FY2025-26.pdf" target="_blank" class="btn btn-primary w-100">
+<i class="bi bi-file-earmark-pdf"></i> Download Annual Activity Report
 </a>
 
 </div>
 
 </div>
-
-<!-- CONNECT OFFCANVAS -->
-
-<div class="offcanvas offcanvas-end" tabindex="-1" id="connectOffcanvas" aria-labelledby="connectOffcanvasLabel">
-
-<div class="offcanvas-header">
-<h5 class="offcanvas-title" id="connectOffcanvasLabel">Connect With Us</h5>
-<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+</div>
 </div>
 
-<div class="offcanvas-body text-center">
+<!-- CONNECT MODAL -->
 
-<p class="text-muted mb-4">Follow GBA for photos, updates and event announcements.</p>
+<div class="modal fade" id="connectModal" tabindex="-1" aria-labelledby="connectModalLabel" aria-hidden="true">
+<div class="modal-dialog audition-modal-dialog highlights-connect-dialog">
+<div class="modal-content audition-modal-content">
+
+<div class="modal-body text-center">
+
+<h4 class="mt-1 mb-3" id="connectModalLabel">Connect With Us</h4>
+
+<p class="mb-3">Follow GBA for photos, updates and event announcements.</p>
 
 <a href="https://instagram.com/rangamaati1982" target="_blank" class="social-connect-btn social-connect-instagram">
-<i class="bi bi-instagram"></i> Instagram &mdash; @rangamaati1982
+<i class="bi bi-instagram"></i> Instagram
 </a>
 
 <a href="https://www.facebook.com/rangamaati1982/" target="_blank" class="social-connect-btn social-connect-facebook">
@@ -372,6 +358,8 @@ The dedicated team behind the planning and organisation of GBA's Durga Puja cele
 
 </div>
 
+</div>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
