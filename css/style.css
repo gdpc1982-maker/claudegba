@@ -3893,3 +3893,34 @@ section{
 }
 
 }
+.welcome-invite-tile{
+
+    display:inline-block;
+
+    max-width:280px;
+
+    margin:0 auto;
+
+    background:#fff;
+
+    transition:.3s;
+
+}
+
+.welcome-invite-tile:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.welcome-invite-tile h4{
+
+    color:var(--primary);
+
+    font-family:var(--heading);
+
+    font-weight:700;
+
+    margin-bottom:16px;
+
+}
