@@ -3925,3 +3925,19 @@ section{
     margin-bottom:16px;
 
 }
+
+.dhms-heading{
+
+    font-family:var(--heading);
+
+    font-weight:700;
+
+    color:var(--primary);
+
+    font-size:1.4rem;
+
+    margin-top:28px;
+
+    margin-bottom:4px;
+
+}
