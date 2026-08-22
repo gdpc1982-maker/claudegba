@@ -3666,11 +3666,11 @@ section{
 
     gap:12px;
 
-    perspective:1600px;
-
 }
 
 .flipbook-stage{
+
+    position:relative;
 
     width:100%;
 
@@ -3686,11 +3686,15 @@ section{
 
     box-shadow:0 18px 45px rgba(0,0,0,.18);
 
-    will-change:transform;
+    perspective:1400px;
 
 }
 
-.flipbook-stage img{
+.flipbook-page{
+
+    position:absolute;
+
+    inset:0;
 
     width:100%;
 
@@ -3700,8 +3704,19 @@ section{
 
     background:#fbf3e6;
 
+    backface-visibility:hidden;
+
 }
 
+.flipbook-top{
+
+    z-index:2;
+
+    transform-origin:left center;
+
+    will-change:transform;
+
+}
 .flipbook-nav{
 
     flex:0 0 auto;
@@ -3838,7 +3853,7 @@ section{
 
 @media (prefers-reduced-motion:reduce){
 
-.flipbook-stage{
+.flipbook-top{
 
     transition:none !important;
 
