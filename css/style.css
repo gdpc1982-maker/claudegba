@@ -693,6 +693,11 @@ p{
 
 @media (max-width:575px){
 
+.welcome-section h1{
+
+    font-size:44px !important;
+
+}
 .welcome-overlay{
    padding: 10px 0 10px;}
 .topbar{
