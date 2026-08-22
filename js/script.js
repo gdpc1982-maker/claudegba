@@ -264,3 +264,96 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+// Durgotsav 2026 invitation flipbook
+document.addEventListener("DOMContentLoaded", function () {
+  var stage = document.getElementById("flipbookStage");
+  if (!stage) return;
+
+  var img = document.getElementById("flipbookImg");
+  var counter = document.getElementById("flipbookCounter");
+  var fullLink = document.getElementById("flipbookFull");
+  var dotsWrap = document.getElementById("flipbookDots");
+  var prevBtn = document.getElementById("flipbookPrev");
+  var nextBtn = document.getElementById("flipbookNext");
+
+  var pages = [
+    { src: "images/flipbook-1.jpg", alt: "Durgotsav 2026 invitation cover — 45th year celebration, 15 to 21 October 2026" },
+    { src: "images/flipbook-2.jpg", alt: "Invitation letter from the President and Secretary of Gurgaon Bengalee Association" },
+    { src: "images/flipbook-3.jpg", alt: "Puja schedule with ritual timings from Durga Shashthi to Vijaya Dashami" },
+    { src: "images/flipbook-4.jpg", alt: "Payment details for sponsorship and advertisement contributions" }
+  ];
+
+  var current = 0;
+  var busy = false;
+
+  pages.forEach(function (p, i) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "flipbook-dot";
+    b.setAttribute("aria-label", "Go to page " + (i + 1));
+    b.addEventListener("click", function () { turnTo(i); });
+    dotsWrap.appendChild(b);
+  });
+
+  var dots = dotsWrap.querySelectorAll(".flipbook-dot");
+
+  function render() {
+    img.src = pages[current].src;
+    img.alt = pages[current].alt;
+    counter.textContent = (current + 1) + " / " + pages.length;
+    fullLink.href = pages[current].src;
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle("is-active", i === current);
+    }
+    prevBtn.disabled = (current === 0);
+    nextBtn.disabled = (current === pages.length - 1);
+  }
+
+  function turnTo(target) {
+    if (busy || target === current || target < 0 || target >= pages.length) return;
+    busy = true;
+    var dir = target > current ? 1 : -1;
+
+    stage.style.transformOrigin = dir > 0 ? "left center" : "right center";
+    stage.style.transition = "transform .32s ease-in";
+    stage.style.transform = "rotateY(" + (dir > 0 ? -90 : 90) + "deg)";
+
+    setTimeout(function () {
+      current = target;
+      render();
+      stage.style.transition = "none";
+      stage.style.transform = "rotateY(" + (dir > 0 ? 90 : -90) + "deg)";
+      void stage.offsetWidth;
+      stage.style.transition = "transform .32s ease-out";
+      stage.style.transform = "rotateY(0deg)";
+      setTimeout(function () { busy = false; }, 340);
+    }, 340);
+  }
+
+  prevBtn.addEventListener("click", function () { turnTo(current - 1); });
+  nextBtn.addEventListener("click", function () { turnTo(current + 1); });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") turnTo(current + 1);
+    if (e.key === "ArrowLeft") turnTo(current - 1);
+  });
+
+  var startX = null;
+  stage.addEventListener("touchstart", function (e) {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  stage.addEventListener("touchend", function (e) {
+    if (startX === null) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 45) turnTo(current + (dx < 0 ? 1 : -1));
+    startX = null;
+  }, { passive: true });
+
+  render();
+
+  setTimeout(function () {
+    for (var i = 1; i < pages.length; i++) { new Image().src = pages[i].src; }
+  }, 1200);
+});
