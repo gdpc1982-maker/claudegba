@@ -265,12 +265,14 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
 // Durgotsav 2026 invitation flipbook
 document.addEventListener("DOMContentLoaded", function () {
   var stage = document.getElementById("flipbookStage");
   if (!stage) return;
 
-  var img = document.getElementById("flipbookImg");
+  var topPage = document.getElementById("flipbookTop");
+  var underPage = document.getElementById("flipbookUnder");
   var counter = document.getElementById("flipbookCounter");
   var fullLink = document.getElementById("flipbookFull");
   var dotsWrap = document.getElementById("flipbookDots");
@@ -286,6 +288,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var current = 0;
   var busy = false;
+  var TURN = 450;
 
   pages.forEach(function (p, i) {
     var b = document.createElement("button");
@@ -299,8 +302,9 @@ document.addEventListener("DOMContentLoaded", function () {
   var dots = dotsWrap.querySelectorAll(".flipbook-dot");
 
   function render() {
-    img.src = pages[current].src;
-    img.alt = pages[current].alt;
+    topPage.src = pages[current].src;
+    topPage.alt = pages[current].alt;
+    underPage.src = pages[Math.min(current + 1, pages.length - 1)].src;
     counter.textContent = (current + 1) + " / " + pages.length;
     fullLink.href = pages[current].src;
     for (var i = 0; i < dots.length; i++) {
@@ -310,25 +314,43 @@ document.addEventListener("DOMContentLoaded", function () {
     nextBtn.disabled = (current === pages.length - 1);
   }
 
+  function rest() {
+    topPage.style.transition = "none";
+    topPage.style.transform = "rotateY(0deg)";
+    topPage.style.boxShadow = "none";
+    void topPage.offsetWidth;
+  }
+
   function turnTo(target) {
     if (busy || target === current || target < 0 || target >= pages.length) return;
     busy = true;
-    var dir = target > current ? 1 : -1;
 
-    stage.style.transformOrigin = dir > 0 ? "left center" : "right center";
-    stage.style.transition = "transform .32s ease-in";
-    stage.style.transform = "rotateY(" + (dir > 0 ? -90 : 90) + "deg)";
+    if (target > current) {
+      // the page on top lifts and turns away, revealing the next page beneath
+      underPage.src = pages[target].src;
+      topPage.style.transition = "transform " + TURN + "ms ease-in, box-shadow " + TURN + "ms ease-in";
+      topPage.style.transform = "rotateY(-105deg)";
+      topPage.style.boxShadow = "14px 0 30px rgba(0,0,0,.28)";
+    } else {
+      // going back: the earlier page swings in from the left and lands on top
+      underPage.src = pages[current].src;
+      topPage.src = pages[target].src;
+      topPage.alt = pages[target].alt;
+      topPage.style.transition = "none";
+      topPage.style.transform = "rotateY(-105deg)";
+      topPage.style.boxShadow = "14px 0 30px rgba(0,0,0,.28)";
+      void topPage.offsetWidth;
+      topPage.style.transition = "transform " + TURN + "ms ease-out, box-shadow " + TURN + "ms ease-out";
+      topPage.style.transform = "rotateY(0deg)";
+      topPage.style.boxShadow = "none";
+    }
 
     setTimeout(function () {
       current = target;
+      rest();
       render();
-      stage.style.transition = "none";
-      stage.style.transform = "rotateY(" + (dir > 0 ? 90 : -90) + "deg)";
-      void stage.offsetWidth;
-      stage.style.transition = "transform .32s ease-out";
-      stage.style.transform = "rotateY(0deg)";
-      setTimeout(function () { busy = false; }, 340);
-    }, 340);
+      busy = false;
+    }, TURN + 20);
   }
 
   prevBtn.addEventListener("click", function () { turnTo(current - 1); });
@@ -351,6 +373,7 @@ document.addEventListener("DOMContentLoaded", function () {
     startX = null;
   }, { passive: true });
 
+  rest();
   render();
 
   setTimeout(function () {
