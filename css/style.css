@@ -3645,3 +3645,205 @@ section{
     color:#fff;
 
 }
+
+/* ===================================================== */
+/* DURGOTSAV FLIPBOOK */
+/* ===================================================== */
+
+.flipbook-wrap{
+
+    margin:30px auto 24px;
+
+}
+
+.flipbook{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    perspective:1600px;
+
+}
+
+.flipbook-stage{
+
+    width:100%;
+
+    max-width:400px;
+
+    aspect-ratio:1/1.45;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    background:#fbf3e6;
+
+    box-shadow:0 18px 45px rgba(0,0,0,.18);
+
+    will-change:transform;
+
+}
+
+.flipbook-stage img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    background:#fbf3e6;
+
+}
+
+.flipbook-nav{
+
+    flex:0 0 auto;
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    color:var(--primary);
+
+    font-size:1.2rem;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.15);
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.flipbook-nav:hover:not(:disabled){
+
+    background:var(--secondary);
+
+    color:#2b2030;
+
+}
+
+.flipbook-nav:disabled{
+
+    opacity:.3;
+
+    cursor:default;
+
+}
+
+.flipbook-dots{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:8px;
+
+    margin-top:16px;
+
+}
+
+.flipbook-dot{
+
+    width:9px;
+
+    height:9px;
+
+    padding:0;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(0,0,0,.18);
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.flipbook-dot.is-active{
+
+    background:var(--primary);
+
+    transform:scale(1.3);
+
+}
+
+.flipbook-meta{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:18px;
+
+    margin-top:10px;
+
+    font-size:.9rem;
+
+    color:var(--gray);
+
+}
+
+.flipbook-meta a{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+}
+
+@media (max-width:575px){
+
+.flipbook{
+
+    gap:6px;
+
+}
+
+.flipbook-nav{
+
+    width:34px;
+
+    height:34px;
+
+    font-size:1rem;
+
+}
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+.flipbook-stage{
+
+    transition:none !important;
+
+    transform:none !important;
+
+}
+
+}
