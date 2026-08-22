@@ -3429,7 +3429,6 @@ section{
 /* ===================================================== */
 /* SITEWIDE PULLOUT TABS (Highlights + Connect) */
 /* ===================================================== */
-
 .side-pullout-tab{
 
     position:fixed;
@@ -3444,7 +3443,11 @@ section{
 
     align-items:center;
 
-    gap:6px;
+    justify-content:center;
+
+    width:44px;
+
+    height:44px;
 
     background:var(--primary);
 
@@ -3452,17 +3455,11 @@ section{
 
     border:none;
 
-    padding:11px 16px 11px 14px;
+    padding:0;
 
-    border-radius:50px 0 0 50px;
+    border-radius:50% 0 0 50%;
 
-    font-weight:600;
-
-    font-size:.8rem;
-
-    letter-spacing:.2px;
-
-    white-space:nowrap;
+    font-size:1.1rem;
 
     box-shadow:-3px 3px 14px rgba(0,0,0,.18);
 
@@ -3472,11 +3469,15 @@ section{
 
 }
 
+.side-pullout-tab .pullout-label{
+
+    display:none;
+
+}
+
 .side-pullout-tab:hover{
 
     background:var(--accent);
-
-    padding-right:22px;
 
 }
 
