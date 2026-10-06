@@ -157,6 +157,56 @@ Proud Organisers of Gurugram's Oldest Durga Puja
 
 </section>
 
+<!-- TODAY AT GBA (placards) -->
+
+<section class="today-section">
+
+<div class="container">
+
+<div class="text-center mb-4">
+
+<h2 class="section-title d-inline-block" id="todayHeading">Puja Schedule</h2>
+
+<p class="mt-3" id="todayLead">Timings, cultural programme and bhog for every day of the festival.</p>
+
+</div>
+
+<div class="row g-4" id="todayCards">
+
+<div class="col-lg-4 col-md-6">
+<div class="sch-card today-card">
+<h3><i class="bi bi-brightness-high-fill"></i> Puja timings</h3>
+<div class="today-body" data-slot="puja"><p class="today-main">Morning puja and Pushpanjali, day by day.</p></div>
+<a href="durga-puja-2026.html" class="quick-link-cta" data-slot="puja-link">View timings <i class="bi bi-arrow-right"></i></a>
+</div>
+</div>
+<div class="col-lg-4 col-md-6">
+<div class="sch-card today-card">
+<h3><i class="bi bi-moon-stars-fill"></i> Evening programme</h3>
+<div class="today-body" data-slot="eve"><p class="today-main">Sandhya Arati and cultural programme, every evening.</p></div>
+<a href="durga-puja-2026.html" class="quick-link-cta" data-slot="eve-link">View programme <i class="bi bi-arrow-right"></i></a>
+</div>
+</div>
+<div class="col-lg-4 col-md-6">
+<div class="sch-card today-card">
+<h3><i class="bi bi-cup-hot-fill"></i> Bhog</h3>
+<div class="today-body" data-slot="bhog"><p class="today-main">Bhog menu for each day of the puja.</p></div>
+<a href="durga-puja-2026.html" class="quick-link-cta" data-slot="bhog-link">View bhog <i class="bi bi-arrow-right"></i></a>
+</div>
+</div>
+
+</div>
+
+<div class="text-center mt-4">
+
+<a href="durga-puja-2026.html" class="btn btn-primary btn-lg">See the full day-wise schedule</a>
+
+</div>
+
+</div>
+
+</section>
+
 <!-- INTRO -->
 
 <section>
@@ -279,7 +329,7 @@ Dates as per the Bengali Panchang and subject to final confirmation closer to th
 
 <div class="col-lg-4 col-md-6">
 <div class="card p-4 text-center">
-<h4 class="text-primary-custom">Maha Shashti</h4>
+<h4 class="text-primary-custom">Maha Shashthi</h4>
 <p>Welcome ceremony of Maa Durga with traditional rituals and cultural programmes.</p>
 </div>
 </div>
@@ -307,7 +357,7 @@ Dates as per the Bengali Panchang and subject to final confirmation closer to th
 
 <div class="col-lg-4 col-md-6">
 <div class="card p-4 text-center">
-<h4 class="text-primary-custom">Dashami</h4>
+<h4 class="text-primary-custom">Vijaya Dashami</h4>
 <p>Sindoor Khela, farewell rituals and immersion ceremony.</p>
 </div>
 </div>
@@ -355,7 +405,7 @@ whether through sponsorship or a donation — we'd love to hear from you.
 <div class="col-lg-3 col-md-6">
 <div class="news-card">
 <h4>Anjali Timing</h4>
-<p>Pushpanjali is offered on Saptami, Ashtami and Navami mornings, following each day's auspicious timing. Exact schedule announced closer to the festival.</p>
+<p>Pushpanjali is offered every morning from Shashthi to Navami, following each day's auspicious timing. See the <a href="durga-puja-2026.html">day-wise schedule</a> for exact times.</p>
 </div>
 </div>
 
@@ -400,7 +450,7 @@ welcome to be part of our Durga Puja celebrations.
 </p>
 
 <a href="contact.html" class="btn btn-primary btn-lg me-3">Get in Touch</a>
-<a href="events.html" class="btn btn-outline-secondary btn-lg">See Full Schedule</a>
+<a href="durga-puja-2026.html" class="btn btn-outline-secondary btn-lg">See Full Schedule</a>
 
 </div>
 
@@ -487,6 +537,93 @@ welcome to be part of our Durga Puja celebrations.
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="js/script.js"></script>
+
+<!-- Today at GBA: fills the three placards from today's date (India time) -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var wrap = document.getElementById("todayCards");
+  if (!wrap) return;
+
+  var BHOG_NONE = ["Bhog is served from Shashthi to Navami", "16\u201320 October"];
+
+  var DAYS = {
+    "2026-10-15": { id: "panchami", label: "Maha Panchami, Thursday 15 October",
+      puja: ["Festivities begin this evening", "Ananda Mela from 7:00 PM"],
+      eve:  ["Ananda Mela \u2013 Food Fiesta", "7:00 PM onwards"],
+      bhog: BHOG_NONE },
+    "2026-10-16": { id: "shashthi", label: "Maha Shashthi, Friday 16 October",
+      puja: ["Puja 8:00 AM\u201311:30 AM", "Pushpanjali 9:30 & 10:30 AM"],
+      eve:  ["Bodhon & Sandhya Arati 6:30 PM", "Cultural programme from 7:30 PM"],
+      bhog: ["Panch Bhaja, Payesh (Kheer)", "Luchi (Puri), Suji & Chatani"] },
+    "2026-10-17": { id: "saptami-17", label: "Maha Saptami, Saturday 17 October",
+      puja: ["Puja 8:00 AM\u201311:30 AM", "Pushpanjali 9:30, 10:30 & 11:00 AM"],
+      eve:  ["Sandhya Arati 7:00 PM", "Cultural programme from 7:30 PM"],
+      bhog: ["Panch Bhaja, Vegetable, Payesh (Kheer)", "Rice, Polav & Chatani"] },
+    "2026-10-18": { id: "saptami-18", label: "Maha Saptami, Sunday 18 October",
+      puja: ["Puja 8:00 AM\u201311:30 AM", "Pushpanjali 9:30, 10:30 & 11:00 AM"],
+      eve:  ["Sandhya Arati 7:00 PM", "Cultural programme from 7:30 PM"],
+      bhog: ["Panch Bhaja, Vegetable, Payesh (Kheer)", "Rice, Polav, Chatani, Rice & Vegetable"] },
+    "2026-10-19": { id: "ashtami", label: "Maha Ashtami, Monday 19 October",
+      puja: ["Puja 7:00 AM\u201310:00 AM", "Pushpanjali 8:30, 9:00 & 9:30 AM", "Sandhi Puja 10:28\u201311:16 AM"],
+      eve:  ["Sandhya Arati 7:00 PM", "Cultural programme from 7:30 PM"],
+      bhog: ["Panch Bhaja, Vegetable & Payesh (Kheer)", "Chatani, Khichuri"] },
+    "2026-10-20": { id: "navami", label: "Maha Navami, Tuesday 20 October",
+      puja: ["Puja 8:00 AM\u201310:30 AM", "Pushpanjali 9:00, 9:30 & 10:00 AM", "Havan 11:00 AM"],
+      eve:  ["Sandhya Arati 7:00 PM", "Cultural programme from 7:30 PM"],
+      bhog: ["Panch Bhaja, Chatani & Payesh (Kheer)", "Vegetable, Khichuri"] },
+    "2026-10-21": { id: "dashami", label: "Vijaya Dashami, Wednesday 21 October",
+      puja: ["Puja 8:00 AM\u20139:00 AM", "Maa Durga Boron 9:30 AM onwards", "Sindoor Khela 10:30\u201311:30 AM"],
+      eve:  ["Immersion 3:00\u20135:00 PM", "Shanti Jal 8:00 PM"],
+      bhog: BHOG_NONE }
+  };
+
+  var FIRST = "2026-10-15", LAST = "2026-10-21";
+
+  var today = "";
+  try {
+    today = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Kolkata" }).format(new Date());
+  } catch (e) { return; }
+
+  var key, heading, lead;
+  if (DAYS[today]) {
+    key = today;
+    heading = "Today at GBA";
+    lead = DAYS[key].label;
+  } else if (today < FIRST) {
+    key = FIRST;
+    heading = "Coming Up";
+    lead = "Durga Puja begins on " + DAYS[key].label + ". Here is the first day.";
+  } else {
+    return;
+  }
+
+  var d = DAYS[key];
+
+  function fill(slot, lines) {
+    var box = wrap.querySelector('[data-slot="' + slot + '"]');
+    if (!box) return;
+    box.innerHTML = "";
+    lines.forEach(function (text, i) {
+      var p = document.createElement("p");
+      p.className = i === 0 ? "today-main" : "today-sub";
+      p.textContent = text;
+      box.appendChild(p);
+    });
+  }
+
+  fill("puja", d.puja);
+  fill("eve", d.eve);
+  fill("bhog", d.bhog);
+
+  ["puja", "eve", "bhog"].forEach(function (slot) {
+    var link = wrap.querySelector('[data-slot="' + slot + '-link"]');
+    if (link) link.setAttribute("href", "durga-puja-2026.html#day-" + d.id);
+  });
+
+  document.getElementById("todayHeading").textContent = heading;
+  document.getElementById("todayLead").textContent = lead;
+});
+</script>
 
 </body>
 
