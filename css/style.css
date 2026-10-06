@@ -4067,3 +4067,51 @@ section{
 }
 
 }
+
+/* ===================================================== */
+/* TODAY AT GBA PLACARDS (durga-puja.html)               */
+/* Paste at the very end of css/style.css, after the     */
+/* schedule block. These reuse .sch-card from that block. */
+/* ===================================================== */
+
+.today-section{
+
+    padding-bottom:10px;
+
+}
+
+.today-card .today-main{
+
+    margin-bottom:4px;
+
+    text-align:left;
+
+    font-size:1.02rem;
+
+    font-weight:700;
+
+    line-height:1.45;
+
+    color:var(--dark);
+
+}
+
+.today-card .today-sub{
+
+    margin-bottom:2px;
+
+    text-align:left;
+
+    font-size:.93rem;
+
+    line-height:1.5;
+
+    color:var(--gray);
+
+}
+
+.today-card .quick-link-cta{
+
+    margin:10px 0 14px;
+
+}
