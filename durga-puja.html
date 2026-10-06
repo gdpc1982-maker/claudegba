@@ -85,16 +85,47 @@ Proud Organisers of Gurugram's Oldest Durga Puja
 
 </div>
     <!-- DURGOTSAV 2026 MAHALAYA EMBED -->
+<!-- MAHALAYA EMBED -->
 <section id="mahalaya" style="padding:0;">
 <div class="container">
+
+<style>
+.mahalaya-wrap{position:relative;}
+.mahalaya-wrap iframe{width:100%;height:80vh;height:80svh;min-height:600px;border:0;border-radius:16px;display:block;}
+.mahalaya-cover,.mahalaya-relock{display:none;}
+@media (pointer:coarse){
+.mahalaya-wrap iframe{height:72vh;height:72svh;min-height:520px;}
+.mahalaya-wrap.is-locked iframe{pointer-events:none;}
+.mahalaya-wrap.is-locked .mahalaya-cover{display:flex;position:absolute;inset:0;align-items:flex-end;justify-content:center;padding-bottom:22px;background:transparent;border:0;width:100%;border-radius:16px;cursor:pointer;}
+.mahalaya-cover span{background:var(--primary);color:#fff;font-weight:600;font-size:.9rem;padding:10px 20px;border-radius:50px;border:2px solid var(--secondary);box-shadow:0 6px 18px rgba(0,0,0,.3);}
+.mahalaya-wrap:not(.is-locked) + .mahalaya-relock{display:block;}
+}
+.mahalaya-relock{text-align:center;margin-top:10px;}
+.mahalaya-relock button{background:none;border:1px solid rgba(0,0,0,.15);border-radius:50px;padding:8px 18px;font-size:.85rem;font-weight:600;color:var(--primary);}
+</style>
+
+<div class="mahalaya-wrap is-locked" id="mahalayaWrap">
 <iframe src="https://agomoni-in.vercel.app/"
         title="Mahalaya 2026 live radio"
-        style="width:100%;height:80vh;min-height:640px;border:0;border-radius:16px;display:block;"
         allow="autoplay; encrypted-media; web-share; clipboard-write"
         loading="lazy"></iframe>
+<button type="button" class="mahalaya-cover" id="mahalayaCover" aria-label="Tap to use the Mahalaya radio"><span>Tap to use the radio</span></button>
+</div>
+
+<div class="mahalaya-relock"><button type="button" id="mahalayaRelock">Done &mdash; scroll the page</button></div>
+
 <p class="mt-2 text-center" style="font-size:.85rem;">
 <a href="https://agomoni-in.vercel.app/" target="_blank" rel="noopener">Open full screen for reminders &rarr;</a>
 </p>
+
+<script>
+(function(){
+  var w=document.getElementById('mahalayaWrap');
+  document.getElementById('mahalayaCover').addEventListener('click',function(){w.classList.remove('is-locked');});
+  document.getElementById('mahalayaRelock').addEventListener('click',function(){w.classList.add('is-locked');w.scrollIntoView({behavior:'smooth',block:'start'});});
+})();
+</script>
+
 </div>
 </section>
 <!-- DURGOTSAV 2026 INVITATION FLIPBOOK -->
