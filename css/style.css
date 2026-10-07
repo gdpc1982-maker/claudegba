@@ -4241,3 +4241,19 @@ section{
     margin-right:5px;
     color:var(--primary);
 }
+
+/* Anchor row highlight (durga-puja-2026.html) */
+
+.sch-list li.sch-host-row{
+    margin-bottom:6px;
+    padding:10px 12px;
+    background:rgba(212,175,55,.18);
+    border-left:4px solid var(--secondary);
+    border-bottom:none;
+    border-radius:8px;
+}
+
+.sch-list li.sch-host-row .sch-what{
+    font-weight:700;
+    color:var(--accent);
+}
