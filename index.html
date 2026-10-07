@@ -332,13 +332,34 @@ Inspiring Generations
 
 </div>
 
-</div>
+<div class="col-lg-5 mt-4 mt-lg-0" id="radioCol">
+
+<a href="radio.html" class="radio-card" id="radioCard" aria-label="Durga Puja Radio: Mahalaya live and Durga Puja songs">
+
+<span class="radio-chip"><i class="bi bi-broadcast"></i> Mahalaya Live</span>
+
+<i class="bi bi-vinyl-fill radio-icon" aria-hidden="true"></i>
+
+<span class="radio-title">Durga Puja Radio</span>
+
+<span class="radio-sub">Agomoni by GBA</span>
+
+<span class="radio-line" id="radioLine">Mahalaya live, Saturday 10 October, 4:00 AM IST</span>
+
+<span class="radio-count" id="radioCount"></span>
+
+<span class="radio-cta">Listen now <i class="bi bi-arrow-right"></i></span>
+
+</a>
 
 </div>
 
 </div>
 
-<!-- welcome-section row was col-lg-7 + col-lg-5; col-lg-5 Instagram card removed here -->
+</div>
+
+</div>
+
 
 </section>
 
@@ -720,6 +741,36 @@ Reach out to our Cultural Secretary to register your interest or ask about audit
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="js/script.js"></script>
+
+<!-- Durga Puja Radio card: text follows the date (India time) -->
+<script>
+(function () {
+  var line = document.getElementById("radioLine");
+  var count = document.getElementById("radioCount");
+  var col = document.getElementById("radioCol");
+  if (!line) return;
+  var MAH = Date.parse("2026-10-10T04:00:00+05:30");
+  var ON_AIR_END = MAH + 2 * 3600e3;
+  var FEST_END = Date.parse("2026-10-22T00:00:00+05:30");
+  function tick() {
+    var now = Date.now();
+    if (now >= FEST_END) { col.style.display = "none"; return; }
+    if (now < MAH) {
+      var m = Math.floor((MAH - now) / 60000), d = Math.floor(m / 1440), h = Math.floor((m % 1440) / 60), mm = m % 60;
+      line.textContent = "Mahalaya live, Saturday 10 October, 4:00 AM IST";
+      count.textContent = "Starts in " + (d ? d + "d " : "") + h + "h " + mm + "m";
+    } else if (now < ON_AIR_END) {
+      line.textContent = "Mahalaya is on air now";
+      count.textContent = "Tune in live";
+    } else {
+      line.textContent = "Durga Puja songs, the Dhak and more";
+      count.textContent = "";
+    }
+  }
+  tick();
+  setInterval(tick, 60000);
+})();
+</script>
 
 </body>
 
