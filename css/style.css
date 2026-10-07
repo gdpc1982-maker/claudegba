@@ -4257,3 +4257,134 @@ section{
     font-weight:700;
     color:var(--accent);
 }
+
+
+/* ===== Durga Puja Radio card (index hero) + hero text at ~85% on desktop ===== */
+
+.radio-card{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    max-width:380px;
+    margin:0 auto;
+    padding:30px 26px 26px;
+    text-align:center;
+    text-decoration:none;
+    background:rgba(255,255,255,.09);
+    border:2px solid var(--secondary);
+    border-radius:22px;
+    transition:.3s;
+}
+
+.radio-card:hover{
+    background:rgba(255,255,255,.17);
+    transform:translateY(-6px);
+}
+
+.radio-chip{
+    padding:5px 14px;
+    border-radius:50px;
+    background:var(--secondary);
+    color:var(--accent);
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+}
+
+.radio-icon{
+    font-size:3rem;
+    line-height:1;
+    color:var(--secondary);
+}
+
+.radio-title{
+    font-family:var(--heading);
+    font-size:1.7rem;
+    font-weight:700;
+    line-height:1.15;
+    color:#fff;
+}
+
+.radio-sub{
+    font-size:.95rem;
+    color:var(--secondary);
+}
+
+.radio-line{
+    font-size:.98rem;
+    line-height:1.45;
+    color:#fff;
+}
+
+.radio-count{
+    min-height:1.2em;
+    font-size:.9rem;
+    font-weight:600;
+    color:rgba(255,255,255,.85);
+}
+
+.radio-cta{
+    margin-top:6px;
+    padding:11px 26px;
+    border-radius:50px;
+    background:var(--secondary);
+    color:var(--accent);
+    font-weight:700;
+}
+
+@media (min-width:992px){
+
+    .welcome-section h1{ font-size:53px; }
+    .welcome-section h2{ font-size:29px; }
+    .welcome-section p{ font-size:16px; margin-top:22px; }
+    .welcome-section .btn{ padding:12px 26px; }
+    .welcome-badge{ font-size:16px; padding:10px 20px; margin-bottom:18px; }
+
+}
+
+/* Durga Puja Radio page */
+
+.radio-hero-card{
+    max-width:640px;
+    margin:0 auto;
+    padding:34px 28px;
+    text-align:center;
+    background:#fff;
+    border:2px solid var(--secondary);
+    border-radius:20px;
+    box-shadow:0 8px 26px rgba(92,23,56,.12);
+}
+
+.radio-hero-card .radio-big{
+    font-family:var(--heading);
+    font-size:1.5rem;
+    font-weight:700;
+    color:var(--accent);
+}
+
+.radio-hero-card .radio-status{
+    margin:6px 0 18px;
+    font-size:1.05rem;
+    font-weight:600;
+    color:var(--primary);
+}
+
+.radio-zones{
+    width:100%;
+    max-width:640px;
+    margin:0 auto;
+    border-collapse:collapse;
+}
+
+.radio-zones th,
+.radio-zones td{
+    padding:10px 14px;
+    border-bottom:1px solid rgba(0,0,0,.08);
+    text-align:left;
+}
+
+.radio-zones th{
+    color:var(--accent);
+}
