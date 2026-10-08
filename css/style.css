@@ -4388,3 +4388,9 @@ section{
 .radio-zones th{
     color:var(--accent);
 }
+
+/* Donate card on contact.html: keep it clear of the sticky header when linked as #donate */
+
+#donate{
+    scroll-margin-top:200px;
+}
