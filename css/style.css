@@ -4556,7 +4556,8 @@ section{
     z-index:1;
     pointer-events:none;
     background:repeating-linear-gradient(90deg,#EDE0C8 0 1px,#CBB894 1px 2px);
-    transition:opacity .45s ease,transform var(--fb-turn) var(--fb-ease);
+    translate:var(--shift,0px) 0;
+    transition:opacity .45s ease,transform var(--fb-turn) var(--fb-ease),translate var(--fb-turn) var(--fb-ease);
 }
 
 .fb-edges.fb-r{
@@ -4923,4 +4924,15 @@ section{
     .fb-lightbox img{transition:none;}
     .fb-hotspot{animation:none;}
 
+}
+
+/* Flipbook masthead: centre all lines (overrides global p{text-align:justify}) */
+.fb-section .fb-masthead,
+.fb-section .fb-masthead p,
+.fb-section .fb-masthead h2{
+    text-align:center;
+}
+.fb-section .fb-masthead p{
+    margin-left:auto;
+    margin-right:auto;
 }
