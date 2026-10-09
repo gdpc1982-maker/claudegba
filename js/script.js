@@ -266,117 +266,323 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// Durgotsav 2026 invitation flipbook
+// Durgotsav 2026 invitation flipbook (durga-puja.html, #fbBook)
 document.addEventListener("DOMContentLoaded", function () {
-  var stage = document.getElementById("flipbookStage");
-  if (!stage) return;
+  var book = document.getElementById("fbBook");
+  if (!book) return;
 
-  var topPage = document.getElementById("flipbookTop");
-  var underPage = document.getElementById("flipbookUnder");
-  var counter = document.getElementById("flipbookCounter");
-  var fullLink = document.getElementById("flipbookFull");
-  var dotsWrap = document.getElementById("flipbookDots");
-  var prevBtn = document.getElementById("flipbookPrev");
-  var nextBtn = document.getElementById("flipbookNext");
-
-  var pages = [
-    { src: "images/flipbook-1.jpg", alt: "Durgotsav 2026 invitation cover — 45th year celebration, 15 to 21 October 2026" },
-    { src: "images/flipbook-2.jpg", alt: "Invitation letter from the President and Secretary of Gurgaon Bengalee Association" },
-    { src: "images/flipbook-3.jpg", alt: "Puja schedule with ritual timings from Durga Shashthi to Vijaya Dashami" },
-    { src: "images/flipbook-4.jpg", alt: "Payment details for sponsorship and advertisement contributions" }
+  var PAGES = [
+    { src: "images/invitation-2026-p1.jpg", label: "Cover" },
+    { src: "images/invitation-2026-p2.jpg", label: "Invitation",
+      hotspot: { x: 49.64, y: 90.85, w: 36.43, h: 6.06,
+        href: "https://maps.app.goo.gl/xi2QhFZogh8ZSVWZ8",
+        title: "Tap to open location in Google Maps",
+        toast: "Opening location in Google Maps…", kind: "map" } },
+    { src: "images/invitation-2026-p3.jpg", label: "Puja Schedule" },
+    { src: "images/invitation-2026-p4.jpg", label: "Payment Details",
+      hotspot: { x: 51.24, y: 53.45, w: 35.2, h: 24.9,
+        href: "upi://pay?pa=begaleeassociation%40indianbk&pn=Gurgaon%20Bengalee%20Association&cu=INR&tn=GBA%20Durgotsav%202026",
+        vpa: "begaleeassociation@indianbk",
+        title: "Tap to pay via UPI",
+        toast: "Opening UPI app… if nothing happens, pay to begaleeassociation@indianbk", kind: "pay" } }
   ];
+  var LEAVES = Math.ceil(PAGES.length / 2);
+  var RATIO = 0.7076;
 
-  var current = 0;
+  var section = document.getElementById("invitation");
+  var viewport = document.getElementById("fbViewport");
+  var bookrow = document.getElementById("fbBookrow");
+  var leafEls = Array.prototype.slice.call(book.querySelectorAll(".fb-leaf"));
+  var prevBtn = document.getElementById("fbPrev");
+  var nextBtn = document.getElementById("fbNext");
+  var counter = document.getElementById("fbCounter");
+  var chipsBox = document.getElementById("fbChips");
+  var edgesR = document.getElementById("fbEdgesR");
+  var edgesL = document.getElementById("fbEdgesL");
+  var lb = document.getElementById("fbLightbox");
+  var lbImg = document.getElementById("fbLbImg");
+  var lbCap = document.getElementById("fbLbCap");
+  var toast = document.getElementById("fbToast");
+
+  var mq = window.matchMedia("(min-width: 860px)");
+  var spread = mq.matches;
+  var flipped = 0;   // spread mode: leaves turned (0..LEAVES)
+  var idx = 0;       // single mode: page index (0..N-1)
   var busy = false;
-  var TURN = 450;
 
-  pages.forEach(function (p, i) {
-    var b = document.createElement("button");
-    b.type = "button";
-    b.className = "flipbook-dot";
-    b.setAttribute("aria-label", "Go to page " + (i + 1));
-    b.addEventListener("click", function () { turnTo(i); });
-    dotsWrap.appendChild(b);
+  /* ---------- hotspots (map link, UPI pay) ---------- */
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add("fb-show");
+    clearTimeout(toast._h);
+    toast._h = setTimeout(function () { toast.classList.remove("fb-show"); }, 3600);
+  }
+
+  Array.prototype.forEach.call(book.querySelectorAll(".fb-face img"), function (img) {
+    var i = parseInt(img.getAttribute("data-page"), 10);
+    var hs = PAGES[i] && PAGES[i].hotspot;
+    if (!hs) return;
+    var a = document.createElement("a");
+    a.className = "fb-hotspot" + (hs.kind ? " fb-" + hs.kind : "");
+    a.href = hs.href;
+    a.target = /^https?:/i.test(hs.href) ? "_blank" : "_self";
+    a.rel = "noopener";
+    a.title = hs.title || "Tap for more";
+    a.style.left = hs.x + "%";
+    a.style.top = hs.y + "%";
+    a.style.width = hs.w + "%";
+    a.style.height = hs.h + "%";
+    a.addEventListener("click", function (e) {
+      e.stopPropagation();
+      if (hs.vpa && navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(hs.vpa).catch(function () {});
+      }
+      showToast(hs.toast || "Opening…");
+    });
+    a.addEventListener("dblclick", function (e) { e.stopPropagation(); });
+    a.addEventListener("touchend", function (e) { e.stopPropagation(); });
+    img.parentNode.appendChild(a);
   });
 
-  var dots = dotsWrap.querySelectorAll(".flipbook-dot");
+  /* ---------- sizing ---------- */
+  function size() {
+    var rowW = bookrow.clientWidth || window.innerWidth;
+    var top = document.querySelector(".site-top");
+    var headH = top ? top.offsetHeight : 0;     // the header is sticky, so keep the page clear of it
+    var availH = Math.max(420, Math.min(window.innerHeight - headH - 24, 860));
+    var pw, ph;
+    if (spread) {
+      var availW = Math.max(240, rowW - (prevBtn.offsetWidth * 2 + 40));
+      ph = availH; pw = ph * RATIO;
+      if (pw * 2 > availW) { pw = availW / 2; ph = pw / RATIO; }
+    } else {
+      pw = Math.min(rowW * 0.94, window.innerWidth * 0.94);
+      ph = pw / RATIO;
+      if (ph > availH) { ph = availH; pw = ph * RATIO; }
+    }
+    viewport.classList.toggle("fb-single", !spread);
+    viewport.style.setProperty("--pw", pw.toFixed(2) + "px");
+    viewport.style.setProperty("--ph", ph.toFixed(2) + "px");
+    viewport.style.width = (spread ? pw * 2 : pw).toFixed(2) + "px";
+    viewport.style.height = ph.toFixed(2) + "px";
+    render();
+  }
+
+  /* ---------- state ---------- */
+  function leavesTurned() { return spread ? flipped : Math.floor((idx + 1) / 2); }
+
+  function visiblePages() {
+    if (!spread) return [idx];
+    if (flipped === 0) return [0];
+    var left = flipped * 2 - 1, right = flipped * 2;
+    return right < PAGES.length ? [left, right] : [left];
+  }
+
+  function atStart() { return spread ? flipped === 0 : idx === 0; }
+  function atEnd() { return spread ? flipped === LEAVES : idx === PAGES.length - 1; }
 
   function render() {
-    topPage.src = pages[current].src;
-    topPage.alt = pages[current].alt;
-    underPage.src = pages[Math.min(current + 1, pages.length - 1)].src;
-    counter.textContent = (current + 1) + " / " + pages.length;
-    fullLink.href = pages[current].src;
-    for (var i = 0; i < dots.length; i++) {
-      dots[i].classList.toggle("is-active", i === current);
+    var f = leavesTurned();
+    leafEls.forEach(function (el, i) {
+      var isF = i < f;
+      el.classList.toggle("fb-flipped", isF);
+      el.style.zIndex = isF ? (i + 1) : (LEAVES - i);
+    });
+
+    var pw = parseFloat(viewport.style.getPropertyValue("--pw")) || 0;
+    var shift = 0;
+    if (!spread) {
+      shift = (idx % 2 === 0) ? -pw / 2 : pw / 2;
+    } else if (f === 0) {
+      shift = -pw / 2;            // closed: cover centred
+    } else if (f === LEAVES) {
+      shift = pw / 2;             // finished: last page centred
     }
-    prevBtn.disabled = (current === 0);
-    nextBtn.disabled = (current === pages.length - 1);
+    viewport.style.setProperty("--shift", shift.toFixed(2) + "px");
+    viewport.classList.toggle("fb-solo", !spread || f === 0 || f === LEAVES);
+
+    var remaining = LEAVES - f;
+    edgesR.style.opacity = remaining > 0 ? Math.min(1, remaining / 2 + 0.25) : 0;
+    edgesR.style.transform = "scaleX(" + Math.max(0.35, remaining / LEAVES) + ")";
+    edgesL.style.opacity = f > 0 ? Math.min(1, f / 2 + 0.25) : 0;
+    edgesL.style.transform = "scaleX(" + Math.max(0.35, f / LEAVES) + ")";
+
+    prevBtn.disabled = atStart();
+    nextBtn.disabled = atEnd();
+
+    var vis = visiblePages();
+    counter.innerHTML = vis.length > 1
+      ? "Page <b>" + (vis[0] + 1) + "–" + (vis[1] + 1) + "</b> of " + PAGES.length
+      : "Page <b>" + (vis[0] + 1) + "</b> of " + PAGES.length;
+
+    Array.prototype.forEach.call(chipsBox.children, function (c, i) {
+      c.setAttribute("aria-current", vis.indexOf(i) !== -1 ? "true" : "false");
+    });
   }
 
-  function rest() {
-    topPage.style.transition = "none";
-    topPage.style.transform = "rotateY(0deg)";
-    topPage.style.boxShadow = "none";
-    void topPage.offsetWidth;
-  }
-
-  function turnTo(target) {
-    if (busy || target === current || target < 0 || target >= pages.length) return;
+  function mark(i) {
+    var el = leafEls[i];
+    if (!el) return;
+    el.classList.add("fb-turning");
+    el.style.zIndex = LEAVES + 2;
     busy = true;
-
-    if (target > current) {
-      // the page on top lifts and turns away, revealing the next page beneath
-      underPage.src = pages[target].src;
-      topPage.style.transition = "transform " + TURN + "ms ease-in, box-shadow " + TURN + "ms ease-in";
-      topPage.style.transform = "rotateY(-105deg)";
-      topPage.style.boxShadow = "14px 0 30px rgba(0,0,0,.28)";
-    } else {
-      // going back: the earlier page swings in from the left and lands on top
-      underPage.src = pages[current].src;
-      topPage.src = pages[target].src;
-      topPage.alt = pages[target].alt;
-      topPage.style.transition = "none";
-      topPage.style.transform = "rotateY(-105deg)";
-      topPage.style.boxShadow = "14px 0 30px rgba(0,0,0,.28)";
-      void topPage.offsetWidth;
-      topPage.style.transition = "transform " + TURN + "ms ease-out, box-shadow " + TURN + "ms ease-out";
-      topPage.style.transform = "rotateY(0deg)";
-      topPage.style.boxShadow = "none";
-    }
-
-    setTimeout(function () {
-      current = target;
-      rest();
-      render();
-      busy = false;
-    }, TURN + 20);
+    setTimeout(function () { el.classList.remove("fb-turning"); busy = false; render(); }, 920);
   }
 
-  prevBtn.addEventListener("click", function () { turnTo(current - 1); });
-  nextBtn.addEventListener("click", function () { turnTo(current + 1); });
+  function go(dir) {
+    if (busy) return;
+    if (spread) {
+      var t = flipped + dir;
+      if (t < 0 || t > LEAVES) return;
+      mark(dir > 0 ? flipped : flipped - 1);
+      flipped = t;
+    } else {
+      var n = idx + dir;
+      if (n < 0 || n > PAGES.length - 1) return;
+      var before = leavesTurned();
+      idx = n;
+      var after = leavesTurned();
+      if (after !== before) mark(Math.min(before, after));
+    }
+    render();
+  }
 
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowRight") turnTo(current + 1);
-    if (e.key === "ArrowLeft") turnTo(current - 1);
+  function jump(page) {
+    if (busy) return;
+    if (spread) { flipped = page === 0 ? 0 : Math.floor((page + 1) / 2); }
+    else { idx = page; }
+    render();
+  }
+
+  /* ---------- chips ---------- */
+  PAGES.forEach(function (p, i) {
+    var b = document.createElement("button");
+    b.className = "fb-chip";
+    b.type = "button";
+    b.textContent = p.label;
+    b.addEventListener("click", function () { jump(i); });
+    chipsBox.appendChild(b);
   });
 
-  var startX = null;
-  stage.addEventListener("touchstart", function (e) {
-    startX = e.touches[0].clientX;
+  /* ---------- interactions ---------- */
+  nextBtn.addEventListener("click", function () { go(1); });
+  prevBtn.addEventListener("click", function () { go(-1); });
+
+  viewport.addEventListener("click", function (e) {
+    if (busy) return;
+    var r = viewport.getBoundingClientRect();
+    go(e.clientX - r.left > r.width / 2 ? 1 : -1);
+  });
+
+  // Keyboard: only while focus is inside the flipbook, so the page's own
+  // arrow / Home / End scrolling is never hijacked.
+  section.addEventListener("keydown", function (e) {
+    if (lb.classList.contains("fb-open")) return;
+    if (e.key === "ArrowRight") { go(1); e.preventDefault(); }
+    else if (e.key === "ArrowLeft") { go(-1); e.preventDefault(); }
+  });
+
+  // Horizontal swipe turns the page; vertical movement is left to the browser,
+  // so the page keeps scrolling normally on phones.
+  var tsx = 0, tsy = 0;
+  viewport.addEventListener("touchstart", function (e) {
+    tsx = e.changedTouches[0].clientX; tsy = e.changedTouches[0].clientY;
+  }, { passive: true });
+  viewport.addEventListener("touchend", function (e) {
+    var dx = e.changedTouches[0].clientX - tsx;
+    var dy = e.changedTouches[0].clientY - tsy;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) { go(dx < 0 ? 1 : -1); }
   }, { passive: true });
 
-  stage.addEventListener("touchend", function (e) {
-    if (startX === null) return;
-    var dx = e.changedTouches[0].clientX - startX;
-    if (Math.abs(dx) > 45) turnTo(current + (dx < 0 ? 1 : -1));
-    startX = null;
-  }, { passive: true });
+  /* ---------- lightbox ---------- */
+  function openLb(i) {
+    lbImg.src = PAGES[i].src;
+    lbImg.alt = PAGES[i].label;
+    lbImg.classList.remove("fb-zoomed");
+    lbCap.textContent = PAGES[i].label + " · page " + (i + 1) + " of " + PAGES.length;
+    lb.classList.add("fb-open");
+    document.documentElement.style.overflow = "hidden";
+  }
+  function closeLb() {
+    lb.classList.remove("fb-open");
+    document.documentElement.style.overflow = "";
+  }
+  document.getElementById("fbLbClose").addEventListener("click", closeLb);
+  lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
+  lbImg.addEventListener("click", function () { lbImg.classList.toggle("fb-zoomed"); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && lb.classList.contains("fb-open")) closeLb();
+  });
 
-  rest();
-  render();
+  document.getElementById("fbZoom").addEventListener("click", function (e) {
+    e.stopPropagation();
+    var vis = visiblePages();
+    openLb(vis[vis.length - 1]);
+  });
 
-  setTimeout(function () {
-    for (var i = 1; i < pages.length; i++) { new Image().src = pages[i].src; }
-  }, 1200);
+  viewport.addEventListener("dblclick", function (e) {
+    e.preventDefault(); e.stopPropagation();
+    var r = viewport.getBoundingClientRect();
+    var vis = visiblePages();
+    var right = e.clientX - r.left > r.width / 2;
+    openLb(vis.length > 1 ? (right ? vis[1] : vis[0]) : vis[0]);
+  });
+
+  /* ---------- save page ---------- */
+  document.getElementById("fbSave").addEventListener("click", function (e) {
+    e.stopPropagation();
+    visiblePages().forEach(function (i, k) {
+      setTimeout(function () {
+        var a = document.createElement("a");
+        a.href = PAGES[i].src;
+        a.download = "GBA-Durgotsav-2026-" + ("0" + (i + 1)).slice(-2) + "-" +
+                     PAGES[i].label.replace(/[^A-Za-z0-9]+/g, "-") + ".jpg";
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      }, k * 350);
+    });
+  });
+
+  /* ---------- countdown to Durga Shashthi (India time) ---------- */
+  (function () {
+    var el = document.getElementById("fbCountdown");
+    if (!el) return;
+    var start = Date.parse("2026-10-16T00:00:00+05:30");
+    var end = Date.parse("2026-10-22T00:00:00+05:30");
+    function tick() {
+      var now = Date.now();
+      if (now < start) {
+        var d = Math.ceil((start - now) / 86400000);
+        el.innerHTML = "<b>" + d + "</b> day" + (d === 1 ? "" : "s") + " to Durga Shashthi";
+      } else if (now < end) {
+        el.innerHTML = "Pujo is on — <b>আসুন, আনন্দ করুন</b>";
+      } else {
+        el.innerHTML = "আসছে বছর আবার হবে";
+      }
+    }
+    tick();
+    setInterval(tick, 60000);
+  })();
+
+  /* ---------- mode switching and resize ---------- */
+  function onMode() {
+    var wasSpread = spread;
+    spread = mq.matches;
+    if (wasSpread !== spread) {
+      if (spread) { flipped = idx === 0 ? 0 : Math.floor((idx + 1) / 2); }
+      else { idx = flipped === 0 ? 0 : flipped * 2 - 1; }
+    }
+    size();
+  }
+  if (mq.addEventListener) mq.addEventListener("change", onMode); else mq.addListener(onMode);
+  window.addEventListener("resize", size);
+  window.addEventListener("orientationchange", function () { setTimeout(size, 250); });
+
+  // warm the remaining pages once the main page has finished loading
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+      for (var i = 1; i < PAGES.length; i++) { new Image().src = PAGES[i].src; }
+    }, 600);
+  });
+
+  onMode();
 });
