@@ -295,6 +295,19 @@ HUDA Community Center, Sector 9, Gurugram.
 </ul>
 </div>
 </div>
+<div class="col-12">
+<div class="sch-card">
+<h3><i class="bi bi-trophy-fill"></i> Games &amp; competitions</h3>
+<ul class="sch-list">
+<li><span class="sch-time">Up to 6 years</span><span class="sch-what">Drawing competition</span></li>
+<li><span class="sch-time">7&ndash;10 years</span><span class="sch-what">Drawing competition</span></li>
+<li><span class="sch-time">11&ndash;14 years</span><span class="sch-what">Drawing competition</span></li>
+<li><span class="sch-time">6&ndash;14 years</span><span class="sch-what">Jalebi race</span></li>
+<li><span class="sch-time">15 years &amp; above</span><span class="sch-what">Cross cup race</span></li>
+<li><span class="sch-time">15 years &amp; above</span><span class="sch-what">Hanging jalebi game</span></li>
+</ul>
+</div>
+</div>
 </div>
 <p class="sch-foot">Pushpanjali timings are approximate and may change with the puja rituals. All cultural programme timings are tentative.</p>
 </div>
@@ -336,6 +349,17 @@ HUDA Community Center, Sector 9, Gurugram.
 <li><span class="sch-time">7:30&ndash;9:00 PM</span><span class="sch-what">Musical Evening &ndash; Kishan Das (Zee Bangla Sa Re Ga Ma Pa fame)</span></li>
 <li><span class="sch-time">9:00&ndash;9:20 PM</span><span class="sch-what">Kobita o Gaan &ndash; Sushmita Ray, Debaparna Das</span></li>
 <li><span class="sch-time">9:20&ndash;10:35 PM</span><span class="sch-what">Bangla play 'Ashwatthama' &ndash; directed by Biswajeet Dasgupta</span></li>
+</ul>
+</div>
+</div>
+<div class="col-12">
+<div class="sch-card">
+<h3><i class="bi bi-trophy-fill"></i> Games &amp; competitions</h3>
+<ul class="sch-list">
+<li><span class="sch-time">Up to 10 years</span><span class="sch-what">Stack the cup with a balloon</span></li>
+<li><span class="sch-time">Above 10 years</span><span class="sch-what">Bottle and straw game</span></li>
+<li><span class="sch-time">Couples</span><span class="sch-what">Couple games</span></li>
+<li><span class="sch-time">15 years &amp; above</span><span class="sch-what">Dhunuchi dance</span></li>
 </ul>
 </div>
 </div>
@@ -381,6 +405,17 @@ HUDA Community Center, Sector 9, Gurugram.
 <li><span class="sch-time">9:10&ndash;9:40 PM</span><span class="sch-what">Pachmesali Podde Pujo &ndash; directed by Prishila Chattaraj (Guest)</span></li>
 <li><span class="sch-time">9:40&ndash;9:45 PM</span><span class="sch-what">Prize distribution</span></li>
 <li><span class="sch-time">9:45&ndash;10:15 PM</span><span class="sch-what">Electrifying Musical Finale &ndash; Khusjit Singh (Guest)</span></li>
+</ul>
+</div>
+</div>
+<div class="col-12">
+<div class="sch-card">
+<h3><i class="bi bi-trophy-fill"></i> Games &amp; competitions</h3>
+<ul class="sch-list">
+<li><span class="sch-time">Up to 10 years</span><span class="sch-what">Marble race</span></li>
+<li><span class="sch-time">Up to 10 years</span><span class="sch-what">Musical chairs</span></li>
+<li><span class="sch-time">Above 10 years</span><span class="sch-what">Musical chairs</span></li>
+<li><span class="sch-time">Above 10 years</span><span class="sch-what">Candle game</span></li>
 </ul>
 </div>
 </div>
@@ -551,8 +586,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (pick !== firstTab) new bootstrap.Tab(pick).show();
 
+  // Arriving via a #day-… link makes the browser focus that day's panel,
+  // which draws a black outline around it. Clear that focus on arrival.
+  function clearPanelFocus() {
+    var el = document.activeElement;
+    if (el && el.classList && el.classList.contains("tab-pane")) el.blur();
+  }
+  clearPanelFocus();
+  window.addEventListener("load", clearPanelFocus);
+  if (location.hash) {
+    document.addEventListener("focusin", clearPanelFocus);
+    setTimeout(function () { document.removeEventListener("focusin", clearPanelFocus); }, 1500);
+  }
+
   if (hashTab) {
     setTimeout(function () {
+      clearPanelFocus();
       var anchor = document.getElementById("schedule");
       if (anchor) anchor.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 150);
