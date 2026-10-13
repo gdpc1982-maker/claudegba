@@ -27,6 +27,77 @@
 
 <link rel="stylesheet" href="css/style.css">
 
+
+<!-- Star performer cards (this page only) -->
+<style>
+/* No outline box around a day panel when opened from a #day-… link */
+.tab-content > .tab-pane:focus{
+    outline:none;
+}
+.sch-list li.sch-star{
+    display:flex !important;
+    align-items:center;
+    gap:16px;
+    margin:10px 0;
+    padding:14px 16px;
+    border-bottom:none;
+    border-radius:16px;
+    background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%);
+    border:2px solid var(--secondary);
+    box-shadow:0 10px 24px rgba(139,30,90,.22);
+    color:#fff;
+}
+.sch-star img{
+    width:96px;
+    height:96px;
+    flex:none;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid var(--secondary);
+    background:#fff;
+}
+.sch-star-body{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    min-width:0;
+}
+.sch-star-badge{
+    align-self:flex-start;
+    background:var(--secondary);
+    color:#2b2030;
+    font-size:.7rem;
+    font-weight:800;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    padding:3px 10px;
+    border-radius:50px;
+    margin-bottom:4px;
+}
+.sch-star-time{
+    font-size:.85rem;
+    font-weight:600;
+    color:rgba(255,255,255,.85);
+}
+.sch-star-name{
+    font-family:var(--heading);
+    font-size:1.35rem;
+    font-weight:700;
+    line-height:1.2;
+    color:#fff;
+}
+.sch-star-tag{
+    font-size:.85rem;
+    font-style:italic;
+    color:#f3dc8a;
+}
+@media (max-width:575px){
+.sch-list li.sch-star{ gap:12px; padding:12px; }
+.sch-star img{ width:72px; height:72px; }
+.sch-star-name{ font-size:1.15rem; }
+}
+</style>
+
 </head>
 
 <body>
@@ -200,15 +271,15 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <div class="sch-card">
 <h3><i class="bi bi-moon-stars-fill"></i> Evening</h3>
 <ul class="sch-list">
-<li class="sch-host-row"><span class="sch-time">Anchor</span><span class="sch-what"><strong>Aritra Mukherjee (Guest)</strong></span></li>
+<li class="sch-host-row"><span class="sch-time">Anchor</span><span class="sch-what"><strong>Aritra Mukherjee</strong></span></li>
 <li><span class="sch-time">6:30 PM</span><span class="sch-what">Bodhon and Sandhya Arati</span></li>
 <li><span class="sch-time">7:30&ndash;7:40 PM</span><span class="sch-what">Inauguration &ndash; lamp lighting, speech by President GBA</span></li>
-<li><span class="sch-time">7:40&ndash;8:25 PM</span><span class="sch-what">Agomoni Gan &ndash; directed by Rupali Sinha<span class="sch-note">With Kaya Dutta, Oli Dey, Shyama Karmakar, Tapati Sarkar, Ananya Ghosh, Biswajeet Dasgupta, Moumita Sarkar, Anup Sharma, Harshit Gupta &amp; Nirale Arohi</span></span></li>
+<li><span class="sch-time">7:40&ndash;8:25 PM</span><span class="sch-what">Agomoni Gan &ndash; directed by Rupali Sinha</span></li>
 <li><span class="sch-time">8:25&ndash;8:35 PM</span><span class="sch-what">Song and recitation &ndash; Prapti Samanta</span></li>
 <li><span class="sch-time">8:35&ndash;8:50 PM</span><span class="sch-what">Tiny Dancers Extravaganza &ndash; directed by Monika Dhir</span></li>
-<li><span class="sch-time">8:50&ndash;8:55 PM</span><span class="sch-what">Agomoni dance recital &ndash; Munmun, Soumi, Sarika</span></li>
+<li><span class="sch-time">8:50&ndash;8:55 PM</span><span class="sch-what">Agomoni dance recital &ndash; Munmun, Soumi, Sarika, Smriti</span></li>
 <li><span class="sch-time">8:55&ndash;9:05 PM</span><span class="sch-what">Recitation &ndash; Adrish Samanta</span></li>
-<li><span class="sch-time">9:05&ndash;10:05 PM</span><span class="sch-what">Music of Bangla, Bollywood and beyond &ndash; Sanchari Mitra, Soumitra Ghosh (Guest), Debasish Bhattacharya</span></li>
+<li><span class="sch-time">9:05&ndash;10:05 PM</span><span class="sch-what">Music of Bangla, Bollywood and beyond &ndash; Sanchari Mitra, Soumitra Ghosh, Debasish Bhattacharya</span></li>
 </ul>
 </div>
 </div>
@@ -248,11 +319,19 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <ul class="sch-list">
 <li class="sch-host-row"><span class="sch-time">Anchor</span><span class="sch-what"><strong>Moumita Sarkar</strong></span></li>
 <li><span class="sch-time">7:00 PM</span><span class="sch-what">Sandhya Arati</span></li>
-<li><span class="sch-time">7:30&ndash;9:00 PM</span><span class="sch-what">Live in Concert &ndash; Lamhe India Band (high-energy Bangla rock and Bollywood band)</span></li>
+<li class="sch-star">
+<img src="images/performer-lamhe-india-band.webp" alt="Lamhe India Band" width="96" height="96" loading="lazy" decoding="async">
+<span class="sch-star-body">
+<span class="sch-star-badge"><i class="bi bi-star-fill"></i> Star performer</span>
+<span class="sch-star-time">7:30&ndash;9:00 PM &middot; Live in Concert</span>
+<span class="sch-star-name">Lamhe India Band</span>
+<span class="sch-star-tag">High-energy Bangla rock and Bollywood band</span>
+</span>
+</li>
 <li><span class="sch-time">9:00&ndash;9:15 PM</span><span class="sch-what">Musical presentation &ndash; Adrija Sarkar</span></li>
 <li><span class="sch-time">9:15&ndash;9:35 PM</span><span class="sch-what">Children's play 'Pithe o Pate' &ndash; directed by Poli Dutta</span></li>
-<li><span class="sch-time">9:35&ndash;9:50 PM</span><span class="sch-what">Bengali and Bollywood retro songs &ndash; Hrishikesh Kar (Guest)</span></li>
-<li><span class="sch-time">9:50&ndash;10:20 PM</span><span class="sch-what">Dance recital &ndash; Rang Ras Basant, directed by Munmun Mukherjee</span></li>
+<li><span class="sch-time">9:35&ndash;9:50 PM</span><span class="sch-what">Bengali and Bollywood retro songs &ndash; Hrishikesh Kar</span></li>
+<li><span class="sch-time">9:50&ndash;10:20 PM</span><span class="sch-what">Dance recital &ndash; Rang Ras Basant, directed by Munmun Banerjee</span></li>
 </ul>
 </div>
 </div>
@@ -307,12 +386,20 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <ul class="sch-list">
 <li class="sch-host-row"><span class="sch-time">Anchor</span><span class="sch-what"><strong>Ashish Chakraborty</strong></span></li>
 <li><span class="sch-time">7:00 PM</span><span class="sch-what">Sandhya Arati</span></li>
-<li><span class="sch-time">7:30&ndash;7:40 PM</span><span class="sch-what">Dance performances &ndash; Amolika Mukherjee &amp; Swagata Sarkar</span></li>
+<li><span class="sch-time">7:30&ndash;7:40 PM</span><span class="sch-what">Dance performances &ndash; Amolika Chakraborty &amp; Swagata Sarkar</span></li>
 <li><span class="sch-time">7:40&ndash;8:10 PM</span><span class="sch-what">Bengali and Bollywood songs &ndash; Nandini Roy, Adrija Sarkar &amp; Rupali Sinha</span></li>
 <li><span class="sch-time">8:10&ndash;9:05 PM</span><span class="sch-what">'Matir Tan o Moner Gaan' &ndash; GBA in-house dance troupe, directed by Moumita Bhattacharya</span></li>
 <li><span class="sch-time">9:05&ndash;9:20 PM</span><span class="sch-what">Shruti Natok <em>Hana Bari</em> &ndash; Debasish Banerjee &amp; Arup Bhattacharya</span></li>
 <li><span class="sch-time">9:20&ndash;9:30 PM</span><span class="sch-what">Maa Ek Ehsaas &ndash; presented by Satish Shaw</span></li>
-<li><span class="sch-time">9:30&ndash;10:45 PM</span><span class="sch-what">Musical Extravaganza &ndash; Madhurima Basu (Zee Bangla Sa Re Ga Ma Pa fame)</span></li>
+<li class="sch-star">
+<img src="images/performer-madhurima-basu.webp" alt="Madhurima Basu" width="96" height="96" loading="lazy" decoding="async">
+<span class="sch-star-body">
+<span class="sch-star-badge"><i class="bi bi-star-fill"></i> Star performer</span>
+<span class="sch-star-time">9:30&ndash;10:45 PM &middot; Musical Extravaganza</span>
+<span class="sch-star-name">Madhurima Basu</span>
+<span class="sch-star-tag">Zee Bangla Sa Re Ga Ma Pa fame</span>
+</span>
+</li>
 </ul>
 </div>
 </div>
@@ -363,9 +450,17 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <div class="sch-card">
 <h3><i class="bi bi-moon-stars-fill"></i> Evening</h3>
 <ul class="sch-list">
-<li class="sch-host-row"><span class="sch-time">Anchor</span><span class="sch-what"><strong>Sushmita Ray (Guest)</strong></span></li>
+<li class="sch-host-row"><span class="sch-time">Anchor</span><span class="sch-what"><strong>Sushmita Ray</strong></span></li>
 <li><span class="sch-time">7:00 PM</span><span class="sch-what">Sandhya Arati</span></li>
-<li><span class="sch-time">7:30&ndash;9:00 PM</span><span class="sch-what">Musical Evening &ndash; Kishan Das (Zee Bangla Sa Re Ga Ma Pa fame)</span></li>
+<li class="sch-star">
+<img src="images/performer-kishan-das.webp" alt="Kishan Das" width="96" height="96" loading="lazy" decoding="async">
+<span class="sch-star-body">
+<span class="sch-star-badge"><i class="bi bi-star-fill"></i> Star performer</span>
+<span class="sch-star-time">7:30&ndash;9:00 PM &middot; Musical Evening</span>
+<span class="sch-star-name">Kishan Das</span>
+<span class="sch-star-tag">Zee Bangla Sa Re Ga Ma Pa fame</span>
+</span>
+</li>
 <li><span class="sch-time">9:00&ndash;9:20 PM</span><span class="sch-what">Kobita o Gaan &ndash; Sushmita Ray, Debaparna Das</span></li>
 <li><span class="sch-time">9:20&ndash;10:35 PM</span><span class="sch-what">Bangla play 'Ashwatthama' &ndash; directed by Biswajeet Dasgupta</span></li>
 </ul>
@@ -419,11 +514,19 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <ul class="sch-list">
 <li class="sch-host-row"><span class="sch-time">Anchor</span><span class="sch-what"><strong>Biswajeet Dasgupta</strong></span></li>
 <li><span class="sch-time">7:00 PM</span><span class="sch-what">Sandhya Arati</span></li>
-<li><span class="sch-time">7:30&ndash;9:00 PM</span><span class="sch-what">Majestic Musical Presentation &ndash; Anurag Chatterjee (Zee Bangla Sa Re Ga Ma Pa fame)</span></li>
+<li class="sch-star">
+<img src="images/performer-anurag-chatterjee.webp" alt="Anurag Chatterjee" width="96" height="96" loading="lazy" decoding="async">
+<span class="sch-star-body">
+<span class="sch-star-badge"><i class="bi bi-star-fill"></i> Star performer</span>
+<span class="sch-star-time">7:30&ndash;9:00 PM &middot; Majestic Musical Presentation</span>
+<span class="sch-star-name">Anurag Chatterjee</span>
+<span class="sch-star-tag">Zee Bangla Sa Re Ga Ma Pa fame</span>
+</span>
+</li>
 <li><span class="sch-time">9:00&ndash;9:10 PM</span><span class="sch-what">Prize distribution</span></li>
-<li><span class="sch-time">9:10&ndash;9:40 PM</span><span class="sch-what">Pachmesali Podde Pujo &ndash; directed by Prishila Chattaraj (Guest)</span></li>
+<li><span class="sch-time">9:10&ndash;9:40 PM</span><span class="sch-what">Pachmesali Podde Pujo &ndash; directed by Prishila Chattaraj</span></li>
 <li><span class="sch-time">9:40&ndash;9:45 PM</span><span class="sch-what">Prize distribution</span></li>
-<li><span class="sch-time">9:45&ndash;10:15 PM</span><span class="sch-what">Electrifying Musical Finale &ndash; Khusjit Singh (Guest)</span></li>
+<li><span class="sch-time">9:45&ndash;10:15 PM</span><span class="sch-what">Electrifying Musical Finale &ndash; Khushjit Singh</span></li>
 </ul>
 </div>
 </div>
