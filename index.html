@@ -334,17 +334,17 @@ Inspiring Generations
 
 <div class="col-lg-5 mt-4 mt-lg-0" id="radioCol">
 
-<a href="radio.html" class="radio-card" id="radioCard" aria-label="Durga Puja Radio: Mahalaya live and Durga Puja songs">
+<a href="radio.html" class="radio-card" id="radioCard" aria-label="Bengali Radio by GBA: Bengali songs, Durga Puja classics and the Dhak">
 
-<span class="radio-chip"><i class="bi bi-broadcast"></i> Mahalaya Live</span>
+<span class="radio-chip"><i class="bi bi-broadcast"></i> <span id="radioChip">Shubho Bijoya</span></span>
 
 <i class="bi bi-vinyl-fill radio-icon" aria-hidden="true"></i>
 
-<span class="radio-title">Durga Puja Radio</span>
+<span class="radio-title">Bengali Radio</span>
 
-<span class="radio-sub">Agomoni by GBA</span>
+<span class="radio-sub">by GBA</span>
 
-<span class="radio-line" id="radioLine">Mahalaya live, Saturday 10 October, 4:00 AM IST</span>
+<span class="radio-line" id="radioLine">Bengali songs, Durga Puja classics and the Dhak, anytime</span>
 
 <span class="radio-count" id="radioCount"></span>
 
@@ -653,6 +653,17 @@ Reach out to our Cultural Secretary to register your interest or ask about audit
 
 </div>
 
+<div class="col-lg-5 col-md-6">
+
+<div class="testimonial-card">
+<p class="testimonial-quote">&ldquo;Felt like home that day. Tbh ei bochor Kolkata k ektuo miss korini pujo te.&rdquo;</p>
+<p class="testimonial-quote" style="font-size:.9rem;font-style:italic;opacity:.8;">Felt like home that day. Honestly, this year I didn&rsquo;t miss Kolkata at all during the Puja.</p>
+<div class="testimonial-author">Dr. Ghosh</div>
+<div class="testimonial-role">Guest, Durgotsav 2026</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -742,29 +753,34 @@ Reach out to our Cultural Secretary to register your interest or ask about audit
 
 <script src="js/script.js"></script>
 
-<!-- Durga Puja Radio card: text follows the date (India time) -->
+<!-- Bengali Radio by GBA card: message follows the date (India time) -->
 <script>
 (function () {
   var line = document.getElementById("radioLine");
   var count = document.getElementById("radioCount");
-  var col = document.getElementById("radioCol");
+  var chip = document.getElementById("radioChip");
   if (!line) return;
-  var MAH = Date.parse("2026-10-10T04:00:00+05:30");
+  // 2027 dates are tentative; confirm Mahalaya (29 or 30 Sept) before September.
+  var BIJOYA_END = Date.parse("2026-11-10T00:00:00+05:30");
+  var COUNTDOWN_START = Date.parse("2027-09-01T00:00:00+05:30");
+  var MAH = Date.parse("2027-09-29T04:00:00+05:30");
   var ON_AIR_END = MAH + 2 * 3600e3;
-  var FEST_END = Date.parse("2026-10-22T00:00:00+05:30");
+  var FEST_END = Date.parse("2027-10-11T00:00:00+05:30");
+  var ANYTIME = "Bengali songs, Durga Puja classics and the Dhak, anytime";
+  function set(c, l, n) { chip.textContent = c; line.textContent = l; count.textContent = n || ""; }
   function tick() {
     var now = Date.now();
-    if (now >= FEST_END) { col.style.display = "none"; return; }
-    if (now < MAH) {
+    if (now < BIJOYA_END) {
+      set("Shubho Bijoya", "Shubho Bijoya! Relive the Pujo with songs and the Dhak");
+    } else if (now < COUNTDOWN_START || now >= FEST_END) {
+      set("On air", ANYTIME);
+    } else if (now < MAH) {
       var m = Math.floor((MAH - now) / 60000), d = Math.floor(m / 1440), h = Math.floor((m % 1440) / 60), mm = m % 60;
-      line.textContent = "Mahalaya live, Saturday 10 October, 4:00 AM IST";
-      count.textContent = "Starts in " + (d ? d + "d " : "") + h + "h " + mm + "m";
+      set("Mahalaya Live", "Mahalaya live, Wednesday 29 September, 4:00 AM IST", "Starts in " + (d ? d + "d " : "") + h + "h " + mm + "m");
     } else if (now < ON_AIR_END) {
-      line.textContent = "Mahalaya is on air now";
-      count.textContent = "Tune in live";
+      set("Mahalaya Live", "Mahalaya is on air now", "Tune in live");
     } else {
-      line.textContent = "Durga Puja songs, the Dhak and more";
-      count.textContent = "";
+      set("Pujo Special", "Durga Puja songs, the Dhak and more");
     }
   }
   tick();
