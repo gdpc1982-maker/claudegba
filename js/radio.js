@@ -1,5 +1,5 @@
 /* =====================================================
-   Durga Puja Radio — Agomoni by GBA (radio.html only)
+   Bengali Radio by GBA (radio.html only)
    Live Akashvani FM Rainbow Kolkata stream, Mahalaya and
    Pujo playlists through a hidden YouTube player, Dhak,
    reminder, auto-start, countdowns and dates.
@@ -14,19 +14,23 @@
 
   /* ---------- Festival dates (IST). Update these each year. ---------- */
 
-  var MAHALAYA = Date.parse("2026-10-10T04:00:00+05:30");
+  // 2027 dates are tentative (they vary by almanac). Confirm Mahalaya (29 or 30 Sept) before September.
+  var MAHALAYA = Date.parse("2027-09-29T04:00:00+05:30");
   var BROADCAST_END = MAHALAYA + 2 * 3600000;
-  var PUJA_START = Date.parse("2026-10-15T00:00:00+05:30"); // Maha Panchami, as on durga-puja-2026.html
-  var PUJA_END = Date.parse("2026-10-21T23:59:59+05:30");
+  var PUJA_START = Date.parse("2027-10-05T00:00:00+05:30"); // Maha Shashthi
+  var PUJA_END = Date.parse("2027-10-10T23:59:59+05:30");   // Bijoya Dashami
+  // Before Mahalaya: the Bijoya message runs until BIJOYA_END, then the year-round
+  // message until COUNTDOWN_START, when the Mahalaya countdown returns.
+  var BIJOYA_END = Date.parse("2026-11-10T00:00:00+05:30");
+  var COUNTDOWN_START = Date.parse("2027-09-01T00:00:00+05:30");
 
   var DATES = [
-    { bn: "মহালয়া", en: "Mahalaya", from: "2026-10-10", hi: true },
-    { bn: "পঞ্চমী", en: "Maha Panchami", from: "2026-10-15" },
-    { bn: "ষষ্ঠী", en: "Maha Shashthi", from: "2026-10-16" },
-    { bn: "সপ্তমী", en: "Maha Saptami", from: "2026-10-17", to: "2026-10-18" },
-    { bn: "অষ্টমী", en: "Maha Ashtami", from: "2026-10-19" },
-    { bn: "নবমী", en: "Maha Navami", from: "2026-10-20" },
-    { bn: "বিজয়া দশমী", en: "Vijaya Dashami", from: "2026-10-21" }
+    { bn: "মহালয়া", en: "Mahalaya", from: "2027-09-29", hi: true },
+    { bn: "ষষ্ঠী", en: "Maha Shashthi", from: "2027-10-05" },
+    { bn: "সপ্তমী", en: "Maha Saptami", from: "2027-10-06" },
+    { bn: "অষ্টমী", en: "Maha Ashtami", from: "2027-10-07", to: "2027-10-08" },
+    { bn: "নবমী", en: "Maha Navami", from: "2027-10-09" },
+    { bn: "বিজয়া দশমী", en: "Bijoya Dashami", from: "2027-10-10" }
   ];
 
   /* ---------- Sources ---------- */
@@ -555,7 +559,7 @@
       ms.metadata = new MediaMetadata({
         title: t.title,
         artist: t.live ? "Akashvani FM Rainbow Kolkata" : t.artist,
-        album: "Agomoni by GBA",
+        album: "Bengali Radio by GBA",
         artwork: [{ src: "images/logo.png", type: "image/png" }]
       });
       ms.playbackState = S.playing ? "playing" : "paused";
@@ -755,7 +759,7 @@
       try {
         if ("Notification" in window && Notification.permission === "granted") {
           new Notification("Mahishasuramardini is on air", {
-            body: "Akashvani FM Rainbow Kolkata · 4:00 AM IST · Agomoni by GBA",
+            body: "Akashvani FM Rainbow Kolkata · 4:00 AM IST · Bengali Radio by GBA",
             icon: "images/logo.png"
           });
         }
@@ -833,8 +837,8 @@
   function share() {
     var url = location.href.split("?")[0].split("#")[0];
     var data = {
-      title: "Agomoni by GBA · Durga Puja Radio",
-      text: "Mahalaya live at 4:00 AM IST, Pujo songs and the countdown to Durga Puja, from Gurgaon Bengalee Association.",
+      title: "Bengali Radio by GBA",
+      text: "Bengali songs, Durga Puja classics and the Dhak, anytime, plus Mahalaya live at dawn, from Gurgaon Bengalee Association.",
       url: url
     };
     if (navigator.share) {
@@ -929,7 +933,7 @@
       btn.textContent = "Remind me at 4:00 AM IST";
     } else {
       chip.classList.remove("is-on");
-      btn.textContent = "Mahalaya 2026 has passed";
+      btn.textContent = "Mahalaya 2027 has passed";
     }
     chip.setAttribute("aria-pressed", String(ph === "before" && S.reminded));
   }
@@ -1021,7 +1025,13 @@
 
     dot.classList.toggle("is-live", ph === "live");
 
-    if (ph === "before") {
+    if (ph === "before" && t < COUNTDOWN_START) {
+      txt = t < BIJOYA_END
+        ? "Shubho Bijoya! Relive the Pujo with songs and the Dhak"
+        : "Bengali songs, Durga Puja classics and the Dhak, anytime";
+      setTiles(parts(MAHALAYA - t));
+      cap = "Until Mahalaya 2027 (tentative) · 4:00 AM IST";
+    } else if (ph === "before") {
       txt = "Mahalaya goes live in " + cd(parts(MAHALAYA - t), true);
       setTiles(parts(MAHALAYA - t));
       cap = "Until Mahalaya begins · 4:00 AM IST";
@@ -1032,15 +1042,15 @@
     } else if (t < PUJA_START) {
       txt = "Mahalaya has ended · Durga Puja begins in " + cd(parts(PUJA_START - t), false);
       setTiles(parts(PUJA_START - t));
-      cap = "Until GBA's Durga Puja begins · Maha Panchami";
+      cap = "Until GBA's Durga Puja begins · Maha Shashthi";
     } else if (t <= PUJA_END) {
       txt = "Durga Puja is on · HUDA Community Center, Sector 9";
       setTiles(parts(PUJA_END - t));
       cap = "Until the celebrations end · Vijaya Dashami";
     } else {
-      txt = "Shubho Bijoya · see you next year";
+      txt = "Bengali songs, Durga Puja classics and the Dhak, anytime";
       setTiles(parts(0));
-      cap = "Durga Puja 2026 has concluded";
+      cap = "Durga Puja 2027 has concluded · see you next year";
     }
 
     $("radioStatusText").textContent = txt;
