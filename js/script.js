@@ -1,9 +1,10 @@
 // Gurgaon Bengalee Association Website
 console.log("Website Loaded");
 
-// Durga Puja 2026 full Days/Hours/Minutes/Seconds countdown
-// Panchami (start) = 15 Oct 2026, 00:00
-// Vijaya Dashami end (festival close) = 21 Oct 2026, 23:59:59
+// Durga Puja 2027 full Days/Hours/Minutes/Seconds countdown (home page)
+// Dates are tentative and vary by almanac; confirm before September 2027.
+// Maha Shashthi (start) = 5 Oct 2027, 00:00 IST
+// Bijoya Dashami end (festival close) = 10 Oct 2027, 23:59:59 IST
 document.addEventListener("DOMContentLoaded", function () {
   var daysEl = document.getElementById("cdDays");
   var hoursEl = document.getElementById("cdHours");
@@ -13,8 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
-  var pujaStart = new Date("2026-10-15T00:00:00");
-  var pujaEnd = new Date("2026-10-21T23:59:59");
+  var pujaStart = new Date("2027-10-05T00:00:00+05:30");
+  var pujaEnd = new Date("2027-10-10T23:59:59+05:30");
 
   function pad(n) {
     return n < 10 ? "0" + n : String(n);
@@ -26,16 +27,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (now < pujaStart) {
       target = pujaStart;
-      if (captionEl) captionEl.textContent = "Until Durga Puja 2026 Begins";
+      if (captionEl) captionEl.textContent = "Until Durga Puja 2027 Begins · Maha Shashthi, 5 October (tentative)";
     } else if (now <= pujaEnd) {
       target = pujaEnd;
-      if (captionEl) captionEl.textContent = "Until Durga Puja 2026 Celebrations End";
+      if (captionEl) captionEl.textContent = "Until Durga Puja 2027 Celebrations End";
     } else {
       daysEl.textContent = "00";
       hoursEl.textContent = "00";
       minutesEl.textContent = "00";
       secondsEl.textContent = "00";
-      if (captionEl) captionEl.textContent = "Durga Puja 2026 Has Concluded — See You Next Year!";
+      if (captionEl) captionEl.textContent = "Durga Puja 2027 Has Concluded — See You Next Year!";
       return;
     }
 
