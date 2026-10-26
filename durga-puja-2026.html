@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="shortcut icon" href="favicon.ico">
 
-<title>Durga Puja 2026 Schedule | Gurgaon Bengalee Association</title>
+<title>Durgotsav 2026: Schedule &amp; Photos | Gurgaon Bengalee Association</title>
 
 <meta name="description" content="Full six-day Durga Puja 2026 schedule from Gurgaon Bengalee Association — Maha Panchami to Vijaya Dashami, 15–21 October 2026 at HUDA Community Center, Sector 9, Gurugram.">
 
@@ -98,6 +98,112 @@
 }
 </style>
 
+<!-- Durgotsav 2026 photos inside the day cards (this page only) -->
+<style>
+.gal-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:16px;
+}
+.gal-item{ margin:0; }
+.gal-in-card{
+    margin-top:18px;
+    padding-top:16px;
+    border-top:1px solid rgba(0,0,0,.06);
+    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    gap:12px;
+}
+.gal-thumb{
+    display:block;
+    width:100%;
+    padding:0;
+    border:0;
+    border-radius:14px;
+    overflow:hidden;
+    background:#eee;
+    cursor:zoom-in;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    aspect-ratio:4/3;
+}
+.gal-thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .35s ease;
+}
+.gal-thumb:hover img,
+.gal-thumb:focus-visible img{ transform:scale(1.05); }
+.gal-thumb:focus-visible{ outline:3px solid var(--secondary); outline-offset:2px; }
+.gal-item figcaption{
+    margin-top:6px;
+    font-size:.85rem;
+    font-weight:600;
+    color:var(--primary);
+    text-align:center;
+}
+@media (max-width:575px){
+.gal-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.gal-item figcaption{ font-size:.78rem; }
+}
+
+/* Lightbox */
+.gal-lb{
+    position:fixed;
+    inset:0;
+    z-index:11000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(20,12,18,.94);
+}
+.gal-lb.is-open{ display:flex; }
+.gal-lb figure{
+    margin:0;
+    max-width:min(1100px,92vw);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+}
+.gal-lb img{
+    max-width:100%;
+    max-height:78vh;
+    border-radius:10px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.gal-lb figcaption{
+    color:#fff;
+    font-weight:600;
+    text-align:center;
+}
+.gal-lb-count{ color:rgba(255,255,255,.7); font-weight:500; margin-left:8px; }
+.gal-lb-btn{
+    position:absolute;
+    width:52px;
+    height:52px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.14);
+    color:#fff;
+    font-size:1.6rem;
+    display:grid;
+    place-items:center;
+    cursor:pointer;
+    transition:background .2s;
+}
+.gal-lb-btn:hover,.gal-lb-btn:focus-visible{ background:var(--secondary); color:#2b2030; }
+.gal-lb-prev{ left:16px; top:50%; transform:translateY(-50%); }
+.gal-lb-next{ right:16px; top:50%; transform:translateY(-50%); }
+.gal-lb-close{ top:16px; right:16px; font-size:1.3rem; }
+@media (max-width:575px){
+.gal-lb-prev,.gal-lb-next{ top:auto; bottom:18px; transform:none; }
+.gal-lb-prev{ left:calc(50% - 64px); }
+.gal-lb-next{ right:calc(50% - 64px); }
+.gal-lb img{ max-height:70vh; }
+}
+</style>
+
 </head>
 
 <body>
@@ -174,11 +280,12 @@ Proud Organisers of Gurugram's Oldest Durga Puja
 
 <div class="text-center mb-5">
 
-<h1 class="section-title d-inline-block">Durga Puja 2026 Schedule</h1>
+<h1 class="section-title d-inline-block">Durgotsav 2026: Schedule &amp; Photos</h1>
 
 <p class="mt-3">
 Six days of rituals, culture and community 15&ndash;21 October 2026 at
 HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
+Each day shows its programme with the photos from that morning and evening; tap any photo to see it full screen.
 </p>
 
 <div class="open-24-7-badge mt-2">
@@ -223,6 +330,9 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <ul class="sch-list">
 <li><span class="sch-time">7:00 PM onwards</span><span class="sch-what">Ananda Mela &ndash; Food Fiesta<span class="sch-note">A festival of joy &amp; food. Good food, great company, happy moments.</span></span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="panchami" data-index="0" aria-label="Open photo: Ananda Mela"><img src="images/gallery-2026/panchami-01.webp" alt="Ananda Mela at GBA Durgotsav 2026, Maha Panchami" width="540" height="321" loading="lazy" decoding="async"></button><figcaption>Ananda Mela</figcaption></figure>
+</div>
 </div>
 </div>
 <div class="col-lg-7">
@@ -255,6 +365,9 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li><span class="sch-time">8:00 AM&ndash;11:30 AM</span><span class="sch-what">Puja start and end</span></li>
 <li><span class="sch-time">9:30 AM &amp; 10:30 AM</span><span class="sch-what">Pushpanjali<span class="sch-note">Approximate timings</span></span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="shashthi" data-index="0" aria-label="Open photo: Morning Puja and Pushpanjali"><img src="images/gallery-2026/shashthi-01.webp" alt="Morning Puja and Pushpanjali at GBA Durgotsav 2026, Maha Shashthi" width="713" height="475" loading="lazy" decoding="async"></button><figcaption>Morning Puja and Pushpanjali</figcaption></figure>
+</div>
 </div>
 </div>
 <div class="col-lg-6">
@@ -281,6 +394,17 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li><span class="sch-time">8:55&ndash;9:05 PM</span><span class="sch-what">Recitation &ndash; Adrish Samanta</span></li>
 <li><span class="sch-time">9:05&ndash;10:05 PM</span><span class="sch-what">Music of Bangla, Bollywood and beyond &ndash; Sanchari Mitra, Soumitra Ghosh, Debasish Bhattacharya</span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="shashthi" data-index="1" aria-label="Open photo: Bodhon"><img src="images/gallery-2026/shashthi-02.webp" alt="Bodhon at GBA Durgotsav 2026, Maha Shashthi" width="621" height="414" loading="lazy" decoding="async"></button><figcaption>Bodhon</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="shashthi" data-index="2" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/shashthi-03.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Shashthi" width="619" height="413" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="shashthi" data-index="3" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/shashthi-04.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Shashthi" width="608" height="405" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="shashthi" data-index="4" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/shashthi-05.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Shashthi" width="621" height="414" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="shashthi" data-index="5" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/shashthi-06.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Shashthi" width="627" height="418" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="shashthi" data-index="6" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/shashthi-07.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Shashthi" width="641" height="427" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="shashthi" data-index="7" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/shashthi-08.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Shashthi" width="669" height="446" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="shashthi" data-index="8" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/shashthi-09.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Shashthi" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="shashthi" data-index="9" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/shashthi-10.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Shashthi" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+</div>
 </div>
 </div>
 </div>
@@ -300,6 +424,11 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li><span class="sch-time">8:00 AM&ndash;11:30 AM</span><span class="sch-what">Puja start and end</span></li>
 <li><span class="sch-time">9:30 AM, 10:30 AM &amp; 11:00 AM</span><span class="sch-what">Pushpanjali<span class="sch-note">Approximate timings</span></span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-17" data-index="0" aria-label="Open photo: Maa Durga on Saptami"><img src="images/gallery-2026/saptami-17-01.webp" alt="Maa Durga on Saptami at GBA Durgotsav 2026, Maha Saptami" width="699" height="466" loading="lazy" decoding="async"></button><figcaption>Maa Durga on Saptami</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-17" data-index="1" aria-label="Open photo: Morning Puja and Pushpanjali"><img src="images/gallery-2026/saptami-17-02.webp" alt="Morning Puja and Pushpanjali at GBA Durgotsav 2026, Maha Saptami" width="701" height="468" loading="lazy" decoding="async"></button><figcaption>Morning Puja and Pushpanjali</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-17" data-index="2" aria-label="Open photo: Morning Puja and Pushpanjali"><img src="images/gallery-2026/saptami-17-03.webp" alt="Morning Puja and Pushpanjali at GBA Durgotsav 2026, Maha Saptami" width="716" height="610" loading="lazy" decoding="async"></button><figcaption>Morning Puja and Pushpanjali</figcaption></figure>
+</div>
 </div>
 </div>
 <div class="col-lg-6">
@@ -311,6 +440,9 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li>Payesh (Kheer)</li>
 <li>Rice, Polav &amp; Chatani</li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-17" data-index="3" aria-label="Open photo: Bhog &amp; Langar"><img src="images/gallery-2026/saptami-17-04.webp" alt="Bhog &amp; Langar at GBA Durgotsav 2026, Maha Saptami" width="546" height="364" loading="lazy" decoding="async"></button><figcaption>Bhog &amp; Langar</figcaption></figure>
+</div>
 </div>
 </div>
 <div class="col-12">
@@ -333,6 +465,14 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li><span class="sch-time">9:35&ndash;9:50 PM</span><span class="sch-what">Bengali and Bollywood retro songs &ndash; Hrishikesh Kar</span></li>
 <li><span class="sch-time">9:50&ndash;10:20 PM</span><span class="sch-what">Dance recital &ndash; Rang Ras Basant, directed by Munmun Banerjee</span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-17" data-index="4" aria-label="Open photo: Star Performer: Lamhe India Band"><img src="images/gallery-2026/saptami-17-05.webp" alt="Star Performer: Lamhe India Band at GBA Durgotsav 2026, Maha Saptami" width="647" height="430" loading="lazy" decoding="async"></button><figcaption>Star Performer: Lamhe India Band</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-17" data-index="5" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/saptami-17-06.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Saptami" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-17" data-index="6" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/saptami-17-07.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Saptami" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-17" data-index="7" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/saptami-17-08.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Saptami" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-17" data-index="8" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/saptami-17-09.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Saptami" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-17" data-index="9" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/saptami-17-10.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Saptami" width="587" height="610" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+</div>
 </div>
 </div>
 </div>
@@ -352,6 +492,13 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li><span class="sch-time">8:00 AM&ndash;11:30 AM</span><span class="sch-what">Puja start and end</span></li>
 <li><span class="sch-time">9:30 AM, 10:30 AM &amp; 11:00 AM</span><span class="sch-what">Pushpanjali<span class="sch-note">Approximate timings</span></span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="0" aria-label="Open photo: Maa Durga on Saptami"><img src="images/gallery-2026/saptami-18-01.webp" alt="Maa Durga on Saptami at GBA Durgotsav 2026, Maha Saptami" width="575" height="383" loading="lazy" decoding="async"></button><figcaption>Maa Durga on Saptami</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="1" aria-label="Open photo: Morning Puja and Pushpanjali"><img src="images/gallery-2026/saptami-18-02.webp" alt="Morning Puja and Pushpanjali at GBA Durgotsav 2026, Maha Saptami" width="599" height="399" loading="lazy" decoding="async"></button><figcaption>Morning Puja and Pushpanjali</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="7" aria-label="Open photo: A Sunday Homecoming"><img src="images/gallery-2026/saptami-18-08.webp" alt="A Sunday Homecoming at GBA Durgotsav 2026, Maha Saptami" width="608" height="405" loading="lazy" decoding="async"></button><figcaption>A Sunday Homecoming</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="8" aria-label="Open photo: A Sunday Homecoming"><img src="images/gallery-2026/saptami-18-09.webp" alt="A Sunday Homecoming at GBA Durgotsav 2026, Maha Saptami" width="940" height="649" loading="lazy" decoding="async"></button><figcaption>A Sunday Homecoming</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="9" aria-label="Open photo: A Sunday Homecoming"><img src="images/gallery-2026/saptami-18-10.webp" alt="A Sunday Homecoming at GBA Durgotsav 2026, Maha Saptami" width="722" height="481" loading="lazy" decoding="async"></button><figcaption>A Sunday Homecoming</figcaption></figure>
+</div>
 </div>
 </div>
 <div class="col-lg-6">
@@ -378,6 +525,13 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li><span class="sch-time">15 years &amp; above</span><span class="sch-what">Cross cup race</span></li>
 <li><span class="sch-time">15 years &amp; above</span><span class="sch-what">Hanging jalebi game</span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="2" aria-label="Open photo: Games &amp; Competitions"><img src="images/gallery-2026/saptami-18-03.webp" alt="Games &amp; Competitions at GBA Durgotsav 2026, Maha Saptami" width="639" height="426" loading="lazy" decoding="async"></button><figcaption>Games &amp; Competitions</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="3" aria-label="Open photo: Games &amp; Competitions"><img src="images/gallery-2026/saptami-18-04.webp" alt="Games &amp; Competitions at GBA Durgotsav 2026, Maha Saptami" width="633" height="422" loading="lazy" decoding="async"></button><figcaption>Games &amp; Competitions</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="4" aria-label="Open photo: Games &amp; Competitions"><img src="images/gallery-2026/saptami-18-05.webp" alt="Games &amp; Competitions at GBA Durgotsav 2026, Maha Saptami" width="637" height="425" loading="lazy" decoding="async"></button><figcaption>Games &amp; Competitions</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="5" aria-label="Open photo: Games &amp; Competitions"><img src="images/gallery-2026/saptami-18-06.webp" alt="Games &amp; Competitions at GBA Durgotsav 2026, Maha Saptami" width="641" height="427" loading="lazy" decoding="async"></button><figcaption>Games &amp; Competitions</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="6" aria-label="Open photo: Games &amp; Competitions"><img src="images/gallery-2026/saptami-18-07.webp" alt="Games &amp; Competitions at GBA Durgotsav 2026, Maha Saptami" width="639" height="426" loading="lazy" decoding="async"></button><figcaption>Games &amp; Competitions</figcaption></figure>
+</div>
 </div>
 </div>
 <div class="col-12">
@@ -401,6 +555,20 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 </span>
 </li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="10" aria-label="Open photo: Our Chief Guests"><img src="images/gallery-2026/saptami-18-11.webp" alt="Our Chief Guests at GBA Durgotsav 2026, Maha Saptami" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Our Chief Guests</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="11" aria-label="Open photo: Our Chief Guests"><img src="images/gallery-2026/saptami-18-12.webp" alt="Our Chief Guests at GBA Durgotsav 2026, Maha Saptami" width="680" height="453" loading="lazy" decoding="async"></button><figcaption>Our Chief Guests</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="12" aria-label="Open photo: Our Chief Guests"><img src="images/gallery-2026/saptami-18-13.webp" alt="Our Chief Guests at GBA Durgotsav 2026, Maha Saptami" width="685" height="456" loading="lazy" decoding="async"></button><figcaption>Our Chief Guests</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="13a" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/saptami-18-22.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Saptami" width="1200" height="800" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="13" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/saptami-18-14.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Saptami" width="621" height="414" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="14" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/saptami-18-15.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Saptami" width="631" height="421" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="15" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/saptami-18-16.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Saptami" width="639" height="426" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="16" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/saptami-18-17.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Saptami" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="17" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/saptami-18-18.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Saptami" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="18" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/saptami-18-19.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Saptami" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="19" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/saptami-18-20.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Saptami" width="643" height="429" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="saptami-18" data-index="20" aria-label="Open photo: Star Performer: Madhurima Basu"><img src="images/gallery-2026/saptami-18-21.webp" alt="Star Performer: Madhurima Basu at GBA Durgotsav 2026, Maha Saptami" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Star Performer: Madhurima Basu</figcaption></figure>
+</div>
 </div>
 </div>
 </div>
@@ -421,6 +589,13 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li><span class="sch-time">8:30 AM, 9:00 AM &amp; 9:30 AM</span><span class="sch-what">Pushpanjali<span class="sch-note">Approximate timings</span></span></li>
 <li><span class="sch-time">10:28&ndash;11:16 AM</span><span class="sch-what">Sandhi Puja<span class="sch-note">Includes the Sandhi Puja Pushpanjali</span></span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="0" aria-label="Open photo: Maa Durga on Ashtami"><img src="images/gallery-2026/ashtami-01.webp" alt="Maa Durga on Ashtami at GBA Durgotsav 2026, Maha Ashtami" width="740" height="493" loading="lazy" decoding="async"></button><figcaption>Maa Durga on Ashtami</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="1" aria-label="Open photo: Sandhi Puja"><img src="images/gallery-2026/ashtami-02.webp" alt="Sandhi Puja at GBA Durgotsav 2026, Maha Ashtami" width="656" height="437" loading="lazy" decoding="async"></button><figcaption>Sandhi Puja</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="2" aria-label="Open photo: Sandhi Puja"><img src="images/gallery-2026/ashtami-03.webp" alt="Sandhi Puja at GBA Durgotsav 2026, Maha Ashtami" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Sandhi Puja</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="3" aria-label="Open photo: Sandhi Puja"><img src="images/gallery-2026/ashtami-04.webp" alt="Sandhi Puja at GBA Durgotsav 2026, Maha Ashtami" width="639" height="426" loading="lazy" decoding="async"></button><figcaption>Sandhi Puja</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="9" aria-label="Open photo: One Family Under Maa’s Blessings"><img src="images/gallery-2026/ashtami-10.webp" alt="One Family Under Maa’s Blessings at GBA Durgotsav 2026, Maha Ashtami" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>One Family Under Maa’s Blessings</figcaption></figure>
+</div>
 </div>
 </div>
 <div class="col-lg-6">
@@ -444,6 +619,13 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li><span class="sch-time">Couples</span><span class="sch-what">Pick the marble and fill the basket</span></li>
 <li><span class="sch-time">15 years &amp; above</span><span class="sch-what">Dhunuchi dance</span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="4" aria-label="Open photo: Games &amp; Competitions"><img src="images/gallery-2026/ashtami-05.webp" alt="Games &amp; Competitions at GBA Durgotsav 2026, Maha Ashtami" width="654" height="436" loading="lazy" decoding="async"></button><figcaption>Games &amp; Competitions</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="5" aria-label="Open photo: Games &amp; Competitions"><img src="images/gallery-2026/ashtami-06.webp" alt="Games &amp; Competitions at GBA Durgotsav 2026, Maha Ashtami" width="639" height="426" loading="lazy" decoding="async"></button><figcaption>Games &amp; Competitions</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="6" aria-label="Open photo: Games &amp; Competitions"><img src="images/gallery-2026/ashtami-07.webp" alt="Games &amp; Competitions at GBA Durgotsav 2026, Maha Ashtami" width="643" height="429" loading="lazy" decoding="async"></button><figcaption>Games &amp; Competitions</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="7" aria-label="Open photo: Games &amp; Competitions"><img src="images/gallery-2026/ashtami-08.webp" alt="Games &amp; Competitions at GBA Durgotsav 2026, Maha Ashtami" width="704" height="820" loading="lazy" decoding="async"></button><figcaption>Games &amp; Competitions</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="8" aria-label="Open photo: Games &amp; Competitions"><img src="images/gallery-2026/ashtami-09.webp" alt="Games &amp; Competitions at GBA Durgotsav 2026, Maha Ashtami" width="592" height="477" loading="lazy" decoding="async"></button><figcaption>Games &amp; Competitions</figcaption></figure>
+</div>
 </div>
 </div>
 <div class="col-12">
@@ -464,6 +646,14 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li><span class="sch-time">9:00&ndash;9:20 PM</span><span class="sch-what">Kobita o Gaan &ndash; Sushmita Ray, Debaparna Das</span></li>
 <li><span class="sch-time">9:20&ndash;10:35 PM</span><span class="sch-what">Bangla play 'Ashwatthama' &ndash; directed by Biswajeet Dasgupta</span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="10" aria-label="Open photo: Our Chief Guest"><img src="images/gallery-2026/ashtami-11.webp" alt="Our Chief Guest at GBA Durgotsav 2026, Maha Ashtami" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Our Chief Guest</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="11" aria-label="Open photo: Our Chief Guest"><img src="images/gallery-2026/ashtami-12.webp" alt="Our Chief Guest at GBA Durgotsav 2026, Maha Ashtami" width="603" height="402" loading="lazy" decoding="async"></button><figcaption>Our Chief Guest</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="12" aria-label="Open photo: Star Performer: Kishan Das"><img src="images/gallery-2026/ashtami-13.webp" alt="Star Performer: Kishan Das at GBA Durgotsav 2026, Maha Ashtami" width="914" height="638" loading="lazy" decoding="async"></button><figcaption>Star Performer: Kishan Das</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="13" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/ashtami-14.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Ashtami" width="633" height="422" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="14" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/ashtami-15.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Ashtami" width="643" height="429" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="ashtami" data-index="15" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/ashtami-16.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Ashtami" width="711" height="474" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+</div>
 </div>
 </div>
 </div>
@@ -484,6 +674,11 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li><span class="sch-time">9:00 AM, 9:30 AM &amp; 10:00 AM</span><span class="sch-what">Pushpanjali<span class="sch-note">Approximate timings</span></span></li>
 <li><span class="sch-time">11:00 AM</span><span class="sch-what">Havan</span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="navami" data-index="0" aria-label="Open photo: Maa Durga on Navami"><img src="images/gallery-2026/navami-01.webp" alt="Maa Durga on Navami at GBA Durgotsav 2026, Maha Navami" width="669" height="446" loading="lazy" decoding="async"></button><figcaption>Maa Durga on Navami</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="navami" data-index="1" aria-label="Open photo: Havan"><img src="images/gallery-2026/navami-02.webp" alt="Havan at GBA Durgotsav 2026, Maha Navami" width="658" height="439" loading="lazy" decoding="async"></button><figcaption>Havan</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="navami" data-index="2" aria-label="Open photo: Havan"><img src="images/gallery-2026/navami-03.webp" alt="Havan at GBA Durgotsav 2026, Maha Navami" width="633" height="422" loading="lazy" decoding="async"></button><figcaption>Havan</figcaption></figure>
+</div>
 </div>
 </div>
 <div class="col-lg-6">
@@ -506,6 +701,12 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li><span class="sch-time">Above 10 years</span><span class="sch-what">Musical chairs</span></li>
 <li><span class="sch-time">Above 10 years</span><span class="sch-what">Candle game</span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="navami" data-index="3" aria-label="Open photo: Games &amp; Competitions"><img src="images/gallery-2026/navami-04.webp" alt="Games &amp; Competitions at GBA Durgotsav 2026, Maha Navami" width="660" height="440" loading="lazy" decoding="async"></button><figcaption>Games &amp; Competitions</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="navami" data-index="4" aria-label="Open photo: Games &amp; Competitions"><img src="images/gallery-2026/navami-05.webp" alt="Games &amp; Competitions at GBA Durgotsav 2026, Maha Navami" width="662" height="441" loading="lazy" decoding="async"></button><figcaption>Games &amp; Competitions</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="navami" data-index="5" aria-label="Open photo: Games &amp; Competitions"><img src="images/gallery-2026/navami-06.webp" alt="Games &amp; Competitions at GBA Durgotsav 2026, Maha Navami" width="656" height="437" loading="lazy" decoding="async"></button><figcaption>Games &amp; Competitions</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="navami" data-index="6" aria-label="Open photo: Games &amp; Competitions"><img src="images/gallery-2026/navami-07.webp" alt="Games &amp; Competitions at GBA Durgotsav 2026, Maha Navami" width="719" height="479" loading="lazy" decoding="async"></button><figcaption>Games &amp; Competitions</figcaption></figure>
+</div>
 </div>
 </div>
 <div class="col-12">
@@ -528,6 +729,13 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li><span class="sch-time">9:40&ndash;9:45 PM</span><span class="sch-what">Prize distribution</span></li>
 <li><span class="sch-time">9:45&ndash;10:15 PM</span><span class="sch-what">Electrifying Musical Finale &ndash; Khushjit Singh</span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="navami" data-index="7" aria-label="Open photo: Sandhya Arati"><img src="images/gallery-2026/navami-08.webp" alt="Sandhya Arati at GBA Durgotsav 2026, Maha Navami" width="673" height="449" loading="lazy" decoding="async"></button><figcaption>Sandhya Arati</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="navami" data-index="8" aria-label="Open photo: Star Performer: Anurag Chatterjee"><img src="images/gallery-2026/navami-09.webp" alt="Star Performer: Anurag Chatterjee at GBA Durgotsav 2026, Maha Navami" width="554" height="484" loading="lazy" decoding="async"></button><figcaption>Star Performer: Anurag Chatterjee</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="navami" data-index="9" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/navami-10.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Navami" width="716" height="476" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="navami" data-index="10" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/navami-11.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Navami" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="navami" data-index="11" aria-label="Open photo: Cultural Evening"><img src="images/gallery-2026/navami-12.webp" alt="Cultural Evening at GBA Durgotsav 2026, Maha Navami" width="915" height="610" loading="lazy" decoding="async"></button><figcaption>Cultural Evening</figcaption></figure>
+</div>
 </div>
 </div>
 </div>
@@ -548,6 +756,15 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li><span class="sch-time">9:30 AM onwards</span><span class="sch-what">Maa Durga Boron</span></li>
 <li><span class="sch-time">10:30&ndash;11:30 AM</span><span class="sch-what">Sindoor Khela / Utsav</span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="dashami" data-index="0" aria-label="Open photo: Maa Durga on Dashami"><img src="images/gallery-2026/dashami-01.webp" alt="Maa Durga on Dashami at GBA Durgotsav 2026, Vijaya Dashami" width="637" height="425" loading="lazy" decoding="async"></button><figcaption>Maa Durga on Dashami</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="dashami" data-index="1" aria-label="Open photo: Morning Puja"><img src="images/gallery-2026/dashami-02.webp" alt="Morning Puja at GBA Durgotsav 2026, Vijaya Dashami" width="574" height="382" loading="lazy" decoding="async"></button><figcaption>Morning Puja</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="dashami" data-index="2" aria-label="Open photo: Maa Durga Boron"><img src="images/gallery-2026/dashami-03.webp" alt="Maa Durga Boron at GBA Durgotsav 2026, Vijaya Dashami" width="570" height="380" loading="lazy" decoding="async"></button><figcaption>Maa Durga Boron</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="dashami" data-index="3" aria-label="Open photo: Maa Durga Boron"><img src="images/gallery-2026/dashami-04.webp" alt="Maa Durga Boron at GBA Durgotsav 2026, Vijaya Dashami" width="578" height="386" loading="lazy" decoding="async"></button><figcaption>Maa Durga Boron</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="dashami" data-index="4" aria-label="Open photo: Sindoor Khela"><img src="images/gallery-2026/dashami-05.webp" alt="Sindoor Khela at GBA Durgotsav 2026, Vijaya Dashami" width="639" height="426" loading="lazy" decoding="async"></button><figcaption>Sindoor Khela</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="dashami" data-index="5" aria-label="Open photo: Sindoor Khela"><img src="images/gallery-2026/dashami-06.webp" alt="Sindoor Khela at GBA Durgotsav 2026, Vijaya Dashami" width="647" height="430" loading="lazy" decoding="async"></button><figcaption>Sindoor Khela</figcaption></figure>
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="dashami" data-index="6" aria-label="Open photo: Sindoor Khela"><img src="images/gallery-2026/dashami-07.webp" alt="Sindoor Khela at GBA Durgotsav 2026, Vijaya Dashami" width="645" height="432" loading="lazy" decoding="async"></button><figcaption>Sindoor Khela</figcaption></figure>
+</div>
 </div>
 </div>
 <div class="col-lg-6">
@@ -557,6 +774,9 @@ HUDA Community Center, Sector 9, opposite Abhinav Apartment, Gurugram.
 <li><span class="sch-time">3:00&ndash;5:00 PM</span><span class="sch-what">Immersion<span class="sch-note">May differ as per the time slot provided by JPC</span></span></li>
 <li><span class="sch-time">8:00 PM</span><span class="sch-what">Shanti Jal</span></li>
 </ul>
+<div class="gal-grid gal-in-card">
+<figure class="gal-item"><button type="button" class="gal-thumb" data-gal="dashami" data-index="7" aria-label="Open photo: Immersion"><img src="images/gallery-2026/dashami-08.webp" alt="Immersion at GBA Durgotsav 2026, Vijaya Dashami" width="669" height="446" loading="lazy" decoding="async"></button><figcaption>Immersion</figcaption></figure>
+</div>
 </div>
 </div>
 </div>
@@ -576,6 +796,18 @@ Have a question? <a href="faq.html">Check our FAQ &rarr;</a>
 </div>
 
 </section>
+
+<!-- LIGHTBOX -->
+
+<div class="gal-lb" id="galLb" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+<button type="button" class="gal-lb-btn gal-lb-close" id="galClose" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+<button type="button" class="gal-lb-btn gal-lb-prev" id="galPrev" aria-label="Previous photo"><i class="bi bi-chevron-left"></i></button>
+<figure>
+<img id="galImg" src="" alt="">
+<figcaption><span id="galCap"></span><span class="gal-lb-count" id="galCount"></span></figcaption>
+</figure>
+<button type="button" class="gal-lb-btn gal-lb-next" id="galNext" aria-label="Next photo"><i class="bi bi-chevron-right"></i></button>
+</div>
 
 <!-- FOOTER -->
 
@@ -722,6 +954,63 @@ document.addEventListener("DOMContentLoaded", function () {
         row.scrollTo({ left: t.offsetLeft - (row.clientWidth - t.offsetWidth) / 2, behavior: "smooth" });
       }
     });
+  });
+});
+</script>
+
+
+<!-- Photos: full-screen viewer with arrows, keys and swipe -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var lb = document.getElementById("galLb"), img = document.getElementById("galImg");
+  var cap = document.getElementById("galCap"), cnt = document.getElementById("galCount");
+  var list = [], idx = 0, opener = null;
+
+  function show(i) {
+    idx = (i + list.length) % list.length;
+    var b = list[idx], t = b.querySelector("img");
+    img.src = t.getAttribute("src");
+    img.alt = t.getAttribute("alt");
+    cap.textContent = b.parentNode.querySelector("figcaption").textContent;
+    cnt.textContent = (idx + 1) + " / " + list.length;
+    var nx = list[(idx + 1) % list.length].querySelector("img");
+    (new Image()).src = nx.getAttribute("src");
+  }
+  function open(btn) {
+    list = Array.prototype.slice.call(document.querySelectorAll('.gal-thumb[data-gal="' + btn.getAttribute("data-gal") + '"]'));
+    opener = btn;
+    show(list.indexOf(btn));
+    lb.hidden = false;
+    lb.classList.add("is-open");
+    document.documentElement.style.overflow = "hidden";
+    document.getElementById("galClose").focus();
+  }
+  function close() {
+    lb.classList.remove("is-open");
+    lb.hidden = true;
+    document.documentElement.style.overflow = "";
+    if (opener) opener.focus();
+  }
+  document.querySelectorAll(".gal-thumb").forEach(function (b) {
+    b.addEventListener("click", function () { open(b); });
+  });
+  document.getElementById("galPrev").addEventListener("click", function () { show(idx - 1); });
+  document.getElementById("galNext").addEventListener("click", function () { show(idx + 1); });
+  document.getElementById("galClose").addEventListener("click", close);
+  lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+  document.addEventListener("keydown", function (e) {
+    if (!lb.classList.contains("is-open")) return;
+    if (e.key === "Escape") close();
+    else if (e.key === "ArrowRight") show(idx + 1);
+    else if (e.key === "ArrowLeft") show(idx - 1);
+  });
+  var x0 = null;
+  lb.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) show(idx + (dx < 0 ? 1 : -1));
+    x0 = null;
   });
 });
 </script>
