@@ -20,9 +20,10 @@
   var PUJA_START = Date.parse("2027-10-05T00:00:00+05:30"); // Maha Shashthi
   var PUJA_END = Date.parse("2027-10-10T23:59:59+05:30");   // Bijoya Dashami
   // Before Mahalaya: the Bijoya message runs until BIJOYA_END, then the year-round
-  // message until COUNTDOWN_START, when the Mahalaya countdown returns.
+  // message until COUNTDOWN_START (50 days before Mahalaya), when the heading
+  // changes to "মা আসছেন" and the Mahalaya countdown appears.
   var BIJOYA_END = Date.parse("2026-11-10T00:00:00+05:30");
-  var COUNTDOWN_START = Date.parse("2027-09-01T00:00:00+05:30");
+  var COUNTDOWN_START = MAHALAYA - 50 * 86400000;
 
   var DATES = [
     { bn: "মহালয়া", en: "Mahalaya", from: "2027-09-29", hi: true },
@@ -158,18 +159,23 @@
       ["d92", "KGjpdIsaogY", "Era Sukher Laagi", "Debojyoti Mishra", 165],
       ["d93", "QMyj2QHZXBU", "Tumi Aashe Paashe", "Monali Thakur, Nakash Aziz", 262],
       ["d94", "dJHzCyjCsLU", "Hey Shokha", "Somlata Acharyya Chowdhury, Arindom", 264]
+    ]),
+    // Rabindra Sangeet: add more rows as ["r2", "<YouTube video id>", "Song title", "Singer", seconds]
+    rabindra: list("rabindra", [
+      ["r1", "U3LYOiRfGyw", "Rabindra Sangeet", "Selected by GBA", 0]
     ])
   };
 
   var TABS = [
     { id: "mahalaya", label: "Mahalaya" },
     { id: "songs", label: "Mahalaya Songs" },
-    { id: "pujo", label: "Durga Pujo" }
+    { id: "pujo", label: "Durga Pujo" },
+    { id: "rabindra", label: "Rabindra Sangeet" }
   ];
 
-  var ICON = { live: "bi-broadcast", mahalaya: "bi-moon-stars-fill", songs: "bi-music-note-beamed", pujo: "bi-flower1" };
+  var ICON = { live: "bi-broadcast", mahalaya: "bi-moon-stars-fill", songs: "bi-music-note-beamed", pujo: "bi-flower1", rabindra: "bi-feather" };
 
-  var ALL = [].concat(TRACKS.mahalaya, TRACKS.songs, TRACKS.pujo);
+  var ALL = [].concat(TRACKS.mahalaya, TRACKS.songs, TRACKS.pujo, TRACKS.rabindra);
 
   function byId(id) {
     for (var i = 0; i < ALL.length; i++) if (ALL[i].id === id) return ALL[i];
@@ -954,7 +960,7 @@
         '<span class="radio-cover k-' + t.kind + '" aria-hidden="true"><i class="bi ' + ICON[t.kind] + '"></i></span>' +
         '<span class="radio-row-text"><span class="radio-row-title">' + esc(t.title) + '</span>' +
         '<span class="radio-row-artist">' + esc(t.artist) + "</span></span>" +
-        '<span class="radio-row-dur">' + mmss(t.dur) + "</span></button>";
+        '<span class="radio-row-dur">' + (t.dur ? mmss(t.dur) : "") + "</span></button>";
     }).join("");
     markCurrent();
   }
@@ -1055,6 +1061,21 @@
 
     $("radioStatusText").textContent = txt;
     $("rcCaption").textContent = cap;
+
+    // From 50 days before Mahalaya until Dashami: "মা আসছেন" and the countdown.
+    // The rest of the year: the Bangla name and no countdown.
+    var inWindow = t >= COUNTDOWN_START && t <= PUJA_END;
+    var head = $("radioHeading");
+    if (head) {
+      var want = inWindow ? "মা আসছেন" : "জিবিএ-র বাংলা রেডিও";
+      if (head.textContent !== want) {
+        head.textContent = want;
+        head.setAttribute("aria-label", inWindow ? "Ma ashchhen — the Mother is coming" : "Bengali Radio by GBA");
+      }
+    }
+    var tiles = document.querySelector("#schedule .dhms-countdown");
+    if (tiles) tiles.style.display = inWindow ? "" : "none";
+    $("rcCaption").style.display = inWindow ? "" : "none";
 
     var showLocal = !!LOCAL_WHEN && ph !== "after";
     $("radioLocal").hidden = !showLocal;
