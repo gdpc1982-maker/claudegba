@@ -763,8 +763,8 @@ Reach out to our Cultural Secretary to register your interest or ask about audit
   if (!line) return;
   // 2027 dates are tentative; confirm Mahalaya (29 or 30 Sept) before September.
   var BIJOYA_END = Date.parse("2026-11-10T00:00:00+05:30");
-  var COUNTDOWN_START = Date.parse("2027-09-01T00:00:00+05:30");
   var MAH = Date.parse("2027-09-29T04:00:00+05:30");
+  var COUNTDOWN_START = MAH - 50 * 86400e3; // countdown shows only in the 50 days before Mahalaya
   var ON_AIR_END = MAH + 2 * 3600e3;
   var FEST_END = Date.parse("2027-10-11T00:00:00+05:30");
   var ANYTIME = "Bengali songs, Durga Puja classics and the Dhak, anytime";
