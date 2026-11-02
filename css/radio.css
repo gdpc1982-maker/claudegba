@@ -1578,3 +1578,215 @@
 }
 
 }
+
+
+/* =====================================================
+   COMPACT LAYOUT (Nov 2026): title, player and playlists
+   fit on one screen; the song list scrolls inside its box.
+===================================================== */
+
+.radio-hero{
+    padding:16px 16px 58px !important;
+}
+
+.radio-title{
+    font-size:clamp(30px,6vw,48px);
+    margin:0 0 6px;
+}
+
+.radio-status{
+    font-size:.85rem;
+    padding:5px 14px;
+}
+
+.radio-local{
+    margin-top:6px;
+}
+
+.radio-player-wrap{
+    margin-top:-46px;
+    padding:0 0 18px !important;
+}
+
+.radio-main{
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:14px;
+    max-width:640px;
+    margin:0 auto;
+}
+
+.radio-player{
+    max-width:none;
+    padding:12px 16px 6px;
+}
+
+.radio-cover{
+    width:52px;
+    height:52px;
+    font-size:22px;
+}
+
+.radio-btn{
+    width:40px;
+    height:40px;
+}
+
+.radio-play{
+    width:52px;
+    height:52px;
+    font-size:1.5rem;
+}
+
+.radio-actions{
+    gap:8px;
+    margin-top:10px;
+}
+
+.radio-chip{
+    min-height:36px;
+    padding:0 14px;
+    font-size:.82rem;
+}
+
+.radio-col-lists{
+    display:flex;
+    flex-direction:column;
+    min-height:0;
+}
+
+.radio-tabs{
+    flex-wrap:nowrap;
+    justify-content:flex-start;
+    overflow-x:auto;
+    scrollbar-width:none;
+    gap:6px;
+    margin-bottom:8px;
+    padding-bottom:2px;
+}
+
+.radio-tabs::-webkit-scrollbar{
+    display:none;
+}
+
+.radio-tab{
+    flex:none;
+    min-height:34px;
+    padding:0 14px;
+    font-size:.82rem;
+}
+
+.radio-list{
+    max-width:none;
+    width:100%;
+    max-height:min(310px,42vh);
+    padding:6px;
+    border-radius:16px;
+}
+
+.radio-row{
+    padding:5px 10px 5px 6px;
+}
+
+.radio-row .radio-cover{
+    width:40px;
+    height:40px;
+    font-size:17px;
+    border-radius:10px;
+}
+
+.radio-cover.k-anthem{
+    background:linear-gradient(150deg,var(--secondary),var(--primary));
+    color:#fff;
+}
+
+.radio-about{
+    max-width:760px;
+    margin:16px auto 0;
+    font-size:.88rem;
+    color:var(--gray);
+    text-align:center;
+}
+
+#schedule[hidden]{
+    display:none !important;
+}
+
+/* Computers: player on the left, playlists on the right */
+@media (min-width:992px){
+
+.radio-main{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    max-width:1080px;
+    gap:22px;
+    align-items:stretch;
+}
+
+.radio-col-player{
+    align-self:start;
+}
+
+.radio-col-lists{
+    margin-top:46px;   /* clear of the title band */
+}
+
+.radio-list{
+    max-height:max(200px,min(340px,calc(100vh - 460px)));
+}
+
+}
+
+/* Phones: icon-only action buttons in one row */
+@media (max-width:575px){
+
+.radio-hero{
+    padding:12px 12px 52px !important;
+}
+
+.radio-player{
+    padding:10px 10px 4px;
+}
+
+.radio-cover{
+    width:46px;
+    height:46px;
+    font-size:20px;
+}
+
+.radio-play{
+    width:50px;
+    height:50px;
+}
+
+.radio-btn{
+    width:38px;
+    height:38px;
+}
+
+.radio-actions{
+    flex-wrap:nowrap;
+    gap:8px;
+}
+
+.radio-chip{
+    padding:0;
+    width:44px;
+    min-height:40px;
+    justify-content:center;
+    font-size:1.05rem;
+}
+
+.radio-chip .radio-chip-lbl{
+    display:none;
+}
+
+.radio-list{
+    max-height:min(290px,38vh);
+}
+
+.radio-status{
+    font-size:.78rem;
+    padding:4px 12px;
+}
+
+}
