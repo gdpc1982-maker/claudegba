@@ -86,10 +86,10 @@ Proud Organisers of Gurugram's Oldest Durga Puja
 </div>
     <!-- DURGOTSAV 2026 MAHALAYA EMBED -->
 
-<!-- DURGOTSAV 2026 SOUVENIR FLIPBOOK (replaces the invitation flipbook; pages are built by js/script.js) -->
+<!-- DURGOTSAV 2026 FLIPBOOK: invitation until 9 pm IST, 8 Nov 2026, then the souvenir (pages are built by js/script.js) -->
 
 <style>
-.fb-tool{text-decoration:none;}
+.fb-tool[hidden]{display:none !important;}
 .fb-goto{display:inline-flex;align-items:center;gap:6px;margin:0;}
 .fb-goto label{font-size:13px;color:inherit;opacity:.85;}
 .fb-goto input{width:62px;padding:5px 8px;border:1px solid rgba(184,134,43,.6);border-radius:8px;background:rgba(255,255,255,.92);color:#3a1d14;font:inherit;font-size:13px;}
@@ -104,17 +104,17 @@ Proud Organisers of Gurugram's Oldest Durga Puja
 @media (max-width:600px){.fb-toolbar{flex-wrap:wrap;justify-content:center;row-gap:10px;column-gap:14px;}.fb-counter{flex-basis:100%;text-align:center;}.fb-tool{white-space:nowrap;}}
 </style>
 
-<section class="fb-section" id="invitation" aria-label="Durgotsav 2026 souvenir">
+<section class="fb-section" id="invitation" aria-label="Durgotsav 2026 invitation">
 <span id="souvenir" aria-hidden="true"></span>
 
 <div class="fb-stage">
 
 <div class="fb-masthead">
 <p class="fb-eyebrow">Gurgaon Bengalee Association</p>
-<h2><span class="fb-bn">স্মরণিকা</span> 2026</h2>
+<h2 id="fbTitle"><span class="fb-bn">দুর্গোৎসব</span> 2026</h2>
 <div class="fb-rule"></div>
-<p class="fb-sub">Durgotsav 2026 Souvenir &middot; 45th Year &middot; 140 pages</p>
-<p class="fb-countdown">Messages, memories, sports, children&rsquo;s art and more</p>
+<p class="fb-sub" id="fbSub">45th Year &middot; 15&ndash;21 October 2026 &middot; HUDA Community Centre, Sector 9</p>
+<p class="fb-countdown" id="fbCountdown"></p>
 </div>
 
 <div class="fb-bookrow" id="fbBookrow">
@@ -123,11 +123,10 @@ Proud Organisers of Gurugram's Oldest Durga Puja
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18L9 12l6-6"/></svg>
 </button>
 
-<div class="fb-viewport" id="fbViewport" tabindex="0" role="group" aria-label="Durgotsav 2026 souvenir, 140 pages. Use the arrow keys to turn pages.">
+<div class="fb-viewport" id="fbViewport" tabindex="0" role="group" aria-label="Durgotsav 2026 flipbook. Use the arrow keys to turn pages.">
 <div class="fb-edges fb-l" id="fbEdgesL"></div>
 <div class="fb-edges fb-r" id="fbEdgesR"></div>
-<div class="fb-book" id="fbBook" data-pages="140" data-src="images/souvenir-2026/p{n}.webp" data-title="GBA Durgotsav 2026 Souvenir"></div>
-<noscript><img src="images/souvenir-2026/p001.webp" alt="Cover of the GBA Durgotsav 2026 souvenir" style="width:100%;height:auto"></noscript>
+<div class="fb-book" id="fbBook"></div>
 </div>
 
 <button type="button" class="fb-arrow" id="fbNext" aria-label="Next page">
@@ -149,9 +148,13 @@ Proud Organisers of Gurugram's Oldest Durga Puja
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
 Read full size
 </button>
-<a class="fb-tool" id="fbSave" href="documents/GBA-Souvenir-2026.pdf" download="GBA-Durgotsav-2026-Souvenir.pdf">
+<button type="button" class="fb-tool" id="fbSave">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
-Download PDF (23 MB)
+Save page
+</button>
+<a class="fb-tool" id="fbPdf" href="documents/GBA-Souvenir-2026.pdf" download="GBA-Durgotsav-2026-Souvenir.pdf" style="text-decoration:none" hidden>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 12v6"/><path d="M9 15l3 3 3-3"/></svg>
+Full souvenir PDF (23 MB)
 </a>
 </div>
 <p class="fb-hint">Click a page to turn &middot; Arrow keys to navigate &middot; Double-click to enlarge</p>
@@ -166,6 +169,8 @@ Download PDF (23 MB)
 <button type="button" class="fb-lb-nav fb-lb-next" id="fbLbNext" aria-label="Next page">&rsaquo;</button>
 <p class="fb-lb-cap" id="fbLbCap"></p>
 </div>
+
+<div class="fb-toast" id="fbToast" role="status" aria-live="polite"></div>
 
 </section>
 
