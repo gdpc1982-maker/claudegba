@@ -267,20 +267,47 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// Durgotsav 2026 souvenir flipbook (durga-puja.html, #fbBook)
-// Pages are built from data attributes on #fbBook, so the HTML stays small.
-// Only the leaves next to the open page load their images.
+// Durgotsav 2026 flipbook (durga-puja.html, #fbBook)
+// Shows the invitation card until 9 pm IST on 8 November 2026, then the
+// souvenir replaces it automatically. Pages are built here, so the HTML
+// stays small, and only the leaves next to the open page load their images.
 document.addEventListener("DOMContentLoaded", function () {
   var book = document.getElementById("fbBook");
   if (!book) return;
 
-  var TOTAL = parseInt(book.getAttribute("data-pages"), 10) || 0;
-  var SRC = book.getAttribute("data-src") || "";
-  var NAME = book.getAttribute("data-title") || "Souvenir";
-  if (!TOTAL || !SRC) return;
+  var SOUVENIR_FROM = Date.parse("2026-11-08T21:00:00+05:30");
+  var SOUV = Date.now() >= SOUVENIR_FROM;
 
-  // Section bookmarks (page numbers as printed, 1-based)
-  var SECTIONS = [
+  var TOTAL, SRC, NAME, SECTIONS, HOTSPOTS = {};
+  if (SOUV) {
+    TOTAL = 140;
+    SRC = "images/souvenir-2026/p{n}.webp";
+    NAME = "GBA Durgotsav 2026 Souvenir";
+  } else {
+    TOTAL = 4;
+    SRC = "images/invitation-2026-p{n}.webp";
+    NAME = "GBA Durgotsav 2026 Invitation";
+    SECTIONS = [
+      { page: 1, label: "Cover" },
+      { page: 2, label: "Invitation" },
+      { page: 3, label: "Puja Schedule" },
+      { page: 4, label: "Payment Details" }
+    ];
+    HOTSPOTS = {
+      1: { x: 49.64, y: 90.85, w: 36.43, h: 6.06,
+        href: "https://maps.app.goo.gl/xi2QhFZogh8ZSVWZ8",
+        title: "Tap to open location in Google Maps",
+        toast: "Opening location in Google Maps…", kind: "map" },
+      3: { x: 51.24, y: 53.45, w: 35.2, h: 24.9,
+        href: "upi://pay?pa=begaleeassociation%40indianbk&pn=Gurgaon%20Bengalee%20Association&cu=INR&tn=GBA%20Durgotsav%202026",
+        vpa: "begaleeassociation@indianbk",
+        title: "Tap to pay via UPI",
+        toast: "Opening UPI app… if nothing happens, pay to begaleeassociation@indianbk", kind: "pay" }
+    };
+  }
+
+  // Souvenir section bookmarks (page numbers as printed, 1-based)
+  if (SOUV) SECTIONS = [
     { page: 1, label: "Cover" },
     { page: 4, label: "Invitation" },
     { page: 5, label: "Puja Schedule" },
@@ -294,13 +321,44 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   function pad(n) { return ("00" + n).slice(-3); }
-  function srcOf(i) { return SRC.replace("{n}", pad(i + 1)); }
+  function srcOf(i) { return SRC.replace("{n}", SOUV ? pad(i + 1) : String(i + 1)); }
   function sectionOf(i) {
     var s = SECTIONS[0];
     for (var k = 0; k < SECTIONS.length; k++) { if (SECTIONS[k].page - 1 <= i) s = SECTIONS[k]; }
     return s;
   }
   function labelOf(i) { return NAME + ", page " + (i + 1) + " (" + sectionOf(i).label + ")"; }
+
+  /* ---------- masthead text for the souvenir ---------- */
+  var sectionEl = document.getElementById("invitation");
+  if (SOUV) {
+    var setText = function (id, html) { var el = document.getElementById(id); if (el) el.innerHTML = html; };
+    setText("fbTitle", '<span class="fb-bn">স্মরণিকা</span> 2026');
+    setText("fbSub", "Durgotsav 2026 Souvenir &middot; 45th Year &middot; 140 pages");
+    setText("fbCountdown", "Messages, memories, sports, children&rsquo;s art and more");
+    if (sectionEl) sectionEl.setAttribute("aria-label", "Durgotsav 2026 souvenir");
+    var pdf = document.getElementById("fbPdf");
+    if (pdf) pdf.hidden = false;   // full souvenir download
+  } else {
+    var cd = document.getElementById("fbCountdown");
+    if (cd) {
+      var start = Date.parse("2026-10-16T00:00:00+05:30");
+      var end = Date.parse("2026-10-22T00:00:00+05:30");
+      var tick = function () {
+        var now = Date.now();
+        if (now < start) {
+          var d = Math.ceil((start - now) / 86400000);
+          cd.innerHTML = "<b>" + d + "</b> day" + (d === 1 ? "" : "s") + " to Durga Shashthi";
+        } else if (now < end) {
+          cd.innerHTML = "Pujo is on — <b>আসুন, আনন্দ করুন</b>";
+        } else {
+          cd.innerHTML = "আসছে বছর আবার হবে";
+        }
+      };
+      tick();
+      setInterval(tick, 60000);
+    }
+  }
 
   /* ---------- build the leaves ---------- */
   var LEAVES = Math.ceil(TOTAL / 2);
@@ -331,7 +389,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   book.appendChild(frag);
 
-  var section = document.getElementById("invitation");
+  var section = sectionEl;
   var viewport = document.getElementById("fbViewport");
   var bookrow = document.getElementById("fbBookrow");
   var leafEls = Array.prototype.slice.call(book.querySelectorAll(".fb-leaf"));
@@ -349,6 +407,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var lbNext = document.getElementById("fbLbNext");
   var gotoForm = document.getElementById("fbGoto");
   var gotoInput = document.getElementById("fbGotoInput");
+  var toast = document.getElementById("fbToast");
 
   var mq = window.matchMedia("(min-width: 860px)");
   var spread = mq.matches;
@@ -358,6 +417,42 @@ document.addEventListener("DOMContentLoaded", function () {
   var lbIndex = 0;
 
   if (gotoInput) gotoInput.max = TOTAL;
+  if (gotoForm && !SOUV) gotoForm.style.display = "none";   // 4 pages: the chips are enough
+  viewport.setAttribute("aria-label", (SOUV ? "Durgotsav 2026 souvenir, " : "Durgotsav 2026 invitation, ") +
+    TOTAL + " pages. Use the arrow keys to turn pages.");
+
+  /* ---------- hotspots on the invitation (map link, UPI pay) ---------- */
+  function showToast(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add("fb-show");
+    clearTimeout(toast._h);
+    toast._h = setTimeout(function () { toast.classList.remove("fb-show"); }, 3600);
+  }
+  imgEls.forEach(function (img) {
+    var hs = HOTSPOTS[parseInt(img.getAttribute("data-page"), 10)];
+    if (!hs) return;
+    var a = document.createElement("a");
+    a.className = "fb-hotspot" + (hs.kind ? " fb-" + hs.kind : "");
+    a.href = hs.href;
+    a.target = /^https?:/i.test(hs.href) ? "_blank" : "_self";
+    a.rel = "noopener";
+    a.title = hs.title || "Tap for more";
+    a.style.left = hs.x + "%";
+    a.style.top = hs.y + "%";
+    a.style.width = hs.w + "%";
+    a.style.height = hs.h + "%";
+    a.addEventListener("click", function (e) {
+      e.stopPropagation();
+      if (hs.vpa && navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(hs.vpa).catch(function () {});
+      }
+      showToast(hs.toast || "Opening…");
+    });
+    a.addEventListener("dblclick", function (e) { e.stopPropagation(); });
+    a.addEventListener("touchend", function (e) { e.stopPropagation(); });
+    img.parentNode.appendChild(a);
+  });
 
   /* ---------- lazy images: load only the leaves near the open page ---------- */
   function loadLeaf(L) {
@@ -593,6 +688,19 @@ document.addEventListener("DOMContentLoaded", function () {
     var vis = visiblePages();
     var right = e.clientX - r.left > r.width / 2;
     openLb(vis.length > 1 ? (right ? vis[1] : vis[0]) : vis[0]);
+  });
+
+  /* ---------- save the page(s) on screen ---------- */
+  document.getElementById("fbSave").addEventListener("click", function (e) {
+    e.stopPropagation();
+    visiblePages().forEach(function (i, k) {
+      setTimeout(function () {
+        var a = document.createElement("a");
+        a.href = srcOf(i);
+        a.download = "GBA-Durgotsav-2026-" + (SOUV ? "Souvenir-" + pad(i + 1) : "Invitation-0" + (i + 1)) + ".webp";
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      }, k * 350);
+    });
   });
 
   /* ---------- mode switching and resize ---------- */
