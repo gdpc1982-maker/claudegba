@@ -276,7 +276,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!book) return;
 
   var SOUVENIR_FROM = Date.parse("2026-11-08T21:00:00+05:30");
-  var SOUV = Date.now() >= SOUVENIR_FROM;
+  // add ?souvenir to the page address to preview the souvenir before the switch
+  var SOUV = Date.now() >= SOUVENIR_FROM || /[?&]souvenir\b/.test(location.search);
 
   var TOTAL, SRC, NAME, SECTIONS, HOTSPOTS = {};
   if (SOUV) {
