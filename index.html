@@ -534,9 +534,87 @@ Journey of GBA
 </div>
 
 </section>
-<!-- LATEST NEWS -->
+<!-- SOUVENIR 2026 CARD: "launching at Kali Puja" until 9 pm IST on 8 Nov 2026,
+     then the cover opens the souvenir flipbook on the Durga Puja page -->
 
-<section class="py-5">
+<style>
+.souv-card{display:flex;align-items:center;gap:28px;max-width:820px;margin:0 auto;padding:22px;background:#fff;border-radius:18px;border-left:5px solid var(--secondary);box-shadow:0 12px 30px rgba(0,0,0,.08);}
+.souv-cover{flex:none;width:170px;display:block;border-radius:6px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.25);transform:rotate(-2deg);transition:transform .25s;}
+.souv-cover img{display:block;width:100%;height:auto;}
+a.souv-cover:hover,a.souv-cover:focus-visible{transform:rotate(0) scale(1.03);}
+.souv-eyebrow{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--secondary);margin-bottom:6px;}
+.souv-card h3{font-family:var(--heading);color:var(--primary);font-size:1.5rem;margin:0 0 4px;}
+.souv-bn{font-family:var(--bengali);color:var(--primary);font-size:1.15rem;margin:0 0 10px;}
+.souv-text{margin:0 0 12px;color:var(--dark);}
+.souv-when{display:flex;flex-wrap:wrap;gap:8px 16px;margin:0 0 4px;padding:0;list-style:none;font-weight:600;color:var(--primary);font-size:.95rem;}
+.souv-when i{color:var(--secondary);margin-right:6px;}
+.souv-card p{text-align:inherit;}
+.souv-cta{font-weight:600;color:var(--primary);text-decoration:none;}
+.souv-cta:hover{color:var(--accent,var(--primary));text-decoration:underline;}
+.souv-cta[hidden],.souv-when[hidden]{display:none !important;}
+@media (max-width:575px){
+.souv-card{flex-direction:column;text-align:center;gap:18px;padding:20px 16px;border-left:0;border-top:5px solid var(--secondary);}
+.souv-cover{width:150px;}
+.souv-when{justify-content:center;}
+}
+</style>
+
+<section class="py-5" id="souvenirSection">
+
+<div class="container">
+
+<div class="text-center mb-5">
+<h2 class="section-title d-inline-block">Souvenir 2026</h2>
+</div>
+
+<div class="souv-card">
+
+<a class="souv-cover" id="souvCover" aria-label="Durgotsav 2026 souvenir cover">
+<img src="images/souvenir-2026/p001.webp" alt="Cover of the GBA Durgotsav 2026 souvenir: 45th year celebration, 15 to 21 October 2026" width="1000" height="1414" loading="lazy" decoding="async">
+</a>
+
+<div>
+<div class="souv-eyebrow" id="souvEyebrow">Launching Soon</div>
+<h3>Durgotsav 2026 Souvenir</h3>
+<p class="souv-bn" lang="bn">স্মরণিকা ২০২৬</p>
+<p class="souv-text" id="souvText">Our 45th-year souvenir will be launched at GBA Kali Puja. Messages, memories of the Pujo, sports, children&rsquo;s art and more, in 140 pages.</p>
+<ul class="souv-when" id="souvWhen">
+<li><i class="bi bi-calendar-event"></i>8 November 2026, 9:00 PM</li>
+<li><i class="bi bi-geo-alt-fill"></i>Community Centre, Sector 9</li>
+</ul>
+<a class="souv-cta" id="souvCta" href="durga-puja.html#souvenir" hidden>Read the souvenir &rarr;</a>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+(function () {
+  var LAUNCH = Date.parse("2026-11-08T21:00:00+05:30");   // same time the Durga Puja page switches
+  function launched() {
+    var cover = document.getElementById("souvCover");
+    if (!cover) return;
+    cover.href = "durga-puja.html#souvenir";
+    cover.setAttribute("aria-label", "Read the Durgotsav 2026 souvenir");
+    cover.title = "Tap to read the souvenir";
+    document.getElementById("souvEyebrow").textContent = "Now Released";
+    document.getElementById("souvText").innerHTML = "Launched at GBA Kali Puja. Messages, memories of the Pujo, sports, children&rsquo;s art and more, in 140 pages. Tap the cover to read it.";
+    document.getElementById("souvWhen").hidden = true;
+    document.getElementById("souvCta").hidden = false;
+  }
+  var wait = LAUNCH - Date.now();
+  if (wait <= 0) launched();
+  else if (wait < 2147483647) setTimeout(launched, wait);   // switches on its own if the page is open at 9 pm
+})();
+</script>
+
+<!-- LATEST NEWS: hidden after the Puja; shows again by itself 50 days before
+     Durga Puja 2027 (Maha Shashthi 5 Oct 2027, so from 16 Aug 2027, IST) -->
+
+<section class="py-5" id="latestUpdates" hidden>
 
 <div class="container">
 
@@ -552,8 +630,8 @@ Journey of GBA
 
 <div class="news-card">
 <div class="news-date">Registrations</div>
-<h4>Durga Puja 2026 Registration</h4>
-<p>Interested in membership or taking part in Durga Puja 2026? <a href="contact.html">Get in touch with us &rarr;</a></p>
+<h4>Durga Puja 2027 Registration</h4>
+<p>Interested in membership or taking part in Durga Puja 2027? <a href="contact.html">Get in touch with us &rarr;</a></p>
 </div>
 
 </div>
@@ -562,7 +640,7 @@ Journey of GBA
 
 <div class="news-card">
 <div class="news-date">Announced</div>
-<h4>Durga Puja Committee 2026</h4>
+<h4>Durga Puja Committee 2027</h4>
 <p>Meet this year's Durga Puja Committee. <a href="committee.html#durga-puja-committee">View committee &rarr;</a></p>
 </div>
 
@@ -573,7 +651,7 @@ Journey of GBA
 <div class="news-card" id="culturalAuditionCard">
 <div class="news-date">Auditions Open</div>
 <h4>Cultural Programme Auditions</h4>
-<p>Auditions for music, dance and theatre performances during Durga Puja 2026 are open. <a href="#" data-bs-toggle="modal" data-bs-target="#auditionModal">View details &rarr;</a></p>
+<p>Auditions for music, dance and theatre performances during Durga Puja 2027 are open. <a href="#" data-bs-toggle="modal" data-bs-target="#auditionModal">View details &rarr;</a></p>
 </div>
 
 </div>
@@ -583,6 +661,15 @@ Journey of GBA
 </div>
 
 </section>
+
+<script>
+(function () {
+  var SHOW_FROM = Date.parse("2027-08-16T00:00:00+05:30");   // 50 days before Maha Shashthi 2027
+  var HIDE_FROM = Date.parse("2027-10-11T00:00:00+05:30");   // the day after Bijoya Dashami 2027
+  var t = Date.now(), el = document.getElementById("latestUpdates");
+  if (el && t >= SHOW_FROM && t < HIDE_FROM) el.hidden = false;
+})();
+</script>
 
 <!-- CULTURAL PROGRAMME AUDITION MODAL -->
 
@@ -598,7 +685,7 @@ Journey of GBA
 <p class="text-muted mb-2">Cultural Secretary, GBA</p>
 
 <p class="mt-2 mb-2">
-Interested in performing in music, dance or theatre during Durga Puja 2026?
+Interested in performing in music, dance or theatre during Durga Puja 2027?
 Reach out to our Cultural Secretary to register your interest or ask about auditions.
 </p>
 
