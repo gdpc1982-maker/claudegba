@@ -19,10 +19,6 @@
   var BROADCAST_END = MAHALAYA + 2 * 3600000;
   var PUJA_START = Date.parse("2027-10-05T00:00:00+05:30"); // Maha Shashthi
   var PUJA_END = Date.parse("2027-10-10T23:59:59+05:30");   // Bijoya Dashami
-  // Before Mahalaya: the Bijoya message runs until BIJOYA_END, then the year-round
-  // message until COUNTDOWN_START (50 days before Mahalaya), when the heading
-  // changes to "মা আসছেন" and the Mahalaya countdown appears.
-  var BIJOYA_END = Date.parse("2026-11-10T00:00:00+05:30");
   var COUNTDOWN_START = MAHALAYA - 50 * 86400000;
 
   var DATES = [
@@ -58,6 +54,11 @@
   }
 
   var TRACKS = {
+    // Our own recording, played from the website (not YouTube)
+    anthem: [
+      { id: "a1", src: "audio/gba-anthem.mp3", title: "Ek Akash Ek Thikana \u2013 Amader GBA",
+        artist: "The GBA Anthem \u00b7 Gurgaon Bengalee Association", dur: 335, kind: "anthem" }
+    ],
     mahalaya: [LIVE].concat(list("mahalaya", [
       ["yt1", "YQyo8QeoYhc", "Mahishasuramardini · Full", "Birendra Krishna Bhadra · Saregama", 5358]
     ])),
@@ -167,15 +168,16 @@
   };
 
   var TABS = [
+    { id: "anthem", label: "GBA Anthem" },
     { id: "mahalaya", label: "Mahalaya" },
     { id: "songs", label: "Mahalaya Songs" },
     { id: "pujo", label: "Durga Pujo" },
     { id: "rabindra", label: "Rabindra Sangeet" }
   ];
 
-  var ICON = { live: "bi-broadcast", mahalaya: "bi-moon-stars-fill", songs: "bi-music-note-beamed", pujo: "bi-flower1", rabindra: "bi-feather" };
+  var ICON = { anthem: "bi-music-note", live: "bi-broadcast", mahalaya: "bi-moon-stars-fill", songs: "bi-music-note-beamed", pujo: "bi-flower1", rabindra: "bi-feather" };
 
-  var ALL = [].concat(TRACKS.mahalaya, TRACKS.songs, TRACKS.pujo, TRACKS.rabindra);
+  var ALL = [].concat(TRACKS.anthem, TRACKS.mahalaya, TRACKS.songs, TRACKS.pujo, TRACKS.rabindra);
 
   function byId(id) {
     for (var i = 0; i < ALL.length; i++) if (ALL[i].id === id) return ALL[i];
@@ -284,7 +286,7 @@
 
   var S = {
     trackId: "live",
-    tab: "mahalaya",
+    tab: "anthem",
     playing: false,
     progress: 0,
     ytDur: 0,
@@ -403,6 +405,54 @@
       S.playing = false;
       render();
     }
+  });
+
+  /* ---------- Songs hosted on our website (the GBA Anthem) ---------- */
+
+  var fa = new Audio();
+  fa.preload = "none";
+  var faCmdT = 0;
+
+  function startFile(t) {
+    var want = new URL(t.src, location.href).href;
+    if (fa.src !== want) { fa.src = want; S.ytBuf = true; }
+    var p = fa.play();
+    if (p && p.catch) {
+      p.catch(function (err) {
+        if (cur().src && S.playing) {
+          S.playing = false;
+          S.ytBuf = false;
+          render();
+          toast(err && err.name === "NotAllowedError" ? "Tap play to start the song" : "Couldn't load the song · try again");
+        }
+      });
+    }
+  }
+
+  function pauseFile() {
+    if (!fa.paused) { faCmdT = Date.now(); fa.pause(); }
+  }
+
+  fa.addEventListener("playing", function () { S.ytBuf = false; renderProgress(); });
+  fa.addEventListener("waiting", function () { if (S.playing) { S.ytBuf = true; renderProgress(); } });
+  fa.addEventListener("durationchange", function () {
+    if (cur().src && isFinite(fa.duration) && fa.duration > 0) { S.ytDur = fa.duration; renderProgress(); }
+  });
+  fa.addEventListener("timeupdate", function () {
+    if (!cur().src || scrubbing) return;
+    if (Math.floor(fa.currentTime) !== Math.floor(S.progress)) { S.progress = fa.currentTime; renderProgress(); }
+  });
+  fa.addEventListener("ended", function () {
+    if (!cur().src) return;
+    if (S.repeat) { fa.currentTime = 0; fa.play(); }
+    else if (TRACKS[tabOf(S.trackId)].length > 1) step(1);
+    else { S.playing = false; S.progress = 0; render(); }
+  });
+  fa.addEventListener("pause", function () {
+    if (Date.now() - faCmdT > 600 && cur().src && S.playing && !fa.ended) { S.playing = false; render(); }
+  });
+  fa.addEventListener("error", function () {
+    if (cur().src && S.playing) { S.playing = false; S.ytBuf = false; render(); toast("Couldn't load the song · try again"); }
   });
 
   /* ---------- Playlist songs (hidden YouTube player) ---------- */
@@ -552,6 +602,7 @@
 
   function applyMute() {
     au.muted = S.muted;
+    fa.muted = S.muted;
     if (ytReady) { try { if (S.muted) yt.mute(); else yt.unMute(); } catch (e) {} }
     if (dhakEl) dhakEl.muted = S.muted;
     if (acGain) acGain.gain.value = S.muted ? 0 : 0.7;
@@ -575,11 +626,18 @@
   function sync() {
     var t = cur();
     if (t.live) {
+      pauseFile();
       driveYt();
       if (S.playing) startLive();
       else pauseAu();
+    } else if (t.src) {
+      pauseAu();
+      driveYt();          // pauses YouTube, since this track has no video
+      if (S.playing) startFile(t);
+      else pauseFile();
     } else {
       pauseAu();
+      pauseFile();
       driveYt();
     }
     applyMute();
@@ -631,6 +689,7 @@
       ytCmdT = Date.now();
       try { yt.seekTo(p, true); } catch (e) {}
     }
+    if (t.src && fa.src) { try { fa.currentTime = p; } catch (e) {} }
     renderProgress();
   }
 
@@ -894,7 +953,8 @@
     $("rpArtist").textContent = t.live
       ? (ph === "live" ? "On air now · Mahishasuramardini" : "Akashvani FM Rainbow Kolkata · live stream")
       : t.artist;
-    $("rpExt").hidden = !t.yt;
+    $("rpExt").hidden = !!t.live;
+    $("rpYt").hidden = !t.yt;
     if (t.yt) $("rpYt").href = "https://music.youtube.com/watch?v=" + t.yt;
 
     $("rpPlayIcon").className = "bi " + (S.playing ? "bi-pause-fill" : "bi-play-fill");
@@ -918,7 +978,6 @@
     $("chipDhak").setAttribute("aria-pressed", String(S.dhak));
 
     var chip = $("chipRemind"), btn = $("remindBtn");
-    chip.hidden = ph === "after";
     btn.disabled = ph === "after";
     btn.classList.toggle("is-set", ph === "before" && S.reminded);
 
@@ -1032,9 +1091,7 @@
     dot.classList.toggle("is-live", ph === "live");
 
     if (ph === "before" && t < COUNTDOWN_START) {
-      txt = t < BIJOYA_END
-        ? "Shubho Bijoya! Relive the Pujo with songs and the Dhak"
-        : "Bengali songs, Durga Puja classics and the Dhak, anytime";
+      txt = "Bengali songs, Pujo classics & the Dhak, anytime";
       setTiles(parts(MAHALAYA - t));
       cap = "Until Mahalaya 2027 (tentative) · 4:00 AM IST";
     } else if (ph === "before") {
@@ -1054,7 +1111,7 @@
       setTiles(parts(PUJA_END - t));
       cap = "Until the celebrations end · Vijaya Dashami";
     } else {
-      txt = "Bengali songs, Durga Puja classics and the Dhak, anytime";
+      txt = "Bengali songs, Pujo classics & the Dhak, anytime";
       setTiles(parts(0));
       cap = "Durga Puja 2027 has concluded · see you next year";
     }
@@ -1073,9 +1130,13 @@
         head.setAttribute("aria-label", inWindow ? "Ma ashchhen — the Mother is coming" : "Bengali Radio by GBA");
       }
     }
-    var tiles = document.querySelector("#schedule .dhms-countdown");
-    if (tiles) tiles.style.display = inWindow ? "" : "none";
-    $("rcCaption").style.display = inWindow ? "" : "none";
+    // The Mahalaya card, the Schedule and Remind me buttons only show in the
+    // same 50-day window, so the rest of the year the page stays compact.
+    var sched = $("schedule");
+    if (sched) sched.hidden = !inWindow;
+    var schedChip = $("chipSchedule");
+    if (schedChip) schedChip.hidden = !inWindow;
+    $("chipRemind").hidden = !inWindow || ph === "after";
 
     var showLocal = !!LOCAL_WHEN && ph !== "after";
     $("radioLocal").hidden = !showLocal;
