@@ -129,14 +129,7 @@ Proud Organisers of Gurugram's Oldest Durga Puja
 
 <div class="container">
 
-<span class="radio-badge"><i class="bi bi-broadcast"></i> Bengali Radio by GBA</span>
-
 <h1 class="radio-title" id="radioHeading" lang="bn" aria-label="Bengali Radio by GBA">জিবিএ-র বাংলা রেডিও</h1>
-
-<p class="radio-sub">
-Bengali songs, Durga Puja classics and the Dhak, anytime &mdash; with Akashvani FM Rainbow Kolkata live,
-and Mahalaya at dawn every year.
-</p>
 
 <div class="radio-status" role="status">
 <span class="radio-dot" id="radioStatusDot"></span>
@@ -154,6 +147,10 @@ and Mahalaya at dawn every year.
 <section class="radio-player-wrap">
 
 <div class="container">
+
+<div class="radio-main">
+
+<div class="radio-col-player">
 
 <div class="radio-player" role="region" aria-label="Radio player">
 
@@ -206,19 +203,35 @@ and Mahalaya at dawn every year.
 
 <div class="radio-actions">
 
-<a href="#playlists" class="radio-chip"><i class="bi bi-music-note-list"></i> Playlists</a>
+<a href="#schedule" class="radio-chip" id="chipSchedule" aria-label="Mahalaya schedule" hidden><i class="bi bi-calendar-event"></i> <span class="radio-chip-lbl">Schedule</span></a>
 
-<a href="#schedule" class="radio-chip"><i class="bi bi-calendar-event"></i> Schedule</a>
+<button type="button" class="radio-chip" id="chipDhak" aria-pressed="false" aria-label="Dhak"><i class="bi bi-soundwave"></i> <span class="radio-chip-lbl">Dhak</span></button>
 
-<button type="button" class="radio-chip" id="chipDhak" aria-pressed="false"><i class="bi bi-soundwave"></i> Dhak</button>
+<button type="button" class="radio-chip" id="chipRemind" aria-pressed="false" hidden><i class="bi bi-bell" id="chipRemindIcon"></i> <span id="chipRemindText" class="radio-chip-lbl">Remind me</span></button>
 
-<button type="button" class="radio-chip" id="chipRemind" aria-pressed="false"><i class="bi bi-bell" id="chipRemindIcon"></i> <span id="chipRemindText">Remind me</span></button>
+<button type="button" class="radio-chip" id="chipShare" aria-label="Share"><i class="bi bi-box-arrow-up"></i> <span class="radio-chip-lbl">Share</span></button>
 
-<button type="button" class="radio-chip" id="chipShare"><i class="bi bi-box-arrow-up"></i> Share</button>
-
-<button type="button" class="radio-chip" data-bs-toggle="modal" data-bs-target="#chaiModal"><i class="bi bi-cup-hot-fill"></i> Buy us a chai</button>
+<button type="button" class="radio-chip" data-bs-toggle="modal" data-bs-target="#chaiModal" aria-label="Buy us a chai"><i class="bi bi-cup-hot-fill"></i> <span class="radio-chip-lbl">Buy us a chai</span></button>
 
 </div>
+
+</div>
+
+<!-- PLAYLISTS (beside the player on computers, under it on phones) -->
+
+<div class="radio-col-lists radio-section" id="playlists">
+
+<h2 class="visually-hidden">Playlists</h2>
+
+<div class="radio-tabs" id="radioTabs" role="tablist" aria-label="Playlists"></div>
+
+<div class="radio-list" id="radioList"></div>
+
+</div>
+
+</div>
+
+<p class="radio-about">Bengali songs, Durga Puja classics and the Dhak, anytime: our own GBA Anthem, Akashvani FM Rainbow Kolkata live, and Mahalaya at dawn every year. Tap any song to play it here.</p>
 
 </div>
 
@@ -226,7 +239,7 @@ and Mahalaya at dawn every year.
 
 <!-- MAHALAYA SCHEDULE + COUNTDOWN -->
 
-<section class="bg-light-custom radio-section" id="schedule">
+<section class="bg-light-custom radio-section" id="schedule" hidden>
 
 <div class="container">
 
@@ -295,25 +308,6 @@ and Mahalaya at dawn every year.
 
 </section>
 
-<!-- PLAYLISTS -->
-
-<section class="radio-section" id="playlists">
-
-<div class="container">
-
-<div class="text-center mb-4">
-<h2 class="section-title d-inline-block">Playlists</h2>
-<p class="mt-3 text-center">The full Mahishasuramardini recording, the songs of Mahalaya, and a Durga Pujo playlist. Tap any song to play it here.</p>
-</div>
-
-<div class="radio-tabs" id="radioTabs" role="tablist" aria-label="Playlists"></div>
-
-<div class="radio-list" id="radioList"></div>
-
-</div>
-
-</section>
-
 <!-- PUJO DATES -->
 
 <section class="bg-light-custom radio-section" id="pujo-dates">
@@ -345,9 +339,9 @@ and Mahalaya at dawn every year.
 
 <h4 class="mt-1 mb-2" id="chaiModalLabel"><i class="bi bi-cup-hot-fill"></i> Buy us a chai</h4>
 
-<p class="mb-3">Enjoying Agomoni? Treat GBA to a cup of chai &mdash; it keeps the radio running and supports our Durga Puja and community work.</p>
+<p class="mb-3">Enjoying the radio? Treat GBA to a cup of chai &mdash; it keeps the radio running and supports our Durga Puja and community work.</p>
 
-<a href="upi://pay?pa=begaleeassociation@indianbk&pn=Gurgaon%20Bengalee%20Association&cu=INR&tn=Chai%20for%20Agomoni" aria-label="Pay Gurgaon Bengalee Association via UPI">
+<a href="upi://pay?pa=begaleeassociation@indianbk&pn=Gurgaon%20Bengalee%20Association&cu=INR&tn=Chai%20for%20GBA%20Radio" aria-label="Pay Gurgaon Bengalee Association via UPI">
 <img src="images/donate-qr-code.jpg" alt="GBA Indian Bank UPI QR code" class="donate-qr-img">
 </a>
 
