@@ -267,33 +267,75 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// Durgotsav 2026 invitation flipbook (durga-puja.html, #fbBook)
+// Durgotsav 2026 souvenir flipbook (durga-puja.html, #fbBook)
+// Pages are built from data attributes on #fbBook, so the HTML stays small.
+// Only the leaves next to the open page load their images.
 document.addEventListener("DOMContentLoaded", function () {
   var book = document.getElementById("fbBook");
   if (!book) return;
 
-  var PAGES = [
-    { src: "images/invitation-2026-p1.jpg", label: "Cover" },
-    { src: "images/invitation-2026-p2.jpg", label: "Invitation",
-      hotspot: { x: 49.64, y: 90.85, w: 36.43, h: 6.06,
-        href: "https://maps.app.goo.gl/xi2QhFZogh8ZSVWZ8",
-        title: "Tap to open location in Google Maps",
-        toast: "Opening location in Google Maps…", kind: "map" } },
-    { src: "images/invitation-2026-p3.jpg", label: "Puja Schedule" },
-    { src: "images/invitation-2026-p4.jpg", label: "Payment Details",
-      hotspot: { x: 51.24, y: 53.45, w: 35.2, h: 24.9,
-        href: "upi://pay?pa=begaleeassociation%40indianbk&pn=Gurgaon%20Bengalee%20Association&cu=INR&tn=GBA%20Durgotsav%202026",
-        vpa: "begaleeassociation@indianbk",
-        title: "Tap to pay via UPI",
-        toast: "Opening UPI app… if nothing happens, pay to begaleeassociation@indianbk", kind: "pay" } }
+  var TOTAL = parseInt(book.getAttribute("data-pages"), 10) || 0;
+  var SRC = book.getAttribute("data-src") || "";
+  var NAME = book.getAttribute("data-title") || "Souvenir";
+  if (!TOTAL || !SRC) return;
+
+  // Section bookmarks (page numbers as printed, 1-based)
+  var SECTIONS = [
+    { page: 1, label: "Cover" },
+    { page: 4, label: "Invitation" },
+    { page: 5, label: "Puja Schedule" },
+    { page: 6, label: "President's Desk" },
+    { page: 25, label: "Going Digital" },
+    { page: 33, label: "Accounts" },
+    { page: 40, label: "Memories" },
+    { page: 78, label: "Sports & Games" },
+    { page: 105, label: "Children's Art" },
+    { page: 138, label: "Payment Details" }
   ];
-  var LEAVES = Math.ceil(PAGES.length / 2);
-  var RATIO = 0.7076;
+
+  function pad(n) { return ("00" + n).slice(-3); }
+  function srcOf(i) { return SRC.replace("{n}", pad(i + 1)); }
+  function sectionOf(i) {
+    var s = SECTIONS[0];
+    for (var k = 0; k < SECTIONS.length; k++) { if (SECTIONS[k].page - 1 <= i) s = SECTIONS[k]; }
+    return s;
+  }
+  function labelOf(i) { return NAME + ", page " + (i + 1) + " (" + sectionOf(i).label + ")"; }
+
+  /* ---------- build the leaves ---------- */
+  var LEAVES = Math.ceil(TOTAL / 2);
+  var RATIO = 0.7071;   // A4 portrait
+  var frag = document.createDocumentFragment();
+  for (var L = 0; L < LEAVES; L++) {
+    var leaf = document.createElement("div");
+    leaf.className = "fb-leaf";
+    [L * 2, L * 2 + 1].forEach(function (p, k) {
+      var face = document.createElement("div");
+      face.className = "fb-face " + (k === 0 ? "fb-front" : "fb-back");
+      if (p < TOTAL) {
+        var img = document.createElement("img");
+        img.setAttribute("data-page", p);
+        img.setAttribute("decoding", "async");
+        img.setAttribute("draggable", "false");
+        img.alt = "";
+        face.appendChild(img);
+      } else {
+        face.classList.add("fb-blank");
+      }
+      var sheen = document.createElement("div");
+      sheen.className = "fb-sheen";
+      face.appendChild(sheen);
+      leaf.appendChild(face);
+    });
+    frag.appendChild(leaf);
+  }
+  book.appendChild(frag);
 
   var section = document.getElementById("invitation");
   var viewport = document.getElementById("fbViewport");
   var bookrow = document.getElementById("fbBookrow");
   var leafEls = Array.prototype.slice.call(book.querySelectorAll(".fb-leaf"));
+  var imgEls = Array.prototype.slice.call(book.querySelectorAll(".fb-face img"));
   var prevBtn = document.getElementById("fbPrev");
   var nextBtn = document.getElementById("fbNext");
   var counter = document.getElementById("fbCounter");
@@ -303,47 +345,31 @@ document.addEventListener("DOMContentLoaded", function () {
   var lb = document.getElementById("fbLightbox");
   var lbImg = document.getElementById("fbLbImg");
   var lbCap = document.getElementById("fbLbCap");
-  var toast = document.getElementById("fbToast");
+  var lbPrev = document.getElementById("fbLbPrev");
+  var lbNext = document.getElementById("fbLbNext");
+  var gotoForm = document.getElementById("fbGoto");
+  var gotoInput = document.getElementById("fbGotoInput");
 
   var mq = window.matchMedia("(min-width: 860px)");
   var spread = mq.matches;
   var flipped = 0;   // spread mode: leaves turned (0..LEAVES)
-  var idx = 0;       // single mode: page index (0..N-1)
+  var idx = 0;       // single mode: page index (0..TOTAL-1)
   var busy = false;
+  var lbIndex = 0;
 
-  /* ---------- hotspots (map link, UPI pay) ---------- */
-  function showToast(msg) {
-    toast.textContent = msg;
-    toast.classList.add("fb-show");
-    clearTimeout(toast._h);
-    toast._h = setTimeout(function () { toast.classList.remove("fb-show"); }, 3600);
-  }
+  if (gotoInput) gotoInput.max = TOTAL;
 
-  Array.prototype.forEach.call(book.querySelectorAll(".fb-face img"), function (img) {
-    var i = parseInt(img.getAttribute("data-page"), 10);
-    var hs = PAGES[i] && PAGES[i].hotspot;
-    if (!hs) return;
-    var a = document.createElement("a");
-    a.className = "fb-hotspot" + (hs.kind ? " fb-" + hs.kind : "");
-    a.href = hs.href;
-    a.target = /^https?:/i.test(hs.href) ? "_blank" : "_self";
-    a.rel = "noopener";
-    a.title = hs.title || "Tap for more";
-    a.style.left = hs.x + "%";
-    a.style.top = hs.y + "%";
-    a.style.width = hs.w + "%";
-    a.style.height = hs.h + "%";
-    a.addEventListener("click", function (e) {
-      e.stopPropagation();
-      if (hs.vpa && navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(hs.vpa).catch(function () {});
-      }
-      showToast(hs.toast || "Opening…");
+  /* ---------- lazy images: load only the leaves near the open page ---------- */
+  function loadLeaf(L) {
+    var el = leafEls[L];
+    if (!el) return;
+    Array.prototype.forEach.call(el.querySelectorAll("img"), function (img) {
+      if (img.getAttribute("src")) return;
+      var p = parseInt(img.getAttribute("data-page"), 10);
+      img.alt = labelOf(p);
+      img.src = srcOf(p);
     });
-    a.addEventListener("dblclick", function (e) { e.stopPropagation(); });
-    a.addEventListener("touchend", function (e) { e.stopPropagation(); });
-    img.parentNode.appendChild(a);
-  });
+  }
 
   /* ---------- sizing ---------- */
   function size() {
@@ -376,11 +402,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!spread) return [idx];
     if (flipped === 0) return [0];
     var left = flipped * 2 - 1, right = flipped * 2;
-    return right < PAGES.length ? [left, right] : [left];
+    return right < TOTAL ? [left, right] : [left];
   }
 
   function atStart() { return spread ? flipped === 0 : idx === 0; }
-  function atEnd() { return spread ? flipped === LEAVES : idx === PAGES.length - 1; }
+  function atEnd() { return spread ? flipped === LEAVES : idx === TOTAL - 1; }
 
   function render() {
     var f = leavesTurned();
@@ -388,6 +414,10 @@ document.addEventListener("DOMContentLoaded", function () {
       var isF = i < f;
       el.classList.toggle("fb-flipped", isF);
       el.style.zIndex = isF ? (i + 1) : (LEAVES - i);
+      // keep only the leaves around the open page in play; the rest are hidden
+      var near = i >= f - 2 && i <= f + 1;
+      el.style.visibility = near || el.classList.contains("fb-turning") ? "" : "hidden";
+      if (i >= f - 2 && i <= f + 2) loadLeaf(i);
     });
 
     var pw = parseFloat(viewport.style.getPropertyValue("--pw")) || 0;
@@ -413,11 +443,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var vis = visiblePages();
     counter.innerHTML = vis.length > 1
-      ? "Page <b>" + (vis[0] + 1) + "–" + (vis[1] + 1) + "</b> of " + PAGES.length
-      : "Page <b>" + (vis[0] + 1) + "</b> of " + PAGES.length;
+      ? "Page <b>" + (vis[0] + 1) + "–" + (vis[1] + 1) + "</b> of " + TOTAL
+      : "Page <b>" + (vis[0] + 1) + "</b> of " + TOTAL;
 
+    var cur = sectionOf(vis[vis.length - 1]);
     Array.prototype.forEach.call(chipsBox.children, function (c, i) {
-      c.setAttribute("aria-current", vis.indexOf(i) !== -1 ? "true" : "false");
+      c.setAttribute("aria-current", SECTIONS[i] === cur ? "true" : "false");
     });
   }
 
@@ -439,7 +470,7 @@ document.addEventListener("DOMContentLoaded", function () {
       flipped = t;
     } else {
       var n = idx + dir;
-      if (n < 0 || n > PAGES.length - 1) return;
+      if (n < 0 || n > TOTAL - 1) return;
       var before = leavesTurned();
       idx = n;
       var after = leavesTurned();
@@ -450,20 +481,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function jump(page) {
     if (busy) return;
+    page = Math.max(0, Math.min(TOTAL - 1, page));
     if (spread) { flipped = page === 0 ? 0 : Math.floor((page + 1) / 2); }
     else { idx = page; }
     render();
   }
 
-  /* ---------- chips ---------- */
-  PAGES.forEach(function (p, i) {
+  /* ---------- section chips ---------- */
+  SECTIONS.forEach(function (s) {
     var b = document.createElement("button");
     b.className = "fb-chip";
     b.type = "button";
-    b.textContent = p.label;
-    b.addEventListener("click", function () { jump(i); });
+    b.textContent = s.label;
+    b.title = "Go to page " + s.page;
+    b.addEventListener("click", function () { jump(s.page - 1); });
     chipsBox.appendChild(b);
   });
+
+  /* ---------- go to page ---------- */
+  if (gotoForm) {
+    gotoForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var n = parseInt(gotoInput.value, 10);
+      if (n >= 1 && n <= TOTAL) { jump(n - 1); gotoInput.blur(); }
+    });
+  }
 
   /* ---------- interactions ---------- */
   nextBtn.addEventListener("click", function () { go(1); });
@@ -479,6 +521,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // arrow / Home / End scrolling is never hijacked.
   section.addEventListener("keydown", function (e) {
     if (lb.classList.contains("fb-open")) return;
+    if (e.target && e.target.tagName === "INPUT") return;
     if (e.key === "ArrowRight") { go(1); e.preventDefault(); }
     else if (e.key === "ArrowLeft") { go(-1); e.preventDefault(); }
   });
@@ -495,25 +538,48 @@ document.addEventListener("DOMContentLoaded", function () {
     if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) { go(dx < 0 ? 1 : -1); }
   }, { passive: true });
 
-  /* ---------- lightbox ---------- */
-  function openLb(i) {
-    lbImg.src = PAGES[i].src;
-    lbImg.alt = PAGES[i].label;
+  /* ---------- lightbox (read full size, with its own page arrows) ---------- */
+  function showLb(i) {
+    lbIndex = Math.max(0, Math.min(TOTAL - 1, i));
+    lbImg.src = srcOf(lbIndex);
+    lbImg.alt = labelOf(lbIndex);
     lbImg.classList.remove("fb-zoomed");
-    lbCap.textContent = PAGES[i].label + " · page " + (i + 1) + " of " + PAGES.length;
+    lbCap.textContent = sectionOf(lbIndex).label + " · page " + (lbIndex + 1) + " of " + TOTAL;
+    if (lbPrev) lbPrev.disabled = lbIndex === 0;
+    if (lbNext) lbNext.disabled = lbIndex === TOTAL - 1;
+    if (lbIndex + 1 < TOTAL) new Image().src = srcOf(lbIndex + 1);
+  }
+  function openLb(i) {
+    showLb(i);
     lb.classList.add("fb-open");
     document.documentElement.style.overflow = "hidden";
   }
   function closeLb() {
     lb.classList.remove("fb-open");
     document.documentElement.style.overflow = "";
+    jump(lbIndex);   // the book follows the page that was being read
   }
   document.getElementById("fbLbClose").addEventListener("click", closeLb);
+  if (lbPrev) lbPrev.addEventListener("click", function (e) { e.stopPropagation(); showLb(lbIndex - 1); });
+  if (lbNext) lbNext.addEventListener("click", function (e) { e.stopPropagation(); showLb(lbIndex + 1); });
   lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
   lbImg.addEventListener("click", function () { lbImg.classList.toggle("fb-zoomed"); });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && lb.classList.contains("fb-open")) closeLb();
+    if (!lb.classList.contains("fb-open")) return;
+    if (e.key === "Escape") closeLb();
+    else if (e.key === "ArrowRight") { showLb(lbIndex + 1); e.preventDefault(); }
+    else if (e.key === "ArrowLeft") { showLb(lbIndex - 1); e.preventDefault(); }
   });
+  var lsx = 0, lsy = 0;
+  lb.addEventListener("touchstart", function (e) {
+    lsx = e.changedTouches[0].clientX; lsy = e.changedTouches[0].clientY;
+  }, { passive: true });
+  lb.addEventListener("touchend", function (e) {
+    if (lbImg.classList.contains("fb-zoomed")) return;
+    var dx = e.changedTouches[0].clientX - lsx;
+    var dy = e.changedTouches[0].clientY - lsy;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) { showLb(lbIndex + (dx < 0 ? 1 : -1)); }
+  }, { passive: true });
 
   document.getElementById("fbZoom").addEventListener("click", function (e) {
     e.stopPropagation();
@@ -529,41 +595,6 @@ document.addEventListener("DOMContentLoaded", function () {
     openLb(vis.length > 1 ? (right ? vis[1] : vis[0]) : vis[0]);
   });
 
-  /* ---------- save page ---------- */
-  document.getElementById("fbSave").addEventListener("click", function (e) {
-    e.stopPropagation();
-    visiblePages().forEach(function (i, k) {
-      setTimeout(function () {
-        var a = document.createElement("a");
-        a.href = PAGES[i].src;
-        a.download = "GBA-Durgotsav-2026-" + ("0" + (i + 1)).slice(-2) + "-" +
-                     PAGES[i].label.replace(/[^A-Za-z0-9]+/g, "-") + ".jpg";
-        document.body.appendChild(a); a.click(); document.body.removeChild(a);
-      }, k * 350);
-    });
-  });
-
-  /* ---------- countdown to Durga Shashthi (India time) ---------- */
-  (function () {
-    var el = document.getElementById("fbCountdown");
-    if (!el) return;
-    var start = Date.parse("2026-10-16T00:00:00+05:30");
-    var end = Date.parse("2026-10-22T00:00:00+05:30");
-    function tick() {
-      var now = Date.now();
-      if (now < start) {
-        var d = Math.ceil((start - now) / 86400000);
-        el.innerHTML = "<b>" + d + "</b> day" + (d === 1 ? "" : "s") + " to Durga Shashthi";
-      } else if (now < end) {
-        el.innerHTML = "Pujo is on — <b>আসুন, আনন্দ করুন</b>";
-      } else {
-        el.innerHTML = "আসছে বছর আবার হবে";
-      }
-    }
-    tick();
-    setInterval(tick, 60000);
-  })();
-
   /* ---------- mode switching and resize ---------- */
   function onMode() {
     var wasSpread = spread;
@@ -577,13 +608,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (mq.addEventListener) mq.addEventListener("change", onMode); else mq.addListener(onMode);
   window.addEventListener("resize", size);
   window.addEventListener("orientationchange", function () { setTimeout(size, 250); });
-
-  // warm the remaining pages once the main page has finished loading
-  window.addEventListener("load", function () {
-    setTimeout(function () {
-      for (var i = 1; i < PAGES.length; i++) { new Image().src = PAGES[i].src; }
-    }, 600);
-  });
 
   onMode();
 });
